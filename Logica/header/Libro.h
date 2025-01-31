@@ -4,6 +4,7 @@
 #include "ElementoBiblioteca.h"
 #include "qcoreapplication.h"
 #include "qdeadlinetimer.h"
+#include <vector>
 
 class Libro : public ElementoBiblioteca {
 private:
@@ -17,12 +18,14 @@ public:
     static QString Genere;
     static QString Descrizione;
     static QString Uscita;
+    static QString Autori;
     static QString Editore;
     static QString ISBN;
   };
   Libro() = default;
   Libro(const QString &, const QString &, const QString &, const QString &,
-        const QString &, const unsigned short int &);
+        const QString &, const std::vector<QString> &,
+        const unsigned short int &);
   QJsonObject toJson() const override;
 };
 

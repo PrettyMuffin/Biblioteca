@@ -9,13 +9,25 @@
 
 class Film : public ElementoBiblioteca {
 private:
-  std::vector<QString> cast;
   unsigned short int valutazione;
   QString casa_cinematografica;
 
 public:
+  class JSON_FIELDS {
+  public:
+    static QString Titolo;
+    static QString Genere;
+    static QString Descrizione;
+    static QString Autori;
+    static QString Uscita;
+    static QString Valutazione;
+    static QString Casa_Cinematografica;
+  };
+  Film() = default;
+  Film(const QString &, const QString &, const QString &, const QString &,
+       const std::vector<QString> &, const unsigned short int &,
+       const unsigned short int &);
   QJsonObject toJson() const override;
-  ~Film() override;
 };
 
 #endif
