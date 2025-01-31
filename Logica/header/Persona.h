@@ -13,6 +13,14 @@ private:
   QString bio;
 
 public:
+  class JSON_FIELDS {
+  public:
+    static QString Nome;
+    static QString Cognome;
+    static QString Nome_Arte;
+    static QString Eta;
+    static QString Bio;
+  };
   Persona() = default;
   Persona(const QString &, const QString &, const QString &,
           const unsigned short int &, const QString &);

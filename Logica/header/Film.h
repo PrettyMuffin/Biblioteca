@@ -9,12 +9,13 @@
 
 class Film : public ElementoBiblioteca {
 private:
-  std::vector<Persona> cast;
+  std::vector<QString> cast;
   unsigned short int valutazione;
   QString casa_cinematografica;
 
 public:
   QJsonObject toJson() const override;
+  ~Film() override;
 };
 
 #endif

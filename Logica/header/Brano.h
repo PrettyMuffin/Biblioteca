@@ -11,6 +11,17 @@ private:
   QString album;
   unsigned int durata; // secondi
 public:
+  class JSON_FIELDS {
+  public:
+    static QString Titolo;
+    static QString Genere;
+    static QString Descrizione;
+    static QString Uscita;
+    static QString Album;
+    static QString Durata;
+  };
+  Brano(const QString &, const QString &, const QString &, const QString &,
+        const unsigned int &, const unsigned short int &);
   QJsonObject toJson() const override;
 };
 
