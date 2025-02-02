@@ -32,3 +32,5 @@ QJsonObject Brano::toJson() const {
   brano[JSON_FIELDS::Durata] = static_cast<qint64>(durata);
   return brano;
 }
+
+void Brano::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }

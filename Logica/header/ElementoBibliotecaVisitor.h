@@ -7,9 +7,9 @@ class Film;
 
 class ElementoBiblotecaVisitor {
 public:
-  virtual void visit(Libro &) = 0;
-  virtual void visit(Brano &) = 0;
-  virtual void visit(Film &) = 0;
+  virtual void visit(Libro *) = 0;
+  virtual void visit(Brano *) = 0;
+  virtual void visit(Film *) = 0;
 };
 
 #endif

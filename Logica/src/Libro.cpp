@@ -31,3 +31,5 @@ QJsonObject Libro::toJson() const {
   libro[JSON_FIELDS::ISBN] = ISBN;
   return libro;
 }
+
+void Libro::accept(ElementoBiblotecaVisitor *vi) { vi->visit(this); }

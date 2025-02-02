@@ -27,6 +27,7 @@ public:
         const QString &, const std::vector<QString> &,
         const unsigned short int &);
   QJsonObject toJson() const override;
+  void accept(ElementoBiblotecaVisitor *) override;
 };
 
 #endif

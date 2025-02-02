@@ -25,6 +25,7 @@ public:
   Brano(const QString &, const QString &, const QString &, const QString &,
         const unsigned int &, const std::vector<QString> &,
         const unsigned short int &);
+  void accept(ElementoBiblotecaVisitor *) override;
   QJsonObject toJson() const override;
 };
 

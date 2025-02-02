@@ -31,3 +31,5 @@ QJsonObject Film::toJson() const {
   brano[JSON_FIELDS::Casa_Cinematografica] = casa_cinematografica;
   return brano;
 }
+
+void Film::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }

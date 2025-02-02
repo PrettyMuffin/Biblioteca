@@ -2,6 +2,7 @@
 #define FILM_H
 
 #include "ElementoBiblioteca.h"
+#include "ElementoBibliotecaVisitor.h"
 #include "Persona.h"
 #include "qcoreapplication.h"
 #include "qdeadlinetimer.h"
@@ -27,6 +28,7 @@ public:
   Film(const QString &, const QString &, const QString &, const QString &,
        const std::vector<QString> &, const unsigned short int &,
        const unsigned short int &);
+  void accept(ElementoBiblotecaVisitor *) override;
   QJsonObject toJson() const override;
 };
 
