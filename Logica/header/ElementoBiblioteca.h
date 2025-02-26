@@ -10,6 +10,9 @@
 #include <vector>
 
 class ElementoBiblioteca {
+  friend bool operator==(const ElementoBiblioteca &,
+                         const ElementoBiblioteca &);
+
 private:
   QString id; // titolo(to lower) + autore(to lower)
   QString titolo;
@@ -22,7 +25,6 @@ private:
 public:
   class JSON_FIELDS {
   public:
-    static QString ID;
     static QString Titolo;
     static QString Genere;
     static QString Descrizione;
@@ -34,8 +36,11 @@ public:
                      const std::vector<QString> &, const unsigned short int &);
   virtual QJsonObject toJson() const;
   virtual void accept(ElementoBiblotecaVisitor *) = 0;
+  virtual ElementoBiblioteca *clone() const = 0;
   void registerObserver(ElementoBibliotecaObserver *);
   virtual ~ElementoBiblioteca();
 };
+
+bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs);
 
 #endif

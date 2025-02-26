@@ -18,7 +18,6 @@ ElementoBiblioteca::ElementoBiblioteca(const QString &titolo,
   id = this->titolo.toLower() + author_string;
 }
 
-QString ElementoBiblioteca::JSON_FIELDS::ID = "id";
 QString ElementoBiblioteca::JSON_FIELDS::Titolo = "titolo";
 QString ElementoBiblioteca::JSON_FIELDS::Genere = "genere";
 QString ElementoBiblioteca::JSON_FIELDS::Descrizione = "descrizione";
@@ -27,7 +26,6 @@ QString ElementoBiblioteca::JSON_FIELDS::Uscita = "uscita";
 
 QJsonObject ElementoBiblioteca::toJson() const {
   QJsonObject el;
-  el[JSON_FIELDS::ID] = id;
   el[JSON_FIELDS::Titolo] = titolo;
   el[JSON_FIELDS::Genere] = genere;
   el[JSON_FIELDS::Descrizione] = descrizione;
@@ -48,4 +46,8 @@ ElementoBiblioteca::~ElementoBiblioteca() {
   for (auto observer : observers) {
     delete observer;
   }
+}
+
+bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs) {
+  return lhs.id == rhs.id;
 }

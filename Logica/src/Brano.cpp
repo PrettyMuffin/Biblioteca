@@ -1,7 +1,6 @@
 #include "../header/Brano.h"
 #include "qcoreapplication.h"
 #include "qjsonobject.h"
-#include <vector>
 
 Brano::Brano(const QString &titolo, const QString &genere,
              const QString &descrizione, const QString &a,
@@ -32,5 +31,7 @@ QJsonObject Brano::toJson() const {
   brano[JSON_FIELDS::Durata] = static_cast<qint64>(durata);
   return brano;
 }
+
+Brano *Brano::clone() const { return new Brano(*this); }
 
 void Brano::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }

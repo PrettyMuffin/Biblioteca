@@ -31,5 +31,6 @@ QJsonObject Film::toJson() const {
   brano[JSON_FIELDS::Casa_Cinematografica] = casa_cinematografica;
   return brano;
 }
+Film *Film::clone() const { return new Film(*this); }
 
 void Film::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }

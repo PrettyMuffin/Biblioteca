@@ -32,4 +32,6 @@ QJsonObject Libro::toJson() const {
   return libro;
 }
 
+Libro *Libro::clone() const { return new Libro(*this); }
+
 void Libro::accept(ElementoBiblotecaVisitor *vi) { vi->visit(this); }

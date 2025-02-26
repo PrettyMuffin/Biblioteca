@@ -26,6 +26,7 @@ public:
   Libro(const QString &, const QString &, const QString &, const QString &,
         const QString &, const std::vector<QString> &,
         const unsigned short int &);
+  Libro *clone() const override;
   QJsonObject toJson() const override;
   void accept(ElementoBiblotecaVisitor *) override;
 };
