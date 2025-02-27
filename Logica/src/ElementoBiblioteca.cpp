@@ -51,3 +51,17 @@ ElementoBiblioteca::~ElementoBiblioteca() {
 bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs) {
   return lhs.id == rhs.id;
 }
+
+void ElementoBiblioteca::fromJson(const QJsonObject &json) {
+  titolo = json[JSON_FIELDS::Titolo].toString();
+  genere = json[JSON_FIELDS::Genere].toString();
+  descrizione = json[JSON_FIELDS::Descrizione].toString();
+  uscita = json[JSON_FIELDS::Uscita].toInt();
+  QJsonArray jsonAuthorArray = json[JSON_FIELDS::Autori].toArray();
+  QString author_string;
+  for (auto autore : jsonAuthorArray) {
+    autori.push_back(autore.toString());
+    author_string += autore.toString();
+  }
+  id = this->titolo.toLower() + author_string;
+}

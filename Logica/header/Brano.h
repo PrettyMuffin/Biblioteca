@@ -26,6 +26,7 @@ public:
         const unsigned int &, const std::vector<QString> &,
         const unsigned short int &);
   Brano *clone() const override;
+  void fromJson(const QJsonObject &) override;
   void accept(ElementoBiblotecaVisitor *) override;
   QJsonObject toJson() const override;
 };

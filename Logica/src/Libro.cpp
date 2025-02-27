@@ -35,3 +35,9 @@ QJsonObject Libro::toJson() const {
 Libro *Libro::clone() const { return new Libro(*this); }
 
 void Libro::accept(ElementoBiblotecaVisitor *vi) { vi->visit(this); }
+
+void Libro::fromJson(const QJsonObject &json) {
+  ElementoBiblioteca::fromJson(json);
+  editore = json[JSON_FIELDS::Editore].toString();
+  ISBN = json[JSON_FIELDS::ISBN].toString();
+}

@@ -18,7 +18,7 @@ private:
   QString titolo;
   QString genere;
   QString descrizione;
-  const std::vector<QString> autori;
+  std::vector<QString> autori;
   unsigned short int uscita; // anno pubblicazione
   std::vector<ElementoBibliotecaObserver *> observers;
 
@@ -35,6 +35,7 @@ public:
   ElementoBiblioteca(const QString &, const QString &, const QString &,
                      const std::vector<QString> &, const unsigned short int &);
   virtual QJsonObject toJson() const;
+  virtual void fromJson(const QJsonObject &);
   virtual void accept(ElementoBiblotecaVisitor *) = 0;
   virtual ElementoBiblioteca *clone() const = 0;
   void registerObserver(ElementoBibliotecaObserver *);

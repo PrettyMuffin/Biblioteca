@@ -31,6 +31,7 @@ public:
   Film *clone() const override;
   void accept(ElementoBiblotecaVisitor *) override;
   QJsonObject toJson() const override;
+  void fromJson(const QJsonObject &) override;
 };
 
 #endif

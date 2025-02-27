@@ -4,6 +4,7 @@
 #include "ElementoBiblioteca.h"
 #include "qcoreapplication.h"
 #include "qglobal.h"
+#include "qobject.h"
 
 #include <vector>
 using std::vector;
@@ -21,6 +22,7 @@ public:
   bool remove(ElementoBiblioteca *);
   bool update(unsigned int, ElementoBiblioteca *);
   bool update(ElementoBiblioteca *, ElementoBiblioteca *);
+  QJsonArray toJson() const;
 };
 
 #endif

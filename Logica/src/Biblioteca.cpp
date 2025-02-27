@@ -1,4 +1,7 @@
 #include "../header/Biblioteca.h"
+#include "qjsonvalue.h"
+#include <QJsonArray>
+#include <QJsonObject>
 
 bool Biblioteca::Contains(ElementoBiblioteca *elemento) const {
   for (auto e : tutti_elementi) {
@@ -69,4 +72,12 @@ bool Biblioteca::update(ElementoBiblioteca *old, ElementoBiblioteca *newel) {
     }
   }
   return false;
+}
+
+QJsonArray Biblioteca::toJson() const {
+  QJsonArray array;
+  for (auto elemento : tutti_elementi) {
+    array.append(elemento->toJson());
+  }
+  return array;
 }

@@ -35,3 +35,9 @@ QJsonObject Brano::toJson() const {
 Brano *Brano::clone() const { return new Brano(*this); }
 
 void Brano::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }
+
+void Brano::fromJson(const QJsonObject &json) {
+  ElementoBiblioteca::fromJson(json);
+  album = json[JSON_FIELDS::Album].toString();
+  durata = json[JSON_FIELDS::Durata].toInt();
+}
