@@ -13,8 +13,9 @@ class ElementoBiblioteca {
   friend bool operator==(const ElementoBiblioteca &,
                          const ElementoBiblioteca &);
 
-private:
+protected:
   QString id; // titolo(to lower) + autore(to lower)
+private:
   QString titolo;
   QString genere;
   QString descrizione;

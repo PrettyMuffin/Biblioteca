@@ -40,4 +40,5 @@ void Brano::fromJson(const QJsonObject &json) {
   ElementoBiblioteca::fromJson(json);
   album = json[JSON_FIELDS::Album].toString();
   durata = json[JSON_FIELDS::Durata].toInt();
+  id += "brano";
 }

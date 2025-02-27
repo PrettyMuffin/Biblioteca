@@ -39,4 +39,5 @@ void Film::fromJson(const QJsonObject &json) {
   ElementoBiblioteca::fromJson(json);
   casa_cinematografica = json[JSON_FIELDS::Casa_Cinematografica].toString();
   valutazione = json[JSON_FIELDS::Valutazione].toInt();
+  id += "film";
 }
