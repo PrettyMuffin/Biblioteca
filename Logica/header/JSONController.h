@@ -6,7 +6,7 @@
 class JSONController {
 public:
   void loadFromFile(Biblioteca &, const QString &);
-  void saveOnFile(Biblioteca &, const QString &);
+  void saveOnFile(const Biblioteca &, const QString &);
 };
 
 #endif
