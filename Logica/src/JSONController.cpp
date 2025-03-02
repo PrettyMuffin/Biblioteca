@@ -28,8 +28,7 @@ void JSONController::loadFromFile(Biblioteca &biblioteca,
   for (auto elemento : elementiBiblioteca) {
     ElementoBiblioteca *nu_e;
     nu_e->fromJson(elemento.toObject());
-    ElementoBiblioteca *nuovoElemento = nu_e->clone();
-    biblioteca.add(nuovoElemento);
+    biblioteca.add(nu_e->clone());
   }
 }
 
