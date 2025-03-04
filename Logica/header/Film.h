@@ -23,6 +23,7 @@ public:
     static QString Uscita;
     static QString Valutazione;
     static QString Casa_Cinematografica;
+    static QString Tipo;
   };
   Film() = default;
   Film(const QString &, const QString &, const QString &, const QString &,

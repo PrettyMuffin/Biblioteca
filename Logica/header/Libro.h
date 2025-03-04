@@ -21,6 +21,7 @@ public:
     static QString Autori;
     static QString Editore;
     static QString ISBN;
+    static QString Tipo;
   };
   Libro() = default;
   Libro(const QString &, const QString &, const QString &, const QString &,

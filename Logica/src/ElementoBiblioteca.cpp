@@ -23,6 +23,7 @@ QString ElementoBiblioteca::JSON_FIELDS::Genere = "genere";
 QString ElementoBiblioteca::JSON_FIELDS::Descrizione = "descrizione";
 QString ElementoBiblioteca::JSON_FIELDS::Autori = "autori";
 QString ElementoBiblioteca::JSON_FIELDS::Uscita = "uscita";
+QString ElementoBiblioteca::JSON_FIELDS::Tipo = "tipo";
 
 QJsonObject ElementoBiblioteca::toJson() const {
   QJsonObject el;

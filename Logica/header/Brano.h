@@ -21,7 +21,9 @@ public:
     static QString Autori;
     static QString Album;
     static QString Durata;
+    static QString Tipo;
   };
+  Brano() = default;
   Brano(const QString &, const QString &, const QString &, const QString &,
         const unsigned int &, const std::vector<QString> &,
         const unsigned short int &);

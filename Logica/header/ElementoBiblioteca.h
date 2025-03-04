@@ -31,6 +31,7 @@ public:
     static QString Descrizione;
     static QString Autori;
     static QString Uscita;
+    static QString Tipo;
   };
   ElementoBiblioteca() = default;
   ElementoBiblioteca(const QString &, const QString &, const QString &,

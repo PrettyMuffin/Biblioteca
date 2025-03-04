@@ -17,6 +17,7 @@ QString Libro::JSON_FIELDS::Editore = "editore";
 QString Libro::JSON_FIELDS::ISBN = "isbn";
 QString Libro::JSON_FIELDS::Uscita = ElementoBiblioteca::JSON_FIELDS::Uscita;
 QString Libro::JSON_FIELDS::Autori = ElementoBiblioteca::JSON_FIELDS::Autori;
+QString Libro::JSON_FIELDS::Tipo = "tipo";
 
 QJsonObject Libro::toJson() const {
   QJsonObject libro;
@@ -29,6 +30,7 @@ QJsonObject Libro::toJson() const {
   libro[JSON_FIELDS::Autori] = parent[JSON_FIELDS::Autori];
   libro[JSON_FIELDS::Editore] = editore;
   libro[JSON_FIELDS::ISBN] = ISBN;
+  libro[JSON_FIELDS::Tipo] = "libro";
   return libro;
 }
 

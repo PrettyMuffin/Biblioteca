@@ -17,6 +17,7 @@ QString Brano::JSON_FIELDS::Album = "album";
 QString Brano::JSON_FIELDS::Durata = "durata";
 QString Brano::JSON_FIELDS::Uscita = ElementoBiblioteca::JSON_FIELDS::Uscita;
 QString Brano::JSON_FIELDS::Autori = ElementoBiblioteca::JSON_FIELDS::Autori;
+QString Brano::JSON_FIELDS::Tipo = "tipo";
 
 QJsonObject Brano::toJson() const {
   QJsonObject brano;
@@ -29,6 +30,7 @@ QJsonObject Brano::toJson() const {
   brano[JSON_FIELDS::Autori] = parent[JSON_FIELDS::Autori];
   brano[JSON_FIELDS::Album] = album;
   brano[JSON_FIELDS::Durata] = static_cast<qint64>(durata);
+  brano[JSON_FIELDS::Tipo] = "brano";
   return brano;
 }
 
