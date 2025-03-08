@@ -8,6 +8,7 @@ private:
 
 public:
   JSONError(const QString &);
+  QString getMessage() const;
 };
 
 #endif
