@@ -7,7 +7,9 @@ Libro::Libro(const QString &titolo, const QString &genere,
              const std::vector<QString> &autori,
              const unsigned short int &usita)
     : ElementoBiblioteca(titolo, genere, descrizione, autori, usita),
-      editore(e), ISBN(isbn) {}
+      editore(e), ISBN(isbn) {
+  id += "libro";
+}
 
 QString Libro::JSON_FIELDS::Titolo = ElementoBiblioteca::JSON_FIELDS::Titolo;
 QString Libro::JSON_FIELDS::Genere = ElementoBiblioteca::JSON_FIELDS::Genere;
@@ -33,6 +35,8 @@ QJsonObject Libro::toJson() const {
   libro[JSON_FIELDS::Tipo] = "libro";
   return libro;
 }
+
+QString Libro::getId() const { return id; }
 
 Libro *Libro::clone() const { return new Libro(*this); }
 

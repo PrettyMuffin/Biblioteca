@@ -7,7 +7,9 @@ Brano::Brano(const QString &titolo, const QString &genere,
              const unsigned int &d, const std::vector<QString> &autori,
              const unsigned short int &uscita)
     : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita), album(a),
-      durata(d) {}
+      durata(d) {
+  id += "brano";
+}
 
 QString Brano::JSON_FIELDS::Titolo = ElementoBiblioteca::JSON_FIELDS::Titolo;
 QString Brano::JSON_FIELDS::Genere = ElementoBiblioteca::JSON_FIELDS::Genere;
@@ -35,6 +37,8 @@ QJsonObject Brano::toJson() const {
 }
 
 Brano *Brano::clone() const { return new Brano(*this); }
+
+QString Brano::getId() const { return id; }
 
 void Brano::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }
 

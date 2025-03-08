@@ -10,11 +10,9 @@
 #include <vector>
 
 class ElementoBiblioteca {
-  friend bool operator==(const ElementoBiblioteca &,
-                         const ElementoBiblioteca &);
-
 protected:
   QString id; // titolo(to lower) + autore(to lower)
+
 private:
   QString titolo;
   QString genere;
@@ -40,6 +38,7 @@ public:
   virtual void fromJson(const QJsonObject &);
   virtual void accept(ElementoBiblotecaVisitor *) = 0;
   virtual ElementoBiblioteca *clone() const = 0;
+  virtual QString getId() const = 0;
   void registerObserver(ElementoBibliotecaObserver *);
   virtual ~ElementoBiblioteca();
 };

@@ -11,11 +11,12 @@ ElementoBiblioteca::ElementoBiblioteca(const QString &titolo,
                                        const unsigned short int &uscita)
     : titolo(titolo), genere(genere), descrizione(desc), autori(autori),
       uscita(uscita) {
-  QString author_string("");
-  for (QString autore : autori) {
-    author_string += autore.toLower();
-  }
-  id = this->titolo.toLower() + author_string;
+  // QString author_string("");
+  // for (QString autore : autori) {
+  //   author_string += autore.toLower();
+  // }
+  // id = this->titolo.toLower() + author_string;
+  id = this->titolo.toLower();
 }
 
 QString ElementoBiblioteca::JSON_FIELDS::Titolo = "titolo";
@@ -50,7 +51,7 @@ ElementoBiblioteca::~ElementoBiblioteca() {
 }
 
 bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs) {
-  return lhs.id == rhs.id;
+  return lhs.getId() == rhs.getId();
 }
 
 void ElementoBiblioteca::fromJson(const QJsonObject &json) {
@@ -59,10 +60,11 @@ void ElementoBiblioteca::fromJson(const QJsonObject &json) {
   descrizione = json[JSON_FIELDS::Descrizione].toString();
   uscita = json[JSON_FIELDS::Uscita].toInt();
   QJsonArray jsonAuthorArray = json[JSON_FIELDS::Autori].toArray();
-  QString author_string;
+  // QString author_string;
   for (auto autore : jsonAuthorArray) {
     autori.push_back(autore.toString());
-    author_string += autore.toString();
+    // author_string += autore.toString();
   }
-  id = this->titolo.toLower() + author_string;
+  // id = this->titolo.toLower() + author_string;
+  id = this->titolo.toLower();
 }

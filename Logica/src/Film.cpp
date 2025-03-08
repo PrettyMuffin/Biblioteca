@@ -7,7 +7,9 @@ Film::Film(const QString &titolo, const QString &genere,
            const std::vector<QString> &autori, const unsigned short int &uscita,
            const unsigned short int &valutazione)
     : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita),
-      casa_cinematografica(ca_cin), valutazione(valutazione) {}
+      casa_cinematografica(ca_cin), valutazione(valutazione) {
+  id += "film";
+}
 
 QString Film::JSON_FIELDS::Titolo = ElementoBiblioteca::JSON_FIELDS::Titolo;
 QString Film::JSON_FIELDS::Genere = ElementoBiblioteca::JSON_FIELDS::Genere;
@@ -36,6 +38,8 @@ QJsonObject Film::toJson() const {
 Film *Film::clone() const { return new Film(*this); }
 
 void Film::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }
+
+QString Film::getId() const { return id; }
 
 void Film::fromJson(const QJsonObject &json) {
   ElementoBiblioteca::fromJson(json);
