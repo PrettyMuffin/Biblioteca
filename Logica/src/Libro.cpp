@@ -48,3 +48,11 @@ void Libro::fromJson(const QJsonObject &json) {
   ISBN = json[JSON_FIELDS::ISBN].toString();
   id += "libro";
 }
+
+QString Libro::toString() const {
+  QString res = ElementoBiblioteca::toString();
+  res += editore + ESCAPE_CHAR;
+  res += ISBN + ESCAPE_CHAR;
+  res += "libro";
+  return res;
+}

@@ -48,3 +48,11 @@ void Brano::fromJson(const QJsonObject &json) {
   durata = json[JSON_FIELDS::Durata].toInt();
   id += "brano";
 }
+
+QString Brano::toString() const {
+  QString res = ElementoBiblioteca::toString();
+  res += album + ESCAPE_CHAR;
+  res += QString::number(durata) + ESCAPE_CHAR;
+  res += "brano";
+  return res;
+}

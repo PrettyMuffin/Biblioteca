@@ -25,6 +25,7 @@ QString ElementoBiblioteca::JSON_FIELDS::Descrizione = "descrizione";
 QString ElementoBiblioteca::JSON_FIELDS::Autori = "autori";
 QString ElementoBiblioteca::JSON_FIELDS::Uscita = "uscita";
 QString ElementoBiblioteca::JSON_FIELDS::Tipo = "tipo";
+QString ElementoBiblioteca::ESCAPE_CHAR = "\\";
 
 QJsonObject ElementoBiblioteca::toJson() const {
   QJsonObject el;
@@ -67,4 +68,17 @@ void ElementoBiblioteca::fromJson(const QJsonObject &json) {
   }
   // id = this->titolo.toLower() + author_string;
   id = this->titolo.toLower();
+}
+
+QString ElementoBiblioteca::toString() const {
+  QString res;
+  res += titolo + ESCAPE_CHAR;
+  res += genere + ESCAPE_CHAR;
+  res += descrizione + ESCAPE_CHAR;
+  res += QString::number(uscita) + ESCAPE_CHAR;
+  for (int i = 0; i < autori.size() - 1; i++) {
+    res += autori[i] + ESCAPE_CHAR;
+  }
+  res += autori[autori.size() - 1];
+  return res;
 }

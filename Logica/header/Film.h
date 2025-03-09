@@ -34,6 +34,7 @@ public:
   QJsonObject toJson() const override;
   void fromJson(const QJsonObject &) override;
   QString getId() const override;
+  QString toString() const override;
 };
 
 #endif

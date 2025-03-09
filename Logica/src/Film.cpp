@@ -47,3 +47,11 @@ void Film::fromJson(const QJsonObject &json) {
   valutazione = json[JSON_FIELDS::Valutazione].toInt();
   id += "film";
 }
+
+QString Film::toString() const {
+  QString res = ElementoBiblioteca::toString();
+  res += casa_cinematografica + ESCAPE_CHAR;
+  res += QString::number(valutazione) + ESCAPE_CHAR;
+  res += "film";
+  return res;
+}

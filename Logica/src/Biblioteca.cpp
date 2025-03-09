@@ -1,4 +1,6 @@
 #include "../header/Biblioteca.h"
+#include "qcontainerfwd.h"
+#include "qcoreapplication.h"
 #include "qjsonvalue.h"
 #include <QJsonArray>
 #include <QJsonObject>
@@ -72,6 +74,28 @@ bool Biblioteca::update(ElementoBiblioteca *old, ElementoBiblioteca *newel) {
     }
   }
   return false;
+}
+
+QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
+  QVector<ElementoBiblioteca *> result;
+  if (query.isEmpty())
+    return result;
+  // costruzione della regex
+  // nella ricerca in input da usare "," come separatore
+  QStringList queryList = query.split(",");
+  QString regex_str = "^";
+  for (int i = 0; i < queryList.size(); i++) {
+    regex_str += "(?=.*" + queryList[i].trimmed() + ")";
+  }
+  regex_str += ".+$";
+  QRegularExpression regex(regex_str,
+                           QRegularExpression::CaseInsensitiveOption);
+
+  for (auto elementi : tutti_elementi) {
+    if (regex.match(elementi->toString()).hasMatch())
+      result.push_back(elementi);
+  }
+  return result;
 }
 
 QJsonArray Biblioteca::toJson() const {

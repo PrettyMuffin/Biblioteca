@@ -32,6 +32,7 @@ public:
   QJsonObject toJson() const override;
   void fromJson(const QJsonObject &) override;
   void accept(ElementoBiblotecaVisitor *) override;
+  QString toString() const override;
 };
 
 #endif

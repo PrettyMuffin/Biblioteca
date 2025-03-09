@@ -32,6 +32,7 @@ public:
   void accept(ElementoBiblotecaVisitor *) override;
   QJsonObject toJson() const override;
   QString getId() const override;
+  QString toString() const override;
 };
 
 #endif

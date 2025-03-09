@@ -12,6 +12,7 @@
 class ElementoBiblioteca {
 protected:
   QString id; // titolo(to lower) + autore(to lower)
+  static QString ESCAPE_CHAR;
 
 private:
   QString titolo;
@@ -40,6 +41,7 @@ public:
   virtual ElementoBiblioteca *clone() const = 0;
   virtual QString getId() const = 0;
   void registerObserver(ElementoBibliotecaObserver *);
+  virtual QString toString() const;
   virtual ~ElementoBiblioteca();
 };
 

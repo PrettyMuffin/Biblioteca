@@ -2,6 +2,7 @@
 #define BIBLIOTECA_H
 
 #include "ElementoBiblioteca.h"
+#include "qcontainerfwd.h"
 #include "qcoreapplication.h"
 #include "qglobal.h"
 #include "qobject.h"
@@ -22,6 +23,7 @@ public:
   bool remove(ElementoBiblioteca *);
   bool update(unsigned int, ElementoBiblioteca *);
   bool update(ElementoBiblioteca *, ElementoBiblioteca *);
+  QVector<ElementoBiblioteca *> search(const QString &) const;
   QJsonArray toJson() const;
 };
 
