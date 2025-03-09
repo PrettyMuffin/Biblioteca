@@ -90,7 +90,7 @@ QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
   regex_str += ".+$";
   QRegularExpression regex(regex_str,
                            QRegularExpression::CaseInsensitiveOption);
-
+  // ricerca gli elementi che soddisfano la regex
   for (auto elementi : tutti_elementi) {
     if (regex.match(elementi->toString()).hasMatch())
       result.push_back(elementi);
