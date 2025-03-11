@@ -18,13 +18,20 @@ Options::Options(QWidget *parent) : QWidget(parent) {
   connect(import, &QPushButton::pressed, this, &Options::onImportClicked);
 }
 
-void Options::onAddClicked() {}
+void Options::onAddClicked() {
+  // cambio a editview
+
+  // effettuo cambiamenti con appcontext
+}
 
 void Options::onSaveClicked() {
   QString path;
   // mostro file dialog
-  JSONController jsonController;
-  jsonController.saveOnFile(*AppContext::getBiblioteca(), path); // per ora
+  JSONController::saveOnFile(*AppContext::getBiblioteca(), path); // per ora
 }
 
-void Options::onImportClicked() {}
+void Options::onImportClicked() {
+  QString path;
+  // mostro file dialog
+  JSONController::loadFromFile(*AppContext::getBiblioteca(), path);
+}
