@@ -12,7 +12,7 @@ using std::vector;
 
 class Biblioteca {
 private:
-  QVector<ElementoBiblioteca *> tutti_elementi;
+  static QVector<ElementoBiblioteca *> tutti_elementi;
   bool Contains(ElementoBiblioteca *) const;
 
 public:
