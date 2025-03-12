@@ -1,7 +1,10 @@
 #include "../../header/Toolbar/Options.h"
 #include "../../../Logica/header/AppContext.h"
 #include "../../../Logica/header/JSONController.h"
+#include "../../../Logica/header/JSONError.h"
 #include "qboxlayout.h"
+#include "qfiledialog.h"
+#include "qmessagebox.h"
 #include "qpushbutton.h"
 
 Options::Options(QWidget *parent) : QWidget(parent) {
@@ -18,20 +21,36 @@ Options::Options(QWidget *parent) : QWidget(parent) {
   connect(import, &QPushButton::pressed, this, &Options::onImportClicked);
 }
 
-void Options::onAddClicked() {
-  // cambio a editview
-
-  // effettuo cambiamenti con appcontext
-}
-
 void Options::onSaveClicked() {
-  QString path;
-  // mostro file dialog
-  JSONController::saveOnFile(*AppContext::getBiblioteca(), path); // per ora
+  QString path = QFileDialog::getSaveFileName(this, "File Json", "", "*.json");
+  if (path.isEmpty()) {
+    QMessageBox *errorBox = new QMessageBox(this);
+    errorBox->setText("File non selezionato");
+    errorBox->exec();
+    return;
+  }
+  try {
+    JSONController::saveOnFile(*AppContext::getBiblioteca(), path);
+  } catch (JSONError e) {
+    QMessageBox *errorBox = new QMessageBox(this);
+    errorBox->setText(e.getMessage());
+    errorBox->exec();
+  }
 }
 
 void Options::onImportClicked() {
-  QString path;
-  // mostro file dialog
-  JSONController::loadFromFile(*AppContext::getBiblioteca(), path);
+  QString path = QFileDialog::getSaveFileName(this, "File Json", "", "*.json");
+  if (path.isEmpty()) {
+    QMessageBox *errorBox = new QMessageBox(this);
+    errorBox->setText("File non selezionato");
+    errorBox->exec();
+    return;
+  }
+  try {
+    JSONController::loadFromFile(*AppContext::getBiblioteca(), path);
+  } catch (JSONError e) {
+    QMessageBox *errorBox = new QMessageBox(this);
+    errorBox->setText(e.getMessage());
+    errorBox->exec();
+  }
 }

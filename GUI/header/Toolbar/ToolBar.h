@@ -12,7 +12,6 @@ class Toolbar : public QWidget {
   Q_OBJECT
 private:
   QHBoxLayout *layout;
-  QLabel *logo;
   SearchBar ricerca;
   Options opzioni;
 

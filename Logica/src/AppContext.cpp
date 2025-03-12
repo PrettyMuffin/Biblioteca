@@ -10,3 +10,5 @@ Biblioteca *AppContext::getBiblioteca() {
   }
   return biblioteca;
 }
+
+Biblioteca *AppContext::biblioteca = nullptr;

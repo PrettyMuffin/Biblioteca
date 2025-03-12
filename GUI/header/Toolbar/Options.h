@@ -1,6 +1,7 @@
 #ifndef OPTIONS_H
 #define OPTIONS_H
 
+#include "qtmetamacros.h"
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
@@ -18,8 +19,10 @@ public:
   Options(QWidget * = nullptr);
   ~Options();
 
-public slots:
+signals:
   void onAddClicked();
+
+public slots:
   void onSaveClicked();
   void onImportClicked();
 };
