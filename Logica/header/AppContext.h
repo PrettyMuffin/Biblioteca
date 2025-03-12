@@ -18,7 +18,7 @@ viene creata o gestita.
 class AppContext {
 public:
   // Metodo per registrare un'istanza di Biblioteca
-  static void provide(Biblioteca *nuova_biblioteca);
+  static void provide(Biblioteca *);
 
   // Metodo per ottenere l'istanza di Biblioteca
   static Biblioteca *getBiblioteca();

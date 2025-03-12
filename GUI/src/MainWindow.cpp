@@ -6,9 +6,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   body = new QStackedWidget(this);
   mainView = new MainView(this);
   addView = new AddView(this);
+  body->addWidget(mainView);
+  body->addWidget(addView);
 
   layout->addWidget(toolbar);
   layout->addWidget(body);
-  body->addWidget(mainView);
-  body->addWidget(addView);
 }
