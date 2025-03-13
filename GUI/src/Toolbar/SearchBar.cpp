@@ -21,3 +21,9 @@ void SearchBar::keyPressEvent(QKeyEvent *event) {
     emit onSearchEvent(searchInput->text());
   }
 }
+
+SearchBar::~SearchBar() {
+  delete layout;
+  delete searchInput;
+  delete searchButton;
+}

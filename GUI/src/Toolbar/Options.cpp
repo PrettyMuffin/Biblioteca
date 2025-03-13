@@ -54,3 +54,10 @@ void Options::onImportClicked() {
     errorBox->exec();
   }
 }
+
+Options::~Options() {
+  delete add;
+  delete save;
+  delete import;
+  delete layout;
+}

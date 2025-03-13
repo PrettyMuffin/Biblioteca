@@ -12,3 +12,11 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   layout->addWidget(toolbar);
   layout->addWidget(body);
 }
+
+MainWindow::~MainWindow() {
+  delete layout;
+  delete toolbar;
+  delete body;
+  delete mainView;
+  delete addView;
+}

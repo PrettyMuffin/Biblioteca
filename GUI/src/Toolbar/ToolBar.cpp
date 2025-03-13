@@ -7,3 +7,5 @@ Toolbar::Toolbar(QWidget *parent) : QWidget(parent) {
   layout->addWidget(&ricerca);
   layout->addWidget(&opzioni);
 }
+
+Toolbar::~Toolbar() { delete layout; }

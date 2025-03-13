@@ -10,6 +10,7 @@
 
 class MainWindow : public QWidget {
   Q_OBJECT
+private:
   QVBoxLayout *layout;
   Toolbar *toolbar;
   QStackedWidget *body;
