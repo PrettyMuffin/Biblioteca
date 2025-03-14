@@ -15,7 +15,7 @@ Options::Options(QWidget *parent) : QWidget(parent) {
   layout->addWidget(add);
   layout->addWidget(save);
   layout->addWidget(import);
-
+  save->setText("Salva");
   connect(add, &QPushButton::pressed, this, &Options::onAddClicked);
   connect(save, &QPushButton::pressed, this, &Options::onSaveClicked);
   connect(import, &QPushButton::pressed, this, &Options::onImportClicked);

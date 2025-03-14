@@ -11,6 +11,9 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
 
   layout->addWidget(toolbar);
   layout->addWidget(body);
+
+  toolbar->show();
+  body->show();
 }
 
 MainWindow::~MainWindow() {

@@ -8,9 +8,9 @@
 #include "qwidget.h"
 
 SearchBar::SearchBar(QWidget *parent) : QWidget(parent) {
-  layout = new QHBoxLayout;
-  searchInput = new QLineEdit;
-  searchButton = new QPushButton;
+  layout = new QHBoxLayout(this);
+  searchInput = new QLineEdit(this);
+  searchButton = new QPushButton(this);
   layout->addWidget(searchInput);
   layout->addWidget(searchButton);
 }

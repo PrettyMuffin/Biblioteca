@@ -3,7 +3,7 @@
 #include "qwidget.h"
 
 Toolbar::Toolbar(QWidget *parent) : QWidget(parent) {
-  layout = new QHBoxLayout;
+  layout = new QHBoxLayout(this);
   layout->addWidget(&ricerca);
   layout->addWidget(&opzioni);
 }
