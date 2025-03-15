@@ -31,8 +31,11 @@ public:
   QString getId() const override;
   QJsonObject toJson() const override;
   void fromJson(const QJsonObject &) override;
-  void accept(ElementoBiblotecaVisitor *) override;
+  void accept(ElementoBibliotecaVisitor *) override;
   QString toString() const override;
+
+  QString getEditore() const;
+  QString getISBN() const;
 };
 
 #endif

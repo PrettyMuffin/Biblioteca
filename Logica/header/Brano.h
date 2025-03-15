@@ -29,10 +29,13 @@ public:
         const unsigned short int &);
   Brano *clone() const override;
   void fromJson(const QJsonObject &) override;
-  void accept(ElementoBiblotecaVisitor *) override;
+  void accept(ElementoBibliotecaVisitor *) override;
   QJsonObject toJson() const override;
   QString getId() const override;
   QString toString() const override;
+
+  QString getAlbum() const;
+  unsigned int getDurata() const;
 };
 
 #endif

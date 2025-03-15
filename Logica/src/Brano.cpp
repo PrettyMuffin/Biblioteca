@@ -40,7 +40,7 @@ Brano *Brano::clone() const { return new Brano(*this); }
 
 QString Brano::getId() const { return id; }
 
-void Brano::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }
+void Brano::accept(ElementoBibliotecaVisitor *visitor) { visitor->visit(this); }
 
 void Brano::fromJson(const QJsonObject &json) {
   ElementoBiblioteca::fromJson(json);
@@ -56,3 +56,7 @@ QString Brano::toString() const {
   res += "brano";
   return res;
 }
+
+QString Brano::getAlbum() const { return album; }
+
+unsigned int Brano::getDurata() const { return durata; }

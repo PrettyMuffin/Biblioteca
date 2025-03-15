@@ -30,11 +30,14 @@ public:
        const std::vector<QString> &, const unsigned short int &,
        const unsigned short int &);
   Film *clone() const override;
-  void accept(ElementoBiblotecaVisitor *) override;
+  void accept(ElementoBibliotecaVisitor *) override;
   QJsonObject toJson() const override;
   void fromJson(const QJsonObject &) override;
   QString getId() const override;
   QString toString() const override;
+
+  QString getCasaCinematografica() const;
+  unsigned short int getValutazione() const;
 };
 
 #endif

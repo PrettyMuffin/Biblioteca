@@ -11,7 +11,7 @@
 
 class ElementoBiblioteca {
 protected:
-  QString id; // titolo(to lower) + autore(to lower)
+  QString id; //
   static QString ESCAPE_CHAR;
 
 private:
@@ -19,7 +19,7 @@ private:
   QString genere;
   QString descrizione;
   std::vector<QString> autori;
-  unsigned short int uscita; // anno pubblicazione
+  int uscita; // anno pubblicazione
   std::vector<ElementoBibliotecaObserver *> observers;
 
 public:
@@ -34,15 +34,21 @@ public:
   };
   ElementoBiblioteca() = default;
   ElementoBiblioteca(const QString &, const QString &, const QString &,
-                     const std::vector<QString> &, const unsigned short int &);
+                     const std::vector<QString> &, const int &);
   virtual QJsonObject toJson() const;
   virtual void fromJson(const QJsonObject &);
-  virtual void accept(ElementoBiblotecaVisitor *) = 0;
+  virtual void accept(ElementoBibliotecaVisitor *) = 0;
   virtual ElementoBiblioteca *clone() const = 0;
   virtual QString getId() const = 0;
   void registerObserver(ElementoBibliotecaObserver *);
   virtual QString toString() const;
   virtual ~ElementoBiblioteca();
+
+  QString getTitolo() const;
+  QString getGenere() const;
+  QString getDescrizione() const;
+  const std::vector<QString> getAutori() const;
+  int getUscita() const;
 };
 
 bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs);

@@ -37,7 +37,7 @@ QJsonObject Film::toJson() const {
 }
 Film *Film::clone() const { return new Film(*this); }
 
-void Film::accept(ElementoBiblotecaVisitor *visitor) { visitor->visit(this); }
+void Film::accept(ElementoBibliotecaVisitor *visitor) { visitor->visit(this); }
 
 QString Film::getId() const { return id; }
 
@@ -55,3 +55,7 @@ QString Film::toString() const {
   res += "film";
   return res;
 }
+
+QString Film::getCasaCinematografica() const { return casa_cinematografica; }
+
+unsigned short int Film::getValutazione() const { return valutazione; }

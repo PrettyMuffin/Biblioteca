@@ -40,7 +40,7 @@ QString Libro::getId() const { return id; }
 
 Libro *Libro::clone() const { return new Libro(*this); }
 
-void Libro::accept(ElementoBiblotecaVisitor *vi) { vi->visit(this); }
+void Libro::accept(ElementoBibliotecaVisitor *vi) { vi->visit(this); }
 
 void Libro::fromJson(const QJsonObject &json) {
   ElementoBiblioteca::fromJson(json);
@@ -56,3 +56,7 @@ QString Libro::toString() const {
   res += "libro";
   return res;
 }
+
+QString Libro::getEditore() const { return editore; }
+
+QString Libro::getISBN() const { return ISBN; }

@@ -17,7 +17,7 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent) {
 }
 
 void SearchBar::keyPressEvent(QKeyEvent *event) {
-  if (event->key() == Qt::Key_Enter) {
+  if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
     // dopo nel body me lo ripiglio
     emit onSearchEvent(searchInput->text());
   }

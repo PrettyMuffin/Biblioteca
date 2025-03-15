@@ -5,7 +5,7 @@ class Libro;
 class Brano;
 class Film;
 
-class ElementoBiblotecaVisitor {
+class ElementoBibliotecaVisitor {
 public:
   virtual void visit(Libro *) = 0;
   virtual void visit(Brano *) = 0;
