@@ -4,6 +4,7 @@
 #include "../../../Logica/header/JSONError.h"
 #include "qboxlayout.h"
 #include "qfiledialog.h"
+#include "qicon.h"
 #include "qmessagebox.h"
 #include "qpushbutton.h"
 
@@ -15,7 +16,9 @@ Options::Options(QWidget *parent) : QWidget(parent) {
   layout->addWidget(add);
   layout->addWidget(save);
   layout->addWidget(import);
-  save->setText("Salva");
+  add->setIcon(QIcon(":/images/img/add.png"));
+  import->setIcon(QIcon(":/images/img/open.png"));
+  save->setIcon(QIcon(":/images/img/save.png"));
   connect(add, &QPushButton::pressed, this, &Options::onAddClicked);
   connect(save, &QPushButton::pressed, this, &Options::onSaveClicked);
   connect(import, &QPushButton::pressed, this, &Options::onImportClicked);

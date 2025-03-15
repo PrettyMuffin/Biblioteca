@@ -11,6 +11,7 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent) {
   layout = new QHBoxLayout(this);
   searchInput = new QLineEdit(this);
   searchButton = new QPushButton(this);
+  searchButton->setIcon(QIcon(":/images/img/search.png"));
   layout->addWidget(searchInput);
   layout->addWidget(searchButton);
 }
