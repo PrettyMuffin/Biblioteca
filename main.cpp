@@ -1,10 +1,15 @@
 #include "GUI/header/MainWindow.h"
 #include "Logica/header/AppContext.h"
 #include "Logica/header/Biblioteca.h"
+#include "Logica/header/ElementoBibliotecaVisitor.h"
+#include "Logica/header/Libro.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
   Biblioteca biblioteca = Biblioteca();
+  vector<QString> autori = {"autor1", "autor2"};
+  biblioteca.add(new Libro("El Principito", "bello", "un libro molto bello",
+                           "editore", "33838", autori, 1900));
   AppContext::provide(&biblioteca);
 
   QApplication app(argc, argv);

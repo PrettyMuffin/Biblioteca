@@ -7,6 +7,7 @@
 #include "qlabel.h"
 #include "qtmetamacros.h"
 #include "qwidget.h"
+#include <QScrollArea>
 #include <QWidget>
 
 class ProductsView : public QWidget {
@@ -15,6 +16,7 @@ class ProductsView : public QWidget {
   friend class ProductCard; // dato che non è possibile innestare 2 oggetti con
                             // Q_OBJECT
 private:
+  QScrollArea *scrollArea;
   QGridLayout *layout;
   void prova();
 

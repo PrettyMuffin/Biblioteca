@@ -3,17 +3,23 @@
 #include "qcoreapplication.h"
 #include "qlabel.h"
 #include "qpixmap.h"
+#include "qscrollarea.h"
+#include "qwidget.h"
 #include <cstdlib>
 
 ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
-  layout = new QGridLayout(this);
+  scrollArea = new QScrollArea(this);
+  QWidget *scrollContent = new QWidget(scrollArea);
+
+  layout = new QGridLayout(scrollContent);
   Biblioteca *biblioteca = AppContext::getBiblioteca();
   for (auto elemento : biblioteca->getElements()) {
     ProductCard *card = new ProductCard(elemento, this);
     layout->addWidget(card);
   }
-
-  setLayout(layout);
+  scrollContent->setLayout(layout);
+  scrollArea->setWidget(scrollContent);
+  scrollArea->setWidgetResizable(true);
 }
 
 ProductsView::~ProductsView() { delete layout; }
