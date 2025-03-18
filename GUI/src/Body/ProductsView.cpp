@@ -8,18 +8,32 @@
 #include <cstdlib>
 
 ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
+  QVBoxLayout *mainLayout = new QVBoxLayout(this);
   scrollArea = new QScrollArea(this);
   QWidget *scrollContent = new QWidget(scrollArea);
 
   layout = new QGridLayout(scrollContent);
+
   Biblioteca *biblioteca = AppContext::getBiblioteca();
+  int row = 0, col = 0;
+  int maxCols = 5;
   for (auto elemento : biblioteca->getElements()) {
     ProductCard *card = new ProductCard(elemento, this);
-    layout->addWidget(card);
+    layout->addWidget(card, row, col);
+
+    col++;
+    if (col >= maxCols) {
+      col = 0;
+      row++;
+    }
   }
   scrollContent->setLayout(layout);
   scrollArea->setWidget(scrollContent);
   scrollArea->setWidgetResizable(true);
+  scrollArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+  mainLayout->addWidget(scrollArea);
+  setLayout(mainLayout);
 }
 
 ProductsView::~ProductsView() { delete layout; }

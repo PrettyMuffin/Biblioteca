@@ -16,10 +16,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   setLayout(layout);
 }
 
-void MainWindow::changePage(int page) {
-  qDebug() << "changePage" + QString::number(page);
-  body->setCurrentIndex(page);
-}
+void MainWindow::changePage(int page) { body->setCurrentIndex(page); }
 
 MainWindow::~MainWindow() {
   delete layout;

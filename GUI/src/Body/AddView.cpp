@@ -4,14 +4,11 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 
+#include "qmenu.h"
 #include "qobject.h"
 #include "qpushbutton.h"
 #include "qspinbox.h"
 #include "qwidget.h"
-
-void costruisciLibroPage(QWidget *libroPageWidget);
-void costruisciFilmPage(QWidget *filmPageWidget);
-void costruisciBranoPage(QWidget *branoPageWidget);
 
 AddView::AddView(QWidget *parent) : QWidget(parent) {
   layout = new QTabWidget(this);
@@ -34,6 +31,12 @@ AddView::AddView(QWidget *parent) : QWidget(parent) {
     connect(this, &AddView::CancelInsertion, mainWindow,
             &MainWindow::changePage);
   }
+
+  layout->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+  QVBoxLayout *mainLayout = new QVBoxLayout(this);
+  mainLayout->addWidget(layout);
+  setLayout(mainLayout);
 }
 
 AddView::~AddView() {
@@ -58,14 +61,20 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QPushButton *genere_input = new QPushButton;
 
   QMenu *genere_menu = new QMenu();
-  genere_menu->addSection("Biografico");
-  genere_menu->addSection("Azione");
-  genere_menu->addSection("Horror");
-  genere_menu->addSection("Umoristico");
-  genere_menu->addSection("Giallo");
-  genere_menu->addSection("Storico");
-  genere_menu->addSection("Drammatico");
+  genere_menu->addAction("Biografico");
+  genere_menu->addAction("Azione");
+  genere_menu->addAction("Horror");
+  genere_menu->addAction("Umoristico");
+  genere_menu->addAction("Giallo");
+  genere_menu->addAction("Storico");
+  genere_menu->addAction("Drammatico");
   genere_input->setMenu(genere_menu);
+  genere_input->setText(genere_menu->actions()[0]->text());
+  // modifico input di bottone
+  connect(genere_menu, &QMenu::triggered, this,
+          [genere_input](QAction *action) {
+            genere_input->setText(action->text());
+          });
 
   layoutInfo->addWidget(genere_label);
   layoutInfo->addWidget(genere_input);
@@ -131,14 +140,20 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   QPushButton *genere_input = new QPushButton;
 
   QMenu *genere_menu = new QMenu();
-  genere_menu->addSection("Biografico");
-  genere_menu->addSection("Azione");
-  genere_menu->addSection("Horror");
-  genere_menu->addSection("Commedia");
-  genere_menu->addSection("Crime");
-  genere_menu->addSection("Fiction");
-  genere_menu->addSection("Drammatico");
+  genere_menu->addAction("Biografico");
+  genere_menu->addAction("Azione");
+  genere_menu->addAction("Horror");
+  genere_menu->addAction("Commedia");
+  genere_menu->addAction("Crime");
+  genere_menu->addAction("Fiction");
+  genere_menu->addAction("Drammatico");
   genere_input->setMenu(genere_menu);
+  genere_input->setText(genere_menu->actions()[0]->text());
+  // modifico input di bottone
+  connect(genere_menu, &QMenu::triggered, this,
+          [genere_input](QAction *action) {
+            genere_input->setText(action->text());
+          });
 
   layoutInfo->addWidget(genere_label);
   layoutInfo->addWidget(genere_input);
@@ -206,17 +221,23 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   QPushButton *genere_input = new QPushButton;
 
   QMenu *genere_menu = new QMenu();
-  genere_menu->addSection("Pop");
-  genere_menu->addSection("Rock");
-  genere_menu->addSection("Metal");
-  genere_menu->addSection("R&B");
-  genere_menu->addSection("Rap");
-  genere_menu->addSection("Dance");
-  genere_menu->addSection("Blues");
-  genere_menu->addSection("Classica");
-  genere_menu->addSection("Jazz");
-  genere_menu->addSection("Colonne Sonore");
+  genere_menu->addAction("Pop");
+  genere_menu->addAction("Rock");
+  genere_menu->addAction("Metal");
+  genere_menu->addAction("R&B");
+  genere_menu->addAction("Rap");
+  genere_menu->addAction("Dance");
+  genere_menu->addAction("Blues");
+  genere_menu->addAction("Classica");
+  genere_menu->addAction("Jazz");
+  genere_menu->addAction("Colonne Sonore");
   genere_input->setMenu(genere_menu);
+  genere_input->setText(genere_menu->actions()[0]->text());
+  // modifico input di bottone
+  connect(genere_menu, &QMenu::triggered, this,
+          [genere_input](QAction *action) {
+            genere_input->setText(action->text());
+          });
 
   layoutInfo->addWidget(genere_label);
   layoutInfo->addWidget(genere_input);

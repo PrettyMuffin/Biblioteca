@@ -21,10 +21,8 @@ Options::Options(QWidget *parent, MainWindow *mainWindow) : QWidget(parent) {
   add->setIcon(QIcon(":/images/img/add.png"));
   import->setIcon(QIcon(":/images/img/open.png"));
   save->setIcon(QIcon(":/images/img/save.png"));
-  connect(add, &QPushButton::pressed, this, [this]() {
-    qDebug() << "Add clicked";
-    this->onAddClicked(1);
-  });
+  connect(add, &QPushButton::pressed, this,
+          [this]() { this->onAddClicked(1); });
   connect(save, &QPushButton::pressed, this, &Options::onSaveClicked);
   connect(import, &QPushButton::pressed, this, &Options::onImportClicked);
   connect(this, &Options::onAddClicked, mainWindow, &MainWindow::changePage);

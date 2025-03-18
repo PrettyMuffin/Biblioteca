@@ -1,6 +1,7 @@
 #ifndef ADDVIEW_H
 #define ADDVIEW_H
 
+#include "qpushbutton.h"
 #include "qtmetamacros.h"
 #include "qwidget.h"
 #include <QTabWidget>
