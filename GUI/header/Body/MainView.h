@@ -6,6 +6,7 @@
 #include "FilterView.h"
 #include "ProductsView.h"
 #include "qboxlayout.h"
+#include "qtmetamacros.h"
 #include <QWidget>
 
 class MainView : public QWidget {
@@ -14,6 +15,9 @@ private:
   QHBoxLayout *layout;
   ContentView *contenuti;
   DetailView *dettagli;
+
+public slots:
+  void showDetailView(ElementoBiblioteca *);
 
 public:
   MainView(QWidget * = nullptr);

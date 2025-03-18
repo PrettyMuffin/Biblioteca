@@ -17,6 +17,9 @@ private:
   MainView *mainView;
   AddView *addView;
 
+protected:
+  void keyPressEvent(QKeyEvent *event) override;
+
 public:
   MainWindow(QWidget * = nullptr);
   ~MainWindow();

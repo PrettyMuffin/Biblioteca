@@ -24,6 +24,7 @@ public:
   AddView(QWidget *parent = nullptr);
   ~AddView();
 
+protected:
 signals:
   // TODO: tengo solo per idea, da riordinare ordine dei parametri
   //  void libroAdded(const QString &titolo, const std::vector<QString> &autore,

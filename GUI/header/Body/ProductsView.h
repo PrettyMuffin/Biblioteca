@@ -10,6 +10,8 @@
 #include <QScrollArea>
 #include <QWidget>
 
+class MainView;
+
 class ProductsView : public QWidget {
   Q_OBJECT
 
@@ -21,7 +23,7 @@ private:
   void prova();
 
 public:
-  ProductsView(QWidget * = nullptr);
+  ProductsView(QWidget * = nullptr, MainView * = nullptr);
   ~ProductsView();
 };
 
@@ -32,6 +34,13 @@ private:
   QLabel *copertina;
   QLabel *titolo;
   QLabel *autori;
+  ElementoBiblioteca *elemento;
+
+private:
+  void mousePressEvent(QMouseEvent *event) override;
+
+signals:
+  void clicked(ElementoBiblioteca *);
 
 public:
   ProductCard(ElementoBiblioteca *, QWidget * = nullptr);

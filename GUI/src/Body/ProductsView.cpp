@@ -1,13 +1,16 @@
 #include "../../header/Body/ProductsView.h"
 #include "../../../Logica/header/AppContext.h"
+#include "../../header/Body/MainView.h"
 #include "qcoreapplication.h"
 #include "qlabel.h"
 #include "qpixmap.h"
 #include "qscrollarea.h"
 #include "qwidget.h"
+#include <QMouseEvent>
 #include <cstdlib>
 
-ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
+ProductsView::ProductsView(QWidget *parent, MainView *mainView)
+    : QWidget(parent) {
   QVBoxLayout *mainLayout = new QVBoxLayout(this);
   scrollArea = new QScrollArea(this);
   QWidget *scrollContent = new QWidget(scrollArea);
@@ -39,7 +42,7 @@ ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
 ProductsView::~ProductsView() { delete layout; }
 
 ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
-    : QWidget(parent) {
+    : QWidget(parent), elemento(elemento) {
   layout = new QVBoxLayout(this);
   copertina = new QLabel("", this);
   titolo = new QLabel(elemento->getTitolo(), this);
@@ -67,4 +70,10 @@ void ProductCard::notify(ElementoBiblioteca &elemento) {
   }
   autori_string += elemento.getAutori().back();
   autori = new QLabel(autori_string, this);
+}
+
+void ProductCard::mousePressEvent(QMouseEvent *event) {
+  if (event->button() == Qt::LeftButton) {
+    emit clicked(elemento);
+  }
 }

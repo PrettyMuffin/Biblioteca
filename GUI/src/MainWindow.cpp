@@ -1,5 +1,8 @@
 #include "../header/MainWindow.h"
+#include "../header/UIContext.h"
 #include "qlogging.h"
+#include "qwidget.h"
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   layout = new QVBoxLayout(this);
@@ -14,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   layout->addWidget(body);
 
   setLayout(layout);
+  // UIContext::setMainWindow(this);
 }
 
 void MainWindow::changePage(int page) { body->setCurrentIndex(page); }
@@ -24,4 +28,10 @@ MainWindow::~MainWindow() {
   delete body;
   delete mainView;
   delete addView;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event) {
+  if (event->key() == Qt::Key_Escape && body->currentIndex() == 1) {
+    body->setCurrentIndex(0);
+  }
 }

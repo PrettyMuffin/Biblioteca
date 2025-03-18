@@ -2,6 +2,9 @@
 #include "../../header/MainWindow.h"
 #include "qaction.h"
 #include "qboxlayout.h"
+#include "qevent.h"
+#include "qfont.h"
+#include "qglobal.h"
 #include "qlabel.h"
 
 #include "qmenu.h"
@@ -80,10 +83,13 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   layoutInfo->addWidget(genere_input);
 
   QLabel *autore_label = new QLabel("Autore/i: ");
-  QHBoxLayout *autore_layout = new QHBoxLayout;
+  QVBoxLayout *autore_layout = new QVBoxLayout;
   QLineEdit *autore_input = new QLineEdit;
   QLabel *precisazione =
       new QLabel("per molteplici autori separarli con una virgola!");
+  QFont a = (precisazione->font());
+  a.setPointSize(8);
+  precisazione->setFont(a);
   autore_layout->addWidget(autore_input);
   autore_layout->addWidget(precisazione);
 
@@ -158,11 +164,14 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   layoutInfo->addWidget(genere_label);
   layoutInfo->addWidget(genere_input);
 
-  QHBoxLayout *autore_layout = new QHBoxLayout;
+  QVBoxLayout *autore_layout = new QVBoxLayout;
   QLineEdit *autore_input = new QLineEdit;
   QLabel *autore_label = new QLabel("Cast: ");
   QLabel *precisazione =
       new QLabel("separare con una virgola i membri del cast");
+  QFont a = (precisazione->font());
+  a.setPointSize(8);
+  precisazione->setFont(a);
   autore_layout->addWidget(autore_input);
   autore_layout->addWidget(precisazione);
 
@@ -243,10 +252,13 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   layoutInfo->addWidget(genere_input);
 
   QLabel *autore_label = new QLabel("Artista/i: ");
-  QHBoxLayout *autore_layout = new QHBoxLayout;
+  QVBoxLayout *autore_layout = new QVBoxLayout;
   QLineEdit *autore_input = new QLineEdit;
   QLabel *precisazione =
       new QLabel("per più artisti separarli con una virgola!");
+  QFont a = (precisazione->font());
+  a.setPointSize(8);
+  precisazione->setFont(a);
   autore_layout->addWidget(autore_input);
   autore_layout->addWidget(precisazione);
 
