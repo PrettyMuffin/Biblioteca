@@ -1,14 +1,17 @@
 #ifndef GUI_CONTEXT_H
 #define GUI_CONTEXT_H
 
-#include "MainWindow.h"
+#include "Body/MainView.h"
+
+// SINGLETON
+
 class UIContext {
 private:
-  // static MainWindow *mainWindow;
+  static MainView *mainView;
 
 public:
-  // static void setMainWindow(MainWindow *window);
-  // static MainWindow *getMainWindow();
+  static void setMainView(MainView *window);
+  static MainView *getMainView();
 };
 
 #endif

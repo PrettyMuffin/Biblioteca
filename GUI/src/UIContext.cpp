@@ -1,7 +1,7 @@
 #include "../header/UIContext.h"
 
-// MainWindow *UIContext::getMainWindow() { return mainWindow; }
+MainView *UIContext::getMainView() { return mainView; }
 
-// void UIContext::setMainWindow(MainWindow *window) { mainWindow = window; }
+void UIContext::setMainView(MainView *view) { mainView = view; }
 
-// MainWindow *UIContext::mainWindow = nullptr;
+MainView *UIContext::mainView = nullptr;

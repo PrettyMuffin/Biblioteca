@@ -1,4 +1,5 @@
 #include "../../header/Body/MainView.h"
+#include "../../header/UIContext.h"
 
 MainView::MainView(QWidget *parent) : QWidget(parent) {
   layout = new QHBoxLayout(this);
@@ -8,9 +9,10 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
   layout->addWidget(contenuti);
   // layout->addWidget(dettagli);
 
-  dettagli->setHidden(true); // pk non ci sono elementi selezionati
+  // dettagli->setHidden(true); // pk non ci sono elementi selezionati
 
   setLayout(layout);
+  UIContext::setMainView(this);
 }
 
 MainView::~MainView() {}

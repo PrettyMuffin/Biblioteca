@@ -1,6 +1,7 @@
 #include "../../header/Body/ProductsView.h"
 #include "../../../Logica/header/AppContext.h"
 #include "../../header/Body/MainView.h"
+#include "../../header/UIContext.h"
 #include "qcoreapplication.h"
 #include "qlabel.h"
 #include "qpixmap.h"
@@ -9,8 +10,7 @@
 #include <QMouseEvent>
 #include <cstdlib>
 
-ProductsView::ProductsView(QWidget *parent, MainView *mainView)
-    : QWidget(parent) {
+ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
   QVBoxLayout *mainLayout = new QVBoxLayout(this);
   scrollArea = new QScrollArea(this);
   QWidget *scrollContent = new QWidget(scrollArea);
@@ -74,6 +74,9 @@ void ProductCard::notify(ElementoBiblioteca &elemento) {
 
 void ProductCard::mousePressEvent(QMouseEvent *event) {
   if (event->button() == Qt::LeftButton) {
-    emit clicked(elemento);
+    // connect(this, &ProductCard::clicked, UIContext::getMainView(),
+    //         &MainView::showDetailView);
+    // emit clicked(elemento);
+    UIContext::getMainView()->showDetailView(elemento);
   }
 }

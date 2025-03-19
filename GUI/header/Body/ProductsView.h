@@ -20,10 +20,9 @@ class ProductsView : public QWidget {
 private:
   QScrollArea *scrollArea;
   QGridLayout *layout;
-  void prova();
 
 public:
-  ProductsView(QWidget * = nullptr, MainView * = nullptr);
+  ProductsView(QWidget * = nullptr);
   ~ProductsView();
 };
 
