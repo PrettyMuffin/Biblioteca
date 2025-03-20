@@ -20,6 +20,10 @@ public slots:
   void showDetailView(ElementoBiblioteca *);
   void hideDetailView();
 
+signals:
+  void detailViewShown();
+  void detailViewHidden();
+
 public:
   MainView(QWidget * = nullptr);
   ~MainView();

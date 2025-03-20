@@ -3,8 +3,6 @@
 
 #include "Body/MainView.h"
 
-// SINGLETON
-
 class UIContext {
 private:
   static MainView *mainView;

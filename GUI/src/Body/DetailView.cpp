@@ -1,14 +1,12 @@
 #include "../../header/Body/DetailView.h"
-#include "qlabel.h"
+#include "../../header/Body/DetailViewVisitor.h"
 
 DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
     : QWidget(parent), elemento(el) {
-  mainLayout = new QVBoxLayout(this);
-  titolo = new QLabel(el->getTitolo(), this);
-  copertina = new QLabel(this);
-  mainLayout->addWidget(titolo);
-  mainLayout->addWidget(copertina);
-  setLayout(mainLayout);
+  DetailviewVisitor v;
+  el->accept(&v);
+  setLayout(v.getWidget()->layout());
 }
 
+// non faccio delete *elemento pk sennò lo eliminerei dalla biblioteca,
 DetailView::~DetailView() {}

@@ -3,7 +3,6 @@
 #include "../../header/Body/MainView.h"
 #include "../../header/UIContext.h"
 #include "qcoreapplication.h"
-#include "qglobal.h"
 #include "qlabel.h"
 #include "qpixmap.h"
 #include "qscrollarea.h"
@@ -20,11 +19,11 @@ ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
 
   Biblioteca *biblioteca = AppContext::getBiblioteca();
   int row = 0, col = 0;
-  int maxCols = 5;
   for (auto elemento : biblioteca->getElements()) {
     ProductCard *card = new ProductCard(elemento, this);
     layout->addWidget(card, row, col);
 
+    int maxCols = frameSize().width() / card->minimumSize().width();
     col++;
     if (col >= maxCols) {
       col = 0;
@@ -61,6 +60,8 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
 
   connect(this, &ProductCard::clicked, UIContext::getMainView(),
           &MainView::showDetailView);
+
+  setMinimumSize(QSize(50, 100));
 }
 
 ProductCard::~ProductCard() {}

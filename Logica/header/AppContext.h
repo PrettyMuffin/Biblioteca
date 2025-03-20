@@ -15,14 +15,15 @@ viene creata o gestita.
 #include "Biblioteca.h"
 #include <stdexcept>
 
-class AppContext {
+class AppContext
+{
 public:
-  // Metodo per registrare un'istanza di Biblioteca
-  static void provide(Biblioteca *);
+    // Metodo per registrare un'istanza di Biblioteca
+    static void provide(Biblioteca *);
 
-  // Metodo per ottenere l'istanza di Biblioteca
-  static Biblioteca *getBiblioteca();
+    // Metodo per ottenere l'istanza di Biblioteca
+    static Biblioteca *getBiblioteca();
 
 private:
-  static Biblioteca *biblioteca; // Puntatore all'istanza di Biblioteca
+    static Biblioteca *biblioteca; // Puntatore all'istanza di Biblioteca
 };

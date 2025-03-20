@@ -16,7 +16,7 @@ QWidget *DetailviewVisitor::getWidget() const { return widget; }
 
 void DetailviewVisitor::visit(Libro *libro) {
   widget = new QWidget();
-  QHBoxLayout *layout = new QHBoxLayout();
+  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + libro->getTitolo(), widget);
@@ -50,7 +50,7 @@ void DetailviewVisitor::visit(Libro *libro) {
 
 void DetailviewVisitor::visit(Brano *brano) {
   widget = new QWidget();
-  QHBoxLayout *layout = new QHBoxLayout();
+  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + brano->getTitolo(), widget);
@@ -86,7 +86,7 @@ void DetailviewVisitor::visit(Brano *brano) {
 
 void DetailviewVisitor::visit(Film *film) {
   widget = new QWidget();
-  QHBoxLayout *layout = new QHBoxLayout();
+  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + film->getTitolo(), widget);

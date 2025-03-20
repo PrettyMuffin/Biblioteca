@@ -11,7 +11,7 @@
 
 class ElementoBiblioteca {
 protected:
-  QString id; //
+  QString id;
   static QString ESCAPE_CHAR;
 
 private:
