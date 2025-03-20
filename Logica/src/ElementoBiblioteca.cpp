@@ -76,10 +76,9 @@ QString ElementoBiblioteca::toString() const {
   res += genere + ESCAPE_CHAR;
   res += descrizione + ESCAPE_CHAR;
   res += QString::number(uscita) + ESCAPE_CHAR;
-  for (int i = 0; i < autori.size() - 1; i++) {
-    res += autori[i] + ESCAPE_CHAR;
+  for (auto autore : autori) {
+    res += autore + ESCAPE_CHAR;
   }
-  res += autori[autori.size() - 1];
   return res;
 }
 

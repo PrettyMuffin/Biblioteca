@@ -3,6 +3,7 @@
 #include "../../header/Body/MainView.h"
 #include "../../header/UIContext.h"
 #include "qcoreapplication.h"
+#include "qglobal.h"
 #include "qlabel.h"
 #include "qpixmap.h"
 #include "qscrollarea.h"
@@ -57,6 +58,9 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
   setLayout(layout);
 
   elemento->registerObserver(this);
+
+  connect(this, &ProductCard::clicked, UIContext::getMainView(),
+          &MainView::showDetailView);
 }
 
 ProductCard::~ProductCard() {}
@@ -74,9 +78,6 @@ void ProductCard::notify(ElementoBiblioteca &elemento) {
 
 void ProductCard::mousePressEvent(QMouseEvent *event) {
   if (event->button() == Qt::LeftButton) {
-    // connect(this, &ProductCard::clicked, UIContext::getMainView(),
-    //         &MainView::showDetailView);
-    // emit clicked(elemento);
-    UIContext::getMainView()->showDetailView(elemento);
+    emit clicked(elemento);
   }
 }

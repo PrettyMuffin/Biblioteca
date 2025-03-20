@@ -1,5 +1,4 @@
 #include "../header/MainWindow.h"
-#include "../header/UIContext.h"
 #include "qlogging.h"
 #include "qwidget.h"
 #include <QKeyEvent>
@@ -17,7 +16,6 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   layout->addWidget(body);
 
   setLayout(layout);
-  // UIContext::setMainWindow(this);
 }
 
 void MainWindow::changePage(int page) { body->setCurrentIndex(page); }

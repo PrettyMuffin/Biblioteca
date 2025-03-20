@@ -18,6 +18,7 @@ private:
 
 public slots:
   void showDetailView(ElementoBiblioteca *);
+  void hideDetailView();
 
 public:
   MainView(QWidget * = nullptr);
