@@ -25,15 +25,10 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
   connect(this, &ProductCard::clicked, UIContext::getMainView(),
           &MainView::showDetailView);
 
-  setMinimumSize(QSize(50, 100));
+  setMinimumSize(QSize(50, 70));
 }
 
-ProductCard::~ProductCard() {
-  delete layout;
-  delete copertina;
-  delete titolo;
-  delete autori;
-}
+ProductCard::~ProductCard() { elemento->unregisterObserver(this); }
 
 void ProductCard::notify(ElementoBiblioteca &elemento) {
   copertina->setPixmap(QPixmap(""));

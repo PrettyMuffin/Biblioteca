@@ -2,6 +2,7 @@
 #include "../../../Logica/header/AppContext.h"
 #include "../../header/Body/ProductCard.h"
 #include "qlayoutitem.h"
+
 #include "qscrollarea.h"
 #include "qwidget.h"
 #include <QMouseEvent>
@@ -49,10 +50,8 @@ void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
 
 void ProductsView::clearLayout() {
   while (QLayoutItem *item = layout->takeAt(0)) {
-    if (item->widget()) {
-      layout->removeWidget(item->widget());
-      delete item->widget();
-    }
+    layout->removeWidget(item->widget());
+    delete item->widget();
     delete item;
   }
 }

@@ -1,6 +1,8 @@
 #include "../../header/Toolbar/SearchBar.h"
 #include "../../../Logica/header/AppContext.h"
+#include "../../header/Body/ContentView.h"
 #include "../../header/Toolbar/SearchBar.h"
+#include "../../header/UIContext.h"
 #include "qboxlayout.h"
 #include "qlineedit.h"
 #include "qnamespace.h"
@@ -14,12 +16,16 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent) {
   searchButton->setIcon(QIcon(":/images/img/search.png"));
   layout->addWidget(searchInput);
   layout->addWidget(searchButton);
+
+  MainView *mainView = UIContext::getMainView();
+  assert(mainView != nullptr);
+  if (mainView)
+    connect(this, &SearchBar::search, mainView, &MainView::searchRequested);
 }
 
 void SearchBar::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Enter || event->key() == Qt::Key_Return) {
-    // dopo nel body me lo ripiglio
-    emit onSearchEvent(searchInput->text());
+    emit search(ContentView::QUERY, searchInput->text());
   }
 }
 

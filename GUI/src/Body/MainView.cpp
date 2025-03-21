@@ -21,6 +21,8 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
   // rimpicciolirsi per poi riaddattarsi
   contenuti->setSizePolicy(QSizePolicy::MinimumExpanding,
                            QSizePolicy::MinimumExpanding);
+  connect(this, &MainView::searchRequested, contenuti,
+          &ContentView::updateProducts);
 }
 
 MainView::~MainView() {}

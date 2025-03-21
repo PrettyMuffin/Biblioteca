@@ -44,6 +44,7 @@ public:
   virtual void accept(ElementoBibliotecaVisitor *) = 0;
   virtual QString toString() const;
   void registerObserver(ElementoBibliotecaObserver *);
+  void unregisterObserver(ElementoBibliotecaObserver *);
 
   virtual QString getId() const = 0;
   QString getTitolo() const;

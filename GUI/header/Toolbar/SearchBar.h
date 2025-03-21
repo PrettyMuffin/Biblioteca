@@ -1,6 +1,7 @@
 #ifndef SEARCHBAR_H
 #define SEARCHBAR_H
 
+#include "../Body/ContentView.h"
 #include "qboxlayout.h"
 #include "qobject.h"
 #include "qpushbutton.h"
@@ -23,7 +24,7 @@ public:
   ~SearchBar();
 
 signals:
-  void onSearchEvent(const QString &);
+  void search(ContentView::FilterType, const QString &);
 };
 
 #endif

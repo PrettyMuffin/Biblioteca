@@ -23,6 +23,7 @@ public slots:
 signals:
   void detailViewShown();
   void detailViewHidden();
+  void searchRequested(ContentView::FilterType, const QString &);
 
 public:
   MainView(QWidget * = nullptr);

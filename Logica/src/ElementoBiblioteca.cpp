@@ -45,6 +45,16 @@ void ElementoBiblioteca::registerObserver(ElementoBibliotecaObserver *obs) {
   observers.push_back(obs);
 }
 
+void ElementoBiblioteca::unregisterObserver(ElementoBibliotecaObserver *obs) {
+  bool found = false;
+  for (int i = 0; i < observers.size() && !found; i++) {
+    if (observers[i] == obs) {
+      observers.erase(observers.begin() + i);
+      found = true;
+    }
+  }
+}
+
 ElementoBiblioteca::~ElementoBiblioteca() {
   for (auto observer : observers) {
     delete observer;
@@ -74,7 +84,6 @@ QString ElementoBiblioteca::toString() const {
   QString res;
   res += titolo + ESCAPE_CHAR;
   res += genere + ESCAPE_CHAR;
-  res += descrizione + ESCAPE_CHAR;
   res += QString::number(uscita) + ESCAPE_CHAR;
   for (auto autore : autori) {
     res += autore + ESCAPE_CHAR;

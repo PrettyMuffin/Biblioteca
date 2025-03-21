@@ -4,10 +4,13 @@
 
 MainWindow::MainWindow(QWidget *parent) : QWidget(parent) {
   layout = new QVBoxLayout(this);
-  toolbar = new Toolbar(this);
+  // qua ordine di inizalizzazione importante dato che nella search bar si usa
+  // il mainView
   body = new QStackedWidget(this);
   mainView = new MainView(this);
   addView = new AddView(this);
+  toolbar = new Toolbar(this);
+
   body->addWidget(mainView);
   body->addWidget(addView);
 
