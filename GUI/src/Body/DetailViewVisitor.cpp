@@ -1,12 +1,10 @@
+#include "../../header/Body/DetailViewVisitor.h"
 #include "../../../Logica/header/Brano.h"
 #include "../../../Logica/header/Film.h"
 #include "../../../Logica/header/Libro.h"
 
-#include "../../header/Body/DetailViewVisitor.h"
 #include "qboxlayout.h"
-#include "qcoreapplication.h"
 #include "qlabel.h"
-#include <QTextBlock>
 
 DetailviewVisitor::DetailviewVisitor() {}
 

@@ -19,11 +19,13 @@ ProductsView::ProductsView(QWidget *parent) : QWidget(parent) {
 
   Biblioteca *biblioteca = AppContext::getBiblioteca();
   int row = 0, col = 0;
+  int maxCols = 6;
   for (auto elemento : biblioteca->getElements()) {
     ProductCard *card = new ProductCard(elemento, this);
     layout->addWidget(card, row, col);
 
-    int maxCols = frameSize().width() / card->minimumSize().width();
+    // int maxCols = frameSize().width() / card->minimumSize().width();
+
     col++;
     if (col >= maxCols) {
       col = 0;

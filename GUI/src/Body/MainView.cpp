@@ -16,15 +16,10 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
 
   setLayout(layout);
 
-  MainWindow *mainWindow = dynamic_cast<MainWindow *>(parent);
-  if (mainWindow) {
-    connect(this, &MainView::detailViewShown, mainWindow, [mainWindow, this]() {
-      // mainWindow->resize(mainWindow->frameSize() + dettagli->frameSize());
-      mainWindow->adjustSize();
-    });
-    connect(this, &MainView::detailViewHidden, mainWindow,
-            [mainWindow, this]() { mainWindow->adjustSize(); });
-  }
+  // così quando visualizzo il dettagli, il mainView si ridimensiona; senza
+  // rimpicciolirsi per poi riaddattarsi
+  contenuti->setSizePolicy(QSizePolicy::MinimumExpanding,
+                           QSizePolicy::MinimumExpanding);
 }
 
 MainView::~MainView() {}
@@ -46,4 +41,5 @@ void MainView::hideDetailView() {
   layout->removeWidget(dettagli);
   emit detailViewHidden();
   delete dettagli;
+  dettagli = nullptr;
 }
