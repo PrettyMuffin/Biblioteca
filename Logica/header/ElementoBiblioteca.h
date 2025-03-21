@@ -35,20 +35,22 @@ public:
   ElementoBiblioteca() = default;
   ElementoBiblioteca(const QString &, const QString &, const QString &,
                      const std::vector<QString> &, const int &);
-  virtual QJsonObject toJson() const;
-  virtual void fromJson(const QJsonObject &);
-  virtual void accept(ElementoBibliotecaVisitor *) = 0;
   virtual ElementoBiblioteca *clone() const = 0;
-  virtual QString getId() const = 0;
-  void registerObserver(ElementoBibliotecaObserver *);
-  virtual QString toString() const;
   virtual ~ElementoBiblioteca();
 
+  virtual QJsonObject toJson() const;
+  virtual void fromJson(const QJsonObject &);
+
+  virtual void accept(ElementoBibliotecaVisitor *) = 0;
+  virtual QString toString() const;
+  void registerObserver(ElementoBibliotecaObserver *);
+
+  virtual QString getId() const = 0;
   QString getTitolo() const;
   QString getGenere() const;
   QString getDescrizione() const;
-  const std::vector<QString> getAutori() const;
   int getUscita() const;
+  const std::vector<QString> getAutori() const;
 
   virtual ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
 };

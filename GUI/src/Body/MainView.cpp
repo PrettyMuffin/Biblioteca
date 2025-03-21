@@ -1,7 +1,9 @@
 #include "../../header/Body/MainView.h"
 #include "../../header/MainWindow.h"
 #include "../../header/UIContext.h"
+#include "qobject.h"
 #include "qtmetamacros.h"
+#include <ctime>
 
 MainView::MainView(QWidget *parent) : QWidget(parent) {
   UIContext::setMainView(
@@ -13,7 +15,6 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
   dettagli = nullptr;
 
   layout->addWidget(contenuti);
-
   setLayout(layout);
 
   // così quando visualizzo il dettagli, il mainView si ridimensiona; senza

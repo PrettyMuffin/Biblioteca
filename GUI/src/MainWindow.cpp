@@ -1,5 +1,4 @@
 #include "../header/MainWindow.h"
-#include "qlogging.h"
 #include "qwidget.h"
 #include <QKeyEvent>
 

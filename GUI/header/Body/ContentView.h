@@ -1,10 +1,13 @@
 #ifndef CONTENTVIEW_H
 #define CONTENTVIEW_H
 
-#include "FilterView.h"
 #include "ProductsView.h"
 #include "qboxlayout.h"
+#include "qcoreapplication.h"
+#include "qobject.h"
 #include <QWidget>
+
+class FilterView;
 
 class ContentView : public QWidget {
   Q_OBJECT
@@ -13,9 +16,18 @@ private:
   FilterView *filtri;
   ProductsView *prodotti;
 
+  QVector<ElementoBiblioteca *> libri();
+  QVector<ElementoBiblioteca *> brani();
+  QVector<ElementoBiblioteca *> film();
+  QVector<ElementoBiblioteca *> query(const QString & = "");
+
 public:
   ContentView(QWidget * = nullptr);
   ~ContentView();
+  enum FilterType { QUERY, LIBRI, BRANI, FILM };
+
+public slots:
+  void updateProducts(FilterType, const QString & = "");
 };
 
 #endif

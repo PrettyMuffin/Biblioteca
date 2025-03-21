@@ -81,9 +81,12 @@ bool Biblioteca::update(ElementoBiblioteca *old, ElementoBiblioteca *newel) {
 }
 
 QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
+  // se la query è vuota restituisce tutti gli elementi
+  if (query.isEmpty()) {
+    return tutti_elementi;
+  }
+
   QVector<ElementoBiblioteca *> result;
-  if (query.isEmpty())
-    return result;
   // costruzione della regex
   // nella ricerca in input da usare "," come separatore
   QStringList queryList = query.split(",");
@@ -102,7 +105,7 @@ QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
   return result;
 }
 
-const QVector<ElementoBiblioteca *> Biblioteca::getElements() const {
+QVector<ElementoBiblioteca *> Biblioteca::getElements() const {
   return tutti_elementi;
 }
 

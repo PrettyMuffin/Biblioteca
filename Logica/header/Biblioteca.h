@@ -24,7 +24,7 @@ public:
   bool update(unsigned int, ElementoBiblioteca *);
   bool update(ElementoBiblioteca *, ElementoBiblioteca *);
   QVector<ElementoBiblioteca *> search(const QString &) const;
-  const QVector<ElementoBiblioteca *> getElements() const;
+  QVector<ElementoBiblioteca *> getElements() const;
   QJsonArray toJson() const;
 };
 

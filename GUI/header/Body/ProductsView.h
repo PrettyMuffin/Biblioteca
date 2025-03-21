@@ -20,31 +20,13 @@ class ProductsView : public QWidget {
 private:
   QScrollArea *scrollArea;
   QGridLayout *layout;
+  int maxCols;
+  void clearLayout();
 
 public:
-  ProductsView(QWidget * = nullptr);
+  ProductsView(QVector<ElementoBiblioteca *>, QWidget * = nullptr);
+  void setProducts(QVector<ElementoBiblioteca *>);
   ~ProductsView();
-};
-
-class ProductCard : public QWidget, public ElementoBibliotecaObserver {
-  Q_OBJECT
-private:
-  QVBoxLayout *layout;
-  QLabel *copertina;
-  QLabel *titolo;
-  QLabel *autori;
-  ElementoBiblioteca *elemento;
-
-private:
-  void mousePressEvent(QMouseEvent *event) override;
-
-signals:
-  void clicked(ElementoBiblioteca *);
-
-public:
-  ProductCard(ElementoBiblioteca *, QWidget * = nullptr);
-  void notify(ElementoBiblioteca &) override;
-  ~ProductCard();
 };
 
 #endif
