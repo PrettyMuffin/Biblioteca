@@ -49,3 +49,7 @@ void ProductCard::mousePressEvent(QMouseEvent *event) {
     emit clicked(elemento);
   }
 }
+
+bool operator==(const ProductCard &lhs, const ProductCard &rhs) {
+  return lhs.elemento == rhs.elemento;
+}

@@ -23,6 +23,9 @@ private:
   int maxCols;
   void clearLayout();
 
+public slots:
+  void deleteProduct(ElementoBiblioteca *);
+
 public:
   ProductsView(QVector<ElementoBiblioteca *>, QWidget * = nullptr);
   void setProducts(QVector<ElementoBiblioteca *>);

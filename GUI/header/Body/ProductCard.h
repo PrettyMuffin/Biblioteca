@@ -8,6 +8,8 @@
 
 class ProductCard : public QWidget, public ElementoBibliotecaObserver {
   Q_OBJECT
+  friend bool operator==(const ProductCard &lhs, const ProductCard &rhs);
+
 private:
   QVBoxLayout *layout;
   QLabel *copertina;
@@ -26,4 +28,6 @@ public:
   void notify(ElementoBiblioteca &) override;
   ~ProductCard();
 };
+
+bool operator==(const ProductCard &lhs, const ProductCard &rhs);
 #endif

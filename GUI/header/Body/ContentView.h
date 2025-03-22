@@ -5,6 +5,7 @@
 #include "qboxlayout.h"
 #include "qcoreapplication.h"
 #include "qobject.h"
+#include "qtmetamacros.h"
 #include <QWidget>
 
 class FilterView;
@@ -25,6 +26,9 @@ public:
   ContentView(QWidget * = nullptr);
   ~ContentView();
   enum FilterType { QUERY, LIBRI, BRANI, FILM };
+
+signals:
+  void onDeleteProduct(ElementoBiblioteca *);
 
 public slots:
   void updateProducts(FilterType, QString = "");

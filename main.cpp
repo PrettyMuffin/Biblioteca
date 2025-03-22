@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
   biblioteca.add(new Libro("El Principito", "arg", "un libro molto bello",
                            "editore", "33838", autori, 1900));
   biblioteca.add(new Libro("autor3", "f", "un libro molto bello", "editore",
-                           "33838", autori, 1900));
+                           "33838", {"autor1", "autor3"}, 1900));
   biblioteca.add(new Libro("rincipito", "faslkj", "un libro molto bello",
                            "editore", "33838", autori, 1900));
   biblioteca.add(new Libro("incipito", "fasflaskfaslfj", "un libro molto bello",

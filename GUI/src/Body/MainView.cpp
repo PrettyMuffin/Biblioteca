@@ -1,8 +1,6 @@
 #include "../../header/Body/MainView.h"
-#include "../../header/MainWindow.h"
 #include "../../header/UIContext.h"
 #include "qobject.h"
-#include "qtmetamacros.h"
 #include <ctime>
 
 MainView::MainView(QWidget *parent) : QWidget(parent) {
@@ -23,26 +21,26 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
                            QSizePolicy::MinimumExpanding);
   connect(this, &MainView::searchRequested, contenuti,
           &ContentView::updateProducts);
+  connect(this, &MainView::hideDetailView, this, &MainView::onHideDetailView);
+  connect(this, &MainView::showDetailView, this, &MainView::onShowDetailView);
+  connect(this, &MainView::deleteProductRequested, contenuti,
+          &ContentView::onDeleteProduct);
 }
 
 MainView::~MainView() {}
 
-void MainView::showDetailView(ElementoBiblioteca *elemento) {
+void MainView::onShowDetailView(ElementoBiblioteca *elemento) {
   // rimuovi dettagli precedenti
-  hideDetailView();
+  onHideDetailView();
   // mostra nuovi dettagli
   dettagli = new DetailView(elemento, this);
   layout->addWidget(dettagli);
-
-  // resize(baseSize() + dettagli->baseSize());
-  emit detailViewShown();
 }
 
-void MainView::hideDetailView() {
+void MainView::onHideDetailView() {
   if (!dettagli)
     return;
   layout->removeWidget(dettagli);
-  emit detailViewHidden();
   delete dettagli;
   dettagli = nullptr;
 }

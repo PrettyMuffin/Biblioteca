@@ -6,7 +6,6 @@
 #include "qboxlayout.h"
 #include "qfiledialog.h"
 #include "qicon.h"
-#include "qlogging.h"
 #include "qmessagebox.h"
 #include "qpushbutton.h"
 

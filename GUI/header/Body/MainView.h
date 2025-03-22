@@ -17,12 +17,13 @@ private:
   DetailView *dettagli;
 
 public slots:
-  void showDetailView(ElementoBiblioteca *);
-  void hideDetailView();
+  void onShowDetailView(ElementoBiblioteca *);
+  void onHideDetailView();
 
 signals:
-  void detailViewShown();
-  void detailViewHidden();
+  void showDetailView(ElementoBiblioteca *);
+  void hideDetailView();
+  void deleteProductRequested(ElementoBiblioteca *);
   void searchRequested(ContentView::FilterType, const QString &);
 
 public:

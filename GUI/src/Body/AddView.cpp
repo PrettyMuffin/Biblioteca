@@ -4,7 +4,6 @@
 #include "qboxlayout.h"
 #include "qevent.h"
 #include "qfont.h"
-#include "qglobal.h"
 #include "qlabel.h"
 
 #include "qmenu.h"

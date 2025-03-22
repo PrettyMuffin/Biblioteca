@@ -7,8 +7,7 @@
 
 #include "qcontainerfwd.h"
 #include "qcoreapplication.h"
-#include "qhashfunctions.h"
-#include "qlogging.h"
+
 #include <QRegularExpression>
 
 ContentView::ContentView(QWidget *parent) : QWidget(parent) {
@@ -24,6 +23,9 @@ ContentView::ContentView(QWidget *parent) : QWidget(parent) {
 
   connect(filtri, &FilterView::filterChanged, this,
           &ContentView::updateProducts);
+
+  connect(this, &ContentView::onDeleteProduct, prodotti,
+          &ProductsView::deleteProduct);
 }
 
 ContentView::~ContentView() {
@@ -86,7 +88,6 @@ QVector<ElementoBiblioteca *> ContentView::film() {
 }
 
 QVector<ElementoBiblioteca *> ContentView::query(QString query) {
-  // qDebug() << query.removeIf([](QChar c) { return c.isSpace(); });
   return AppContext::getBiblioteca()->search(
       query.removeIf([](QChar c) { return c.isSpace(); }));
 }
