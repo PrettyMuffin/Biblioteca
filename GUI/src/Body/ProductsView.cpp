@@ -1,10 +1,8 @@
 #include "../../header/Body/ProductsView.h"
 #include "../../../Logica/header/AppContext.h"
 #include "../../header/Body/ProductCard.h"
-#include "qdebug.h"
-#include "qlayoutitem.h"
 
-#include "qlogging.h"
+#include "qlayoutitem.h"
 #include "qobject.h"
 #include "qscrollarea.h"
 #include "qwidget.h"
@@ -64,6 +62,10 @@ void ProductsView::deleteProduct(ElementoBiblioteca *elemento) {
     ProductCard *p_card =
         qobject_cast<ProductCard *>(layout->itemAt(i)->widget());
     if (p_card && *p_card == elemento) {
+      // rowspan, colspan inutili dato che tutti gli el hanno 1 di entrambi
+      int row, col, rowSpan, columnSpan;
+      layout->getItemPosition(i, &row, &col, &rowSpan, &columnSpan);
+
       QLayoutItem *item = layout->takeAt(i);
       delete p_card;
       p_card = nullptr;
@@ -74,7 +76,36 @@ void ProductsView::deleteProduct(ElementoBiblioteca *elemento) {
       // nella biblioteca
       AppContext::getBiblioteca()->remove(elemento);
 
+      // potevo fare un setProducts ma non mi sembrava efficiente eliminare
+      // tutto per poi riaggungere tutto, specialmente se la lista è molto lunga
+      // e magari elimino l'ultimo elemento
+      // inoltre così se ho un risultato di una ricerca resta nel contesto della
+      // ricerca
+      adjustLayout(i, row, col);
       return;
+    }
+  }
+}
+
+/**
+ * @param start l'indice di partenza da cui iniziare a risistemare il layout.
+ * @param row_start_el l'indice di riga dell'elemento di partenza.
+ * @param col_start_el l'indice di colonne dell'elemento di partenza.
+ */
+void ProductsView::adjustLayout(int start, int row_start_el, int col_start_el) {
+  QList<QWidget *> widgets;
+  while (QLayoutItem *item = layout->takeAt(start)) {
+    if (QWidget *widget = item->widget()) {
+      widgets.append(widget);
+    }
+    delete item;
+  }
+  for (int j = 0; j < widgets.count(); j++) {
+    layout->addWidget(widgets[j], row_start_el, col_start_el);
+    col_start_el++;
+    if (col_start_el >= maxCols) {
+      col_start_el = 0;
+      row_start_el++;
     }
   }
 }

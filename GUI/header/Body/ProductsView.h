@@ -22,6 +22,7 @@ private:
   QGridLayout *layout;
   int maxCols;
   void clearLayout();
+  void adjustLayout(int, int, int);
 
 public slots:
   void deleteProduct(ElementoBiblioteca *);

@@ -28,7 +28,6 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
   setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
   setMinimumSize(QSize(50, 70));
   setMaximumHeight(90);
-  setStyleSheet("background-color: #FF5733;"); // Colore arancione
 }
 
 ProductCard::~ProductCard() { elemento->unregisterObserver(this); }
