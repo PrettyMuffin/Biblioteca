@@ -92,7 +92,12 @@ QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
   QStringList queryList = query.split(",");
   QString regex_str = "^";
   for (int i = 0; i < queryList.size(); i++) {
-    regex_str += "(?=.*" + queryList[i].trimmed() + ")";
+    if (queryList[i].contains(":")) {
+      QStringList subqueryList = queryList[i].split((":"));
+      regex_str += "^(?=.*" + subqueryList[0] + ":";
+      regex_str += "[^\\\\]*" + subqueryList[1] + "[^\\\\]*(\\\\|$))";
+    } else
+      regex_str += "(?=.*" + queryList[i].trimmed() + ")";
   }
   regex_str += ".+$";
   QRegularExpression regex(regex_str,

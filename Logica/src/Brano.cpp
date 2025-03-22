@@ -54,7 +54,7 @@ QString Brano::toString() const {
   res += album + ESCAPE_CHAR;
   res += QString::number(durata) + ESCAPE_CHAR;
   res += "brano";
-  return res;
+  return res.toLower();
 }
 
 QString Brano::getAlbum() const { return album; }

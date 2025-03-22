@@ -19,7 +19,7 @@ private:
   QVector<ElementoBiblioteca *> libri();
   QVector<ElementoBiblioteca *> brani();
   QVector<ElementoBiblioteca *> film();
-  QVector<ElementoBiblioteca *> query(const QString & = "");
+  QVector<ElementoBiblioteca *> query(QString = "");
 
 public:
   ContentView(QWidget * = nullptr);
@@ -27,7 +27,7 @@ public:
   enum FilterType { QUERY, LIBRI, BRANI, FILM };
 
 public slots:
-  void updateProducts(FilterType, const QString & = "");
+  void updateProducts(FilterType, QString = "");
 };
 
 #endif

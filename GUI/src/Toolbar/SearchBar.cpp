@@ -18,9 +18,11 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent) {
   layout->addWidget(searchButton);
 
   MainView *mainView = UIContext::getMainView();
-  assert(mainView != nullptr);
-  if (mainView)
+  if (mainView) {
+    connect(searchButton, &QPushButton::clicked, this,
+            [this]() { emit search(ContentView::QUERY, searchInput->text()); });
     connect(this, &SearchBar::search, mainView, &MainView::searchRequested);
+  }
 }
 
 void SearchBar::keyPressEvent(QKeyEvent *event) {

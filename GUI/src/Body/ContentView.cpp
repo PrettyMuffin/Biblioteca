@@ -6,7 +6,10 @@
 #include "../../header/Body/FilterView.h"
 
 #include "qcontainerfwd.h"
+#include "qcoreapplication.h"
+#include "qhashfunctions.h"
 #include "qlogging.h"
+#include <QRegularExpression>
 
 ContentView::ContentView(QWidget *parent) : QWidget(parent) {
   layout = new QVBoxLayout(this);
@@ -28,8 +31,7 @@ ContentView::~ContentView() {
   delete prodotti;
 }
 
-void ContentView::updateProducts(FilterType tipo,
-                                 const QString &query_ricerca) {
+void ContentView::updateProducts(FilterType tipo, QString query_ricerca) {
   if (tipo == FilterType::LIBRI) {
     prodotti->setProducts(libri());
   } else if (tipo == FilterType::BRANI) {
@@ -83,9 +85,8 @@ QVector<ElementoBiblioteca *> ContentView::film() {
   return filmi;
 }
 
-QVector<ElementoBiblioteca *> ContentView::query(const QString &query) {
-  // return AppContext::getBiblioteca()->search(query);
-  QVector<ElementoBiblioteca *> res =
-      AppContext::getBiblioteca()->search(query);
-  return res;
+QVector<ElementoBiblioteca *> ContentView::query(QString query) {
+  // qDebug() << query.removeIf([](QChar c) { return c.isSpace(); });
+  return AppContext::getBiblioteca()->search(
+      query.removeIf([](QChar c) { return c.isSpace(); }));
 }

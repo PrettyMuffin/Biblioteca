@@ -50,10 +50,15 @@ void Film::fromJson(const QJsonObject &json) {
 
 QString Film::toString() const {
   QString res = ElementoBiblioteca::toString();
-  res += casa_cinematografica + ESCAPE_CHAR;
-  res += QString::number(valutazione) + ESCAPE_CHAR;
+  res += QString(casa_cinematografica).removeIf([](QChar c) {
+    return c.isSpace();
+  }) + ESCAPE_CHAR;
+  res += QString(QString::number(valutazione))
+             .removeIf([](QChar c) { return c.isSpace(); })
+             .toLower() +
+         ESCAPE_CHAR;
   res += "film";
-  return res;
+  return res.toLower();
 }
 
 QString Film::getCasaCinematografica() const { return casa_cinematografica; }

@@ -51,10 +51,12 @@ void Libro::fromJson(const QJsonObject &json) {
 
 QString Libro::toString() const {
   QString res = ElementoBiblioteca::toString();
-  res += editore + ESCAPE_CHAR;
-  res += ISBN + ESCAPE_CHAR;
+  res += QString(editore).removeIf([](QChar c) { return c.isSpace(); }) +
+         ESCAPE_CHAR;
+  res +=
+      QString(ISBN).removeIf([](QChar c) { return c.isSpace(); }) + ESCAPE_CHAR;
   res += "libro";
-  return res;
+  return res.toLower();
 }
 
 QString Libro::getEditore() const { return editore; }

@@ -82,13 +82,21 @@ void ElementoBiblioteca::fromJson(const QJsonObject &json) {
 
 QString ElementoBiblioteca::toString() const {
   QString res;
-  res += titolo + ESCAPE_CHAR;
-  res += genere + ESCAPE_CHAR;
-  res += QString::number(uscita) + ESCAPE_CHAR;
+  res += "titolo:" + QString(titolo).removeIf([](QChar c) {
+    return c.isSpace();
+  }) + ESCAPE_CHAR;
+  res += "genere:" + QString(genere).removeIf([](QChar c) {
+    return c.isSpace();
+  }) + ESCAPE_CHAR;
+  res += "uscita:" + QString(QString::number(uscita)).removeIf([](QChar c) {
+    return c.isSpace();
+  }) + ESCAPE_CHAR;
   for (auto autore : autori) {
-    res += autore + ESCAPE_CHAR;
+    res += "autore:" + QString(autore).removeIf([](QChar c) {
+      return c.isSpace();
+    }) + ESCAPE_CHAR;
   }
-  return res;
+  return res.toLower();
 }
 
 QString ElementoBiblioteca::getTitolo() const { return titolo; }

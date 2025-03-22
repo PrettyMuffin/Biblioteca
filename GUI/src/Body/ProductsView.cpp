@@ -3,6 +3,7 @@
 #include "../../header/Body/ProductCard.h"
 #include "qlayoutitem.h"
 
+#include "qlogging.h"
 #include "qscrollarea.h"
 #include "qwidget.h"
 #include <QMouseEvent>
@@ -35,8 +36,10 @@ void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
   if (elements.isEmpty())
     return;
   int row = 0, col = 0;
+  qDebug() << "---------------------";
   for (auto elemento : elements) {
     ProductCard *card = new ProductCard(elemento, this);
+    qDebug() << elemento->toString();
     layout->addWidget(card, row, col);
 
     // int maxCols = frameSize().width() / card->minimumSize().width();
