@@ -16,14 +16,8 @@ private:
 public:
   class JSON_FIELDS {
   public:
-    static QString Titolo;
-    static QString Genere;
-    static QString Descrizione;
-    static QString Autori;
-    static QString Uscita;
     static QString Valutazione;
     static QString Casa_Cinematografica;
-    static QString Tipo;
   };
   Film() = default;
   Film(const QString &, const QString &, const QString &, const QString &,

@@ -14,14 +14,8 @@ private:
 public:
   class JSON_FIELDS {
   public:
-    static QString Titolo;
-    static QString Genere;
-    static QString Descrizione;
-    static QString Uscita;
-    static QString Autori;
     static QString Editore;
     static QString ISBN;
-    static QString Tipo;
   };
   Libro() = default;
   Libro(const QString &, const QString &, const QString &, const QString &,

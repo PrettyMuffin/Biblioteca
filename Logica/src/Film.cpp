@@ -11,29 +11,15 @@ Film::Film(const QString &titolo, const QString &genere,
   id += "film";
 }
 
-QString Film::JSON_FIELDS::Titolo = ElementoBiblioteca::JSON_FIELDS::Titolo;
-QString Film::JSON_FIELDS::Genere = ElementoBiblioteca::JSON_FIELDS::Genere;
-QString Film::JSON_FIELDS::Descrizione =
-    ElementoBiblioteca::JSON_FIELDS::Descrizione;
-QString Film::JSON_FIELDS::Autori = ElementoBiblioteca::JSON_FIELDS::Autori;
-QString Film::JSON_FIELDS::Uscita = ElementoBiblioteca::JSON_FIELDS::Uscita;
 QString Film::JSON_FIELDS::Valutazione = "valutazione";
 QString Film::JSON_FIELDS::Casa_Cinematografica = "casa";
-QString Film::JSON_FIELDS::Tipo = "tipo";
 
 QJsonObject Film::toJson() const {
-  QJsonObject brano;
-  QJsonObject parent = ElementoBiblioteca::toJson();
-
-  brano[JSON_FIELDS::Titolo] = parent[JSON_FIELDS::Titolo];
-  brano[JSON_FIELDS::Genere] = parent[JSON_FIELDS::Genere];
-  brano[JSON_FIELDS::Descrizione] = parent[JSON_FIELDS::Descrizione];
-  brano[JSON_FIELDS::Autori] = parent[JSON_FIELDS::Autori];
-  brano[JSON_FIELDS::Uscita] = parent[JSON_FIELDS::Uscita];
-  brano[JSON_FIELDS::Valutazione] = valutazione;
-  brano[JSON_FIELDS::Casa_Cinematografica] = casa_cinematografica;
-  brano[JSON_FIELDS::Tipo] = "film";
-  return brano;
+  QJsonObject film = ElementoBiblioteca::toJson();
+  film[JSON_FIELDS::Valutazione] = valutazione;
+  film[JSON_FIELDS::Casa_Cinematografica] = casa_cinematografica;
+  film[ElementoBiblioteca::JSON_FIELDS::Tipo] = "film";
+  return film;
 }
 Film *Film::clone() const { return new Film(*this); }
 

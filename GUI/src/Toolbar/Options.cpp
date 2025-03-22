@@ -45,7 +45,7 @@ void Options::onSaveClicked() {
 }
 
 void Options::onImportClicked() {
-  QString path = QFileDialog::getSaveFileName(this, "File Json", "", "*.json");
+  QString path = QFileDialog::getOpenFileName(this, "File Json", "", "*.json");
   if (path.isEmpty()) {
     QMessageBox *errorBox = new QMessageBox(this);
     errorBox->setText("File non selezionato");

@@ -37,7 +37,7 @@ QJsonObject ElementoBiblioteca::toJson() const {
   for (auto autore : autori) {
     jsonAuthorArray.append(QJsonValue(autore));
   }
-  el[JSON_FIELDS::Titolo] = jsonAuthorArray;
+  el[JSON_FIELDS::Autori] = jsonAuthorArray;
   return el;
 }
 
