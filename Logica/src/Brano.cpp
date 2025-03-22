@@ -51,9 +51,8 @@ void Brano::fromJson(const QJsonObject &json) {
 
 QString Brano::toString() const {
   QString res = ElementoBiblioteca::toString();
-  res += album + ESCAPE_CHAR;
-  res += QString::number(durata) + ESCAPE_CHAR;
-  res += "brano";
+  res += QString("album:") + album + ESCAPE_CHAR;
+  res += QString("tipo:") + "brano";
   return res.toLower();
 }
 
