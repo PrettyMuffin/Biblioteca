@@ -1,16 +1,26 @@
 #include "../../header/Body/AddView.h"
+#include "../../../Logica/header/AppContext.h"
+#include "../../../Logica/header/Brano.h"
+#include "../../../Logica/header/Film.h"
+#include "../../../Logica/header/Libro.h"
 #include "../../header/MainWindow.h"
+
 #include "qaction.h"
 #include "qboxlayout.h"
+#include "qcontainerfwd.h"
+#include "qdebug.h"
 #include "qevent.h"
 #include "qfont.h"
+#include "qhashfunctions.h"
 #include "qlabel.h"
-
+#include "qlogging.h"
 #include "qmenu.h"
+#include "qmessagebox.h"
 #include "qobject.h"
 #include "qpushbutton.h"
 #include "qspinbox.h"
 #include "qwidget.h"
+#include <initializer_list>
 
 AddView::AddView(QWidget *parent) : QWidget(parent) {
   layout = new QTabWidget(this);
@@ -26,7 +36,7 @@ AddView::AddView(QWidget *parent) : QWidget(parent) {
   layout->addTab(filmPage, "Film");
   layout->addTab(branoPage, "Brano");
 
-  layout->setCurrentIndex(Pagina::LIBRO);
+  layout->setCurrentIndex(0); // tab del libro
 
   MainWindow *mainWindow = qobject_cast<MainWindow *>(parent);
   if (mainWindow) {
@@ -39,6 +49,10 @@ AddView::AddView(QWidget *parent) : QWidget(parent) {
   QVBoxLayout *mainLayout = new QVBoxLayout(this);
   mainLayout->addWidget(layout);
   setLayout(mainLayout);
+
+  connect(this, &AddView::addLibro, this, &AddView::onAddLibro);
+  connect(this, &AddView::addFilm, this, &AddView::onAddFilm);
+  connect(this, &AddView::addBrano, this, &AddView::onAddBrano);
 }
 
 AddView::~AddView() {
@@ -101,7 +115,7 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   layoutInfo->addWidget(editore_input);
 
   QLabel *uscita_label = new QLabel("Uscita (anno): ");
-  QLineEdit *uscita_input = new QLineEdit;
+  QSpinBox *uscita_input = new QSpinBox;
   layoutInfo->addWidget(uscita_label);
   layoutInfo->addWidget(uscita_input);
 
@@ -121,10 +135,14 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   bottoni_layout->addWidget(annulla_button);
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
-  QObject::connect(annulla_button, &QPushButton::clicked, this,
-                   [this]() { emit this->CancelInsertion(0); });
-  QObject::connect(conferma_button, &QPushButton::clicked, this,
-                   [this]() { emit this->addLibro(); });
+  connect(annulla_button, &QPushButton::clicked, this,
+          [this]() { emit this->CancelInsertion(0); });
+  connect(conferma_button, &QPushButton::clicked, this, [=]() {
+    emit addLibro(titolo_input->text(), genere_input->text(),
+                  descrizione_input->text(), editore_input->text(),
+                  isbn_input->text(), autore_input->text(),
+                  uscita_input->text());
+  });
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
   libroPageWidget->setLayout(layout);
@@ -183,12 +201,12 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   layoutInfo->addWidget(casa_cinematografica_input);
 
   QLabel *uscita_label = new QLabel("Uscita (anno): ");
-  QLineEdit *uscita_input = new QLineEdit;
+  QSpinBox *uscita_input = new QSpinBox;
   layoutInfo->addWidget(uscita_label);
   layoutInfo->addWidget(uscita_input);
 
   QLabel *valutazione_label = new QLabel("Valutazione: ");
-  QLineEdit *valutazione_input = new QLineEdit;
+  QSpinBox *valutazione_input = new QSpinBox;
   layoutInfo->addWidget(valutazione_label);
   layoutInfo->addWidget(valutazione_input);
 
@@ -205,8 +223,12 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   layoutInfo->addLayout(bottoni_layout);
   connect(annulla_button, &QPushButton::clicked, this,
           [this]() { emit this->CancelInsertion(0); });
-  connect(conferma_button, &QPushButton::clicked, this,
-          [this]() { emit this->addFilm(); });
+  connect(conferma_button, &QPushButton::clicked, this, [=]() {
+    emit addFilm(titolo_input->text(), genere_input->text(),
+                 descrizione_input->text(), casa_cinematografica_input->text(),
+                 autore_input->text(), uscita_input->text(),
+                 valutazione_input->text());
+  });
 
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
@@ -283,7 +305,7 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   layoutInfo->addLayout(durata_layout);
 
   QLabel *uscita_label = new QLabel("Uscita (anno): ");
-  QLineEdit *uscita_input = new QLineEdit;
+  QSpinBox *uscita_input = new QSpinBox;
   layoutInfo->addWidget(uscita_label);
   layoutInfo->addWidget(uscita_input);
 
@@ -298,16 +320,84 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   bottoni_layout->addWidget(annulla_button);
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
+
   connect(annulla_button, &QPushButton::clicked, this,
           [this]() { emit this->CancelInsertion(0); });
-  connect(conferma_button, &QPushButton::clicked, this,
-          [this]() { emit this->addBrano(); });
+  connect(conferma_button, &QPushButton::clicked, this, [=]() {
+    QString durata_secondi = QString::number(minuti_input->text().toInt() * 60 +
+                                             secondi_input->text().toInt());
+    emit addBrano(titolo_input->text(), genere_input->text(),
+                  descrizione_input->text(), album_input->text(),
+                  durata_secondi, autore_input->text(), uscita_input->text());
+  });
 
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
   branoPageWidget->setLayout(layout);
 }
 
-void AddView::onAddLibro() {}
-void AddView::onAddFilm() {}
-void AddView::onAddBrano() {}
+void AddView::onAddLibro(const QString &titolo, const QString &genere,
+                         const QString &descrizione, const QString &editore,
+                         const QString &isbn, const QString &autore,
+                         const QString &annoPubblicazione) {
+  if (!isValidInput({titolo, genere, descrizione, editore, isbn, autore,
+                     annoPubblicazione}))
+    return;
+
+  Libro *libro =
+      new Libro(titolo, genere, descrizione, editore, isbn,
+                autore.split(",").toVector(), annoPubblicazione.toInt());
+  AppContext::getBiblioteca()->add(libro);
+}
+
+void AddView::onAddFilm(const QString &titolo, const QString &genere,
+                        const QString &descrizione, const QString &casa_cin,
+                        const QString &cast, const QString &annoPubblicazione,
+                        const QString &valutazione) {
+  qDebug() << "controllo film";
+  if (!isValidInput({titolo, genere, descrizione, casa_cin, cast,
+                     annoPubblicazione, valutazione}))
+    return;
+  qDebug() << "film in aggiunta";
+  Film *film = new Film(titolo, genere, descrizione, casa_cin,
+                        cast.split(",").toVector(), annoPubblicazione.toInt(),
+                        valutazione.toInt());
+  AppContext::getBiblioteca()->add(film);
+  qDebug() << "film aggiunto";
+}
+
+void AddView::onAddBrano(const QString &titolo, const QString &genere,
+                         const QString &descrizione, const QString &album,
+                         const QString &durata, const QString &autore,
+                         const QString &annoPubblicazione) {
+  if (!isValidInput({titolo, genere, descrizione, album, durata, autore,
+                     annoPubblicazione}))
+    return;
+
+  Brano *brano =
+      new Brano(titolo, genere, descrizione, album, durata.toInt(),
+                autore.split(",").toVector(), annoPubblicazione.toInt());
+
+  AppContext::getBiblioteca()->add(brano);
+}
+
+bool AddView::isValidInput(std::initializer_list<QString> input) {
+  QString error_string = "";
+  bool isValid = true;
+  for (auto cit = input.begin(); cit != input.end() && isValid; ++cit) {
+    QString str = *cit;
+    if (str.isEmpty()) {
+      error_string = "Campi vuoti";
+      isValid = false;
+    } else if (str.contains("\\") || str.contains(":")) {
+      error_string = "Carattere non valido, l'input non può contenere \\ o :";
+      isValid = false;
+    }
+  }
+  if (!isValid) {
+    QMessageBox *error = new QMessageBox(QMessageBox::Critical, "Errore",
+                                         error_string, QMessageBox::Ok);
+    error->exec();
+  }
+  return isValid;
+}

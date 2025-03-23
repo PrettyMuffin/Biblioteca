@@ -19,7 +19,7 @@ public:
   };
   Brano() = default;
   Brano(const QString &, const QString &, const QString &, const QString &,
-        const unsigned int &, const std::vector<QString> &,
+        const unsigned int &, const QVector<QString> &,
         const unsigned short int &);
   Brano *clone() const override;
   void fromJson(const QJsonObject &) override;

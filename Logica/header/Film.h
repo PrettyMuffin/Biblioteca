@@ -21,7 +21,7 @@ public:
   };
   Film() = default;
   Film(const QString &, const QString &, const QString &, const QString &,
-       const std::vector<QString> &, const unsigned short int &,
+       const QVector<QString> &, const unsigned short int &,
        const unsigned short int &);
   Film *clone() const override;
   void accept(ElementoBibliotecaVisitor *) override;

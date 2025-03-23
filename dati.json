@@ -41,19 +41,6 @@
     {
         "autori": [
             "autor1",
-            "autor3"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "f",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "autor3",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
             "autor2"
         ],
         "descrizione": "un libro molto bello",
@@ -137,5 +124,43 @@
         "titolo": "titanic",
         "uscita": 1990,
         "valutazione": 8
+    },
+    {
+        "autori": [
+            "asdfasfasdf"
+        ],
+        "descrizione": "afasdfasfasdfasdasdf",
+        "editore": "fasdfsadf",
+        "genere": "Biografico",
+        "isbn": "fasdfasdf",
+        "tipo": "libro",
+        "titolo": "afsdfasdfasdf",
+        "uscita": 0
+    },
+    {
+        "autori": [
+            "asfasfasfd",
+            " autor1"
+        ],
+        "casa": "asfasfasf",
+        "descrizione": "asfasfasdfasdffa",
+        "genere": "Horror",
+        "tipo": "film",
+        "titolo": "Film bello",
+        "uscita": 0,
+        "valutazione": 0
+    },
+    {
+        "album": "asfasfasdf",
+        "autori": [
+            "asfasfasf",
+            " autor5"
+        ],
+        "descrizione": "fasdfasfasf",
+        "durata": 248,
+        "genere": "Pop",
+        "tipo": "brano",
+        "titolo": "Brano bello",
+        "uscita": 0
     }
 ]

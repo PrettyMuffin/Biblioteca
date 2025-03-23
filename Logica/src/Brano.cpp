@@ -1,11 +1,10 @@
 #include "../header/Brano.h"
 #include "qcoreapplication.h"
 #include "qjsonobject.h"
-#include "qlogging.h"
 
 Brano::Brano(const QString &titolo, const QString &genere,
              const QString &descrizione, const QString &a,
-             const unsigned int &d, const std::vector<QString> &autori,
+             const unsigned int &d, const QVector<QString> &autori,
              const unsigned short int &uscita)
     : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita), album(a),
       durata(d) {

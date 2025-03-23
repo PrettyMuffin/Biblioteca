@@ -4,8 +4,7 @@
 
 Libro::Libro(const QString &titolo, const QString &genere,
              const QString &descrizione, const QString &e, const QString &isbn,
-             const std::vector<QString> &autori,
-             const unsigned short int &usita)
+             const QVector<QString> &autori, const unsigned short int &usita)
     : ElementoBiblioteca(titolo, genere, descrizione, autori, usita),
       editore(e), ISBN(isbn) {
   id += "libro";

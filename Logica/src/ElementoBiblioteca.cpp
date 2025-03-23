@@ -7,7 +7,7 @@
 ElementoBiblioteca::ElementoBiblioteca(const QString &titolo,
                                        const QString &genere,
                                        const QString &desc,
-                                       const std::vector<QString> &autori,
+                                       const QVector<QString> &autori,
                                        const int &uscita)
     : titolo(titolo), genere(genere), descrizione(desc), autori(autori),
       uscita(uscita) {
@@ -102,9 +102,7 @@ QString ElementoBiblioteca::toString() const {
 QString ElementoBiblioteca::getTitolo() const { return titolo; }
 QString ElementoBiblioteca::getGenere() const { return genere; }
 QString ElementoBiblioteca::getDescrizione() const { return descrizione; }
-const std::vector<QString> ElementoBiblioteca::getAutori() const {
-  return autori;
-}
+const QVector<QString> ElementoBiblioteca::getAutori() const { return autori; }
 
 int ElementoBiblioteca::getUscita() const { return uscita; }
 

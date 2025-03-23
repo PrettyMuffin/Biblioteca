@@ -18,7 +18,7 @@ void DetailviewVisitor::visit(Libro *libro) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + libro->getTitolo(), widget);
-  const vector<QString> autori = libro->getAutori();
+  const QVector<QString> autori = libro->getAutori();
 
   QString stringa_autori = "Autore/i: ";
   for (int i = 0; i < autori.size() - 1; i++) {
@@ -52,7 +52,7 @@ void DetailviewVisitor::visit(Brano *brano) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + brano->getTitolo(), widget);
-  const vector<QString> autori = brano->getAutori();
+  const QVector<QString> autori = brano->getAutori();
 
   QString stringa_autori = "Autore/i: ";
   for (int i = 0; i < autori.size() - 1; i++) {
@@ -88,7 +88,7 @@ void DetailviewVisitor::visit(Film *film) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + film->getTitolo(), widget);
-  const vector<QString> autori = film->getAutori();
+  const QVector<QString> autori = film->getAutori();
 
   QString stringa_autori = "Autore/i: ";
   for (int i = 0; i < autori.size() - 1; i++) {

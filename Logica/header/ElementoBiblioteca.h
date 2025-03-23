@@ -18,9 +18,9 @@ private:
   QString titolo;
   QString genere;
   QString descrizione;
-  std::vector<QString> autori;
+  QVector<QString> autori;
   int uscita; // anno pubblicazione
-  std::vector<ElementoBibliotecaObserver *> observers;
+  QVector<ElementoBibliotecaObserver *> observers;
 
 public:
   class JSON_FIELDS {
@@ -34,7 +34,7 @@ public:
   };
   ElementoBiblioteca() = default;
   ElementoBiblioteca(const QString &, const QString &, const QString &,
-                     const std::vector<QString> &, const int &);
+                     const QVector<QString> &, const int &);
   virtual ElementoBiblioteca *clone() const = 0;
   virtual ~ElementoBiblioteca();
 
@@ -51,7 +51,7 @@ public:
   QString getGenere() const;
   QString getDescrizione() const;
   int getUscita() const;
-  const std::vector<QString> getAutori() const;
+  const QVector<QString> getAutori() const;
 
   virtual ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
 };
