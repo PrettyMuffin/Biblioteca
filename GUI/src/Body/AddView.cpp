@@ -136,7 +136,7 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
   connect(annulla_button, &QPushButton::clicked, this,
-          [this]() { emit this->CancelInsertion(0); });
+          [this]() { emit CancelInsertion(0); });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     emit addLibro(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), editore_input->text(),
@@ -222,7 +222,7 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
   connect(annulla_button, &QPushButton::clicked, this,
-          [this]() { emit this->CancelInsertion(0); });
+          [this]() { emit CancelInsertion(0); });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     emit addFilm(titolo_input->text(), genere_input->text(),
                  descrizione_input->text(), casa_cinematografica_input->text(),
@@ -322,7 +322,7 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   layoutInfo->addLayout(bottoni_layout);
 
   connect(annulla_button, &QPushButton::clicked, this,
-          [this]() { emit this->CancelInsertion(0); });
+          [this]() { emit CancelInsertion(0); });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     QString durata_secondi = QString::number(minuti_input->text().toInt() * 60 +
                                              secondi_input->text().toInt());
