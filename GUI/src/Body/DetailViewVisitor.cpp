@@ -6,13 +6,13 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 
-DetailviewVisitor::DetailviewVisitor() {}
+DetailViewVisitor::DetailViewVisitor() {}
 
-DetailviewVisitor::~DetailviewVisitor() { delete widget; }
+DetailViewVisitor::~DetailViewVisitor() { delete widget; }
 
-QWidget *DetailviewVisitor::getWidget() const { return widget; }
+QWidget *DetailViewVisitor::getWidget() const { return widget; }
 
-void DetailviewVisitor::visit(Libro *libro) {
+void DetailViewVisitor::visit(Libro *libro) {
   widget = new QWidget();
   QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
@@ -46,7 +46,7 @@ void DetailviewVisitor::visit(Libro *libro) {
   widget->setLayout(layout);
 }
 
-void DetailviewVisitor::visit(Brano *brano) {
+void DetailViewVisitor::visit(Brano *brano) {
   widget = new QWidget();
   QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
@@ -82,7 +82,7 @@ void DetailviewVisitor::visit(Brano *brano) {
   widget->setLayout(layout);
 }
 
-void DetailviewVisitor::visit(Film *film) {
+void DetailViewVisitor::visit(Film *film) {
   widget = new QWidget();
   QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);

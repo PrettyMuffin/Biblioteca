@@ -1,20 +1,20 @@
-#ifndef DETAILVIEWVISITOR_H
-#define DETAILVIEWVISITOR_H
+#ifndef EDITVIEWVISITOR_H
+#define EDITVIEWVISITOR_H
 
 #include "../../../Logica/header/ElementoBibliotecaVisitor.h"
 #include "qwidget.h"
 
-class DetailViewVisitor : public ElementoBibliotecaVisitor {
+class EditViewVisitor : public ElementoBibliotecaVisitor {
 private:
   QWidget *widget;
 
 public:
-  DetailViewVisitor();
-  ~DetailViewVisitor();
+  EditViewVisitor();
+  ~EditViewVisitor();
   void visit(Libro *) override;
   void visit(Brano *) override;
   void visit(Film *) override;
-  QWidget *getWidget() const;
+  QWidget *getWidget();
 };
 
 #endif
