@@ -5,9 +5,8 @@
 #include "../../header/UIContext.h"
 #include "qabstractbutton.h"
 #include "qboxlayout.h"
-#include "qglobal.h"
-#include "qlayout.h"
 #include "qmessagebox.h"
+#include "qobject.h"
 #include "qstackedwidget.h"
 #include "qwidget.h"
 
@@ -16,18 +15,21 @@
 
 DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
     : QWidget(parent), elemento(el) {
-  QHBoxLayout *layout = new QHBoxLayout();
-  container = new QStackedWidget;
+  mainLayout = new QHBoxLayout(this);
+  container = new QStackedWidget(this);
+  currentWidget = new QWidget(this);
+  currentLayout = new QVBoxLayout(currentWidget);
+  currentWidget->setLayout(currentLayout);
 
-  DetailViewVisitor detailView;
-  EditViewVisitor editView;
-  el->accept(&detailView);
-  el->accept(&editView);
+  detailView = new DetailViewVisitor();
+  editView = new EditViewVisitor;
+  el->accept(detailView);
+  el->accept(editView);
 
   initDetailView(detailView);
 
-  layout->addWidget(container);
-  setLayout(layout);
+  mainLayout->addWidget(container);
+  // setLayout(layout);
 }
 
 // faccio anche hidedetailview
@@ -44,10 +46,15 @@ void DetailView::deleteRequest(ElementoBiblioteca *elemento) {
 }
 
 // non faccio delete *elemento pk sennò lo eliminerei dalla biblioteca,
-DetailView::~DetailView() {}
+DetailView::~DetailView() {
+  delete detailView;
+  delete editView;
+}
 
-void DetailView::initDetailView(DetailViewVisitor &visitor) {
-  QWidget *visitorWidget = visitor.getWidget();
+void DetailView::initDetailView(DetailViewVisitor *visitor) {
+
+  QWidget *visitorWidget = visitor->getWidget();
+
   QHBoxLayout *pulsanti = new QHBoxLayout();
   QPushButton *modifica = new QPushButton("Modifica");
   QPushButton *elimina = new QPushButton("Elimina");
@@ -56,7 +63,8 @@ void DetailView::initDetailView(DetailViewVisitor &visitor) {
   pulsanti->addWidget(elimina);
   pulsanti->addWidget(modifica);
 
-  visitorWidget->layout()->addItem(pulsanti);
+  currentLayout->addWidget(visitor->getWidget());
+  currentLayout->addLayout(pulsanti);
 
   connect(chiudi, &QPushButton::clicked, UIContext::getMainView(),
           &MainView::hideDetailView);
@@ -64,8 +72,8 @@ void DetailView::initDetailView(DetailViewVisitor &visitor) {
   connect(elimina, &QPushButton::clicked, this,
           [this]() { deleteRequest(elemento); });
 
-  container->addWidget(visitorWidget);
-  container->setCurrentIndex(0);
+  container->addWidget(currentWidget);
+  // container->setCurrentIndex(0);
 }
 
-void DetailView::initEditView(EditViewVisitor &visitor) {}
+void DetailView::initEditView(EditViewVisitor *visitor) {}

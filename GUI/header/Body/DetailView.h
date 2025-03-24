@@ -15,11 +15,17 @@
 class DetailView : public QWidget {
   Q_OBJECT
 private:
+  QHBoxLayout *mainLayout;
   QStackedWidget *container;
+  QWidget *currentWidget;
+  QVBoxLayout *currentLayout;
+
+  DetailViewVisitor *detailView;
+  EditViewVisitor *editView;
   ElementoBiblioteca *elemento;
 
-  void initDetailView(DetailViewVisitor &);
-  void initEditView(EditViewVisitor &);
+  void initDetailView(DetailViewVisitor *);
+  void initEditView(EditViewVisitor *);
 
 public slots:
   void deleteRequest(ElementoBiblioteca *elemento);
