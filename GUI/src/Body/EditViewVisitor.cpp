@@ -7,6 +7,9 @@
 #include "qlabel.h"
 #include "qlineedit.h"
 #include "qspinbox.h"
+#include "qtextedit.h"
+#include "qwidget.h"
+#include <QTextEdit>
 
 EditViewVisitor::EditViewVisitor() {}
 EditViewVisitor::~EditViewVisitor() {}
@@ -26,16 +29,17 @@ void EditViewVisitor::visit(Libro *libro) {
   titolo_layout->addWidget(titolo_edit);
 
   QHBoxLayout *autore_layout = new QHBoxLayout();
-  const QVector<QString> autori = libro->getAutori();
-  QString stringa_autori = autori.join(", ");
-  // for (int i = 0; i < autori.size() - 1; i++) {
-  //   stringa_autori += autori[i] + ", ";
-  // }
-  // stringa_autori += autori.back();
+
   QLabel *autore_label = new QLabel("Autore/i: ", widget);
-  QLineEdit *autore_edit = new QLineEdit(stringa_autori, widget);
+  QLineEdit *autore_edit = new QLineEdit(libro->getAutori().join(", "), widget);
   autore_layout->addWidget(autore_label);
   autore_layout->addWidget(autore_edit);
+
+  QHBoxLayout *genere_layout = new QHBoxLayout();
+  QLabel *genere_label = new QLabel("Genere: ", widget);
+  QLineEdit *genere_edit = new QLineEdit(libro->getGenere(), widget);
+  genere_layout->addWidget(genere_label);
+  genere_layout->addWidget(genere_edit);
 
   QHBoxLayout *isbn_layout = new QHBoxLayout();
   QLabel *isbn_label = new QLabel("ISBN: ", widget);
@@ -60,7 +64,7 @@ void EditViewVisitor::visit(Libro *libro) {
 
   QVBoxLayout *descrizione_layout = new QVBoxLayout();
   QLabel *decrizione_label = new QLabel("Descrizione: ", widget);
-  QLineEdit *descrizione_edit = new QLineEdit(libro->getDescrizione(), widget);
+  QTextEdit *descrizione_edit = new QTextEdit(libro->getDescrizione(), widget);
   descrizione_layout->addWidget(decrizione_label);
   descrizione_layout->addWidget(descrizione_edit);
 
@@ -68,6 +72,7 @@ void EditViewVisitor::visit(Libro *libro) {
   layout->addWidget(pixmap);
   layout->addLayout(titolo_layout);
   layout->addLayout(autore_layout);
+  layout->addLayout(genere_layout);
   layout->addLayout(isbn_layout);
   layout->addLayout(editore_layout);
   layout->addLayout(uscita_layout);
@@ -76,6 +81,138 @@ void EditViewVisitor::visit(Libro *libro) {
   widget->setLayout(layout);
 }
 
-void EditViewVisitor::visit(Brano *brano) {}
+void EditViewVisitor::visit(Brano *brano) {
+  widget = new QWidget();
+  QVBoxLayout *layout = new QVBoxLayout();
+  QLabel *info = new QLabel("Info sull'elemento", widget);
+  QLabel *pixmap = new QLabel;
 
-void EditViewVisitor::visit(Film *film) {}
+  QHBoxLayout *titolo_layout = new QHBoxLayout();
+  QLabel *titoloLabel = new QLabel("Titolo: ", widget);
+  QLineEdit *titolo_edit = new QLineEdit(brano->getTitolo(), widget);
+  titolo_layout->addWidget(titoloLabel);
+  titolo_layout->addWidget(titolo_edit);
+
+  QHBoxLayout *autore_layout = new QHBoxLayout();
+  QLabel *autoreLabel = new QLabel("Autore/i: ", widget);
+  QLineEdit *autore_edit = new QLineEdit(brano->getAutori().join(", "), widget);
+  autore_layout->addWidget(autoreLabel);
+  autore_layout->addWidget(autore_edit);
+
+  QHBoxLayout *album_layout = new QHBoxLayout();
+  QLabel *albumLabel = new QLabel("Album: ", widget);
+  QLineEdit *album_edit = new QLineEdit(brano->getAlbum(), widget);
+  album_layout->addWidget(albumLabel);
+  album_layout->addWidget(album_edit);
+
+  QHBoxLayout *genere_layout = new QHBoxLayout();
+  QLabel *genereLabel = new QLabel("Genere: ", widget);
+  QLineEdit *genere_edit = new QLineEdit(brano->getGenere(), widget);
+  genere_layout->addWidget(genereLabel);
+  genere_layout->addWidget(genere_edit);
+
+  QVBoxLayout *durata_layout = new QVBoxLayout();
+  QLabel *durataLabel = new QLabel("Durata: ", widget);
+  QHBoxLayout *minuti_layout = new QHBoxLayout();
+  QLabel *minutiLabel = new QLabel("Minuti: ", widget);
+  QSpinBox *minuti_edit = new QSpinBox();
+  minuti_edit->setValue(brano->getDurata() / 60);
+  QLabel *secondiLabel = new QLabel("Secondi: ", widget);
+  QSpinBox *secondi_edit = new QSpinBox();
+  secondi_edit->setValue(brano->getDurata() % 60);
+  minuti_layout->addWidget(minutiLabel);
+  minuti_layout->addWidget(minuti_edit);
+  minuti_layout->addWidget(secondiLabel);
+  minuti_layout->addWidget(secondi_edit);
+  durata_layout->addWidget(durataLabel);
+  durata_layout->addLayout(minuti_layout);
+
+  QHBoxLayout *uscita_layout = new QHBoxLayout();
+  QLabel *uscita = new QLabel("Anno di uscita: ", widget);
+  QSpinBox *uscita_edit = new QSpinBox();
+  uscita_edit->setValue(brano->getUscita());
+  uscita_layout->addWidget(uscita);
+  uscita_layout->addWidget(uscita_edit);
+
+  QVBoxLayout *descrizione_layout = new QVBoxLayout();
+  QLabel *descrizione = new QLabel("Descrizione: ", widget);
+  QTextEdit *descrizione_edit = new QTextEdit(brano->getDescrizione(), widget);
+  descrizione_layout->addWidget(descrizione);
+  descrizione_layout->addWidget(descrizione_edit);
+
+  layout->addWidget(info);
+  layout->addWidget(pixmap);
+  layout->addLayout(titolo_layout);
+  layout->addLayout(durata_layout);
+  layout->addLayout(autore_layout);
+  layout->addLayout(album_layout);
+  layout->addLayout(genere_layout);
+  layout->addLayout(uscita_layout);
+  layout->addLayout(descrizione_layout);
+
+  widget->setLayout(layout);
+}
+
+void EditViewVisitor::visit(Film *film) {
+  widget = new QWidget();
+  QVBoxLayout *layout = new QVBoxLayout();
+  QLabel *info = new QLabel("Info sull'elemento", widget);
+  QLabel *pixmap = new QLabel;
+  QHBoxLayout *titolo_layout = new QHBoxLayout();
+  QLabel *titlolo = new QLabel("Titolo: ", widget);
+  QLineEdit *titolo_edit = new QLineEdit(film->getTitolo(), widget);
+  titolo_layout->addWidget(titlolo);
+  titolo_layout->addWidget(titolo_edit);
+
+  QHBoxLayout *autore_layout = new QHBoxLayout();
+  QLabel *autoreLabel = new QLabel("Autore/i: ", widget);
+  QLineEdit *autore_edit = new QLineEdit(film->getAutori().join(", "), widget);
+  autore_layout->addWidget(autoreLabel);
+  autore_layout->addWidget(autore_edit);
+
+  QHBoxLayout *genere_layout = new QHBoxLayout();
+  QLabel *genereLabel = new QLabel("Genere: ", widget);
+  QLineEdit *genere_edit = new QLineEdit(film->getGenere(), widget);
+  genere_layout->addWidget(genereLabel);
+  genere_layout->addWidget(genere_edit);
+
+  QHBoxLayout *valutazione_layout = new QHBoxLayout();
+  QLabel *valutazione = new QLabel("Valutazione (0-10): ", widget);
+  QSpinBox *valutazione_spinbox = new QSpinBox(widget);
+  valutazione_spinbox->setMinimum(0);
+  valutazione_spinbox->setMaximum(10);
+  valutazione_spinbox->setValue(film->getValutazione());
+  valutazione_layout->addWidget(valutazione);
+  valutazione_layout->addWidget(valutazione_spinbox);
+
+  QHBoxLayout *casa_layout = new QHBoxLayout();
+  QLabel *casa = new QLabel("Casa cinematografica: ", widget);
+  QLineEdit *casa_edit = new QLineEdit(film->getCasaCinematografica(), widget);
+  casa_layout->addWidget(casa);
+  casa_layout->addWidget(casa_edit);
+
+  QHBoxLayout *uscita_layout = new QHBoxLayout();
+  QLabel *uscita = new QLabel("Anno di uscita: ", widget);
+  QLineEdit *uscita_edit =
+      new QLineEdit(QString::number(film->getUscita()), widget);
+  uscita_layout->addWidget(uscita);
+  uscita_layout->addWidget(uscita_edit);
+
+  QVBoxLayout *descrizione_layout = new QVBoxLayout();
+  QLabel *descrizione = new QLabel("Descrizione: ", widget);
+  QTextEdit *descrizione_edit = new QTextEdit(film->getDescrizione(), widget);
+  descrizione_layout->addWidget(descrizione);
+  descrizione_layout->addWidget(descrizione_edit);
+
+  layout->addWidget(info);
+  layout->addWidget(pixmap);
+  layout->addLayout(titolo_layout);
+  layout->addLayout(genere_layout);
+  layout->addLayout(autore_layout);
+  layout->addLayout(casa_layout);
+  layout->addLayout(uscita_layout);
+  layout->addLayout(valutazione_layout);
+  layout->addLayout(descrizione_layout);
+
+  widget->setLayout(layout);
+}

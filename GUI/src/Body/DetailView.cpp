@@ -27,19 +27,17 @@ DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
   layoutContainer->addWidget(editWidget);
 
   detailView = new DetailViewVisitor();
-  editView = new EditViewVisitor;
+  editView = new EditViewVisitor();
   el->accept(detailView);
   el->accept(editView);
 
-  // currentLayout = new QVBoxLayout(this);
-
   initDetailView(detailView);
   initEditView(editView);
+
   QHBoxLayout *a = new QHBoxLayout();
   a->addWidget(layoutContainer);
   setLayout(a);
   layoutContainer->setCurrentIndex(0);
-  // mainLayout->addWidget(currentWidget);
 }
 
 // faccio anche hidedetailview
@@ -59,29 +57,22 @@ void DetailView::editRequest() { initEditView(editView); }
 
 // non faccio delete *elemento pk sennò lo eliminerei dalla biblioteca,
 DetailView::~DetailView() {
-  delete currentLayout;
-  delete pulsanti;
-  delete modifica;
-  delete elimina;
-  delete chiudi;
-  delete salva;
   delete detailView;
   delete editView;
 }
 
 void DetailView::initDetailView(DetailViewVisitor *visitor) {
-  UIContext::clearLayout(currentLayout);
-  pulsanti = new QHBoxLayout();
+  pulsanti_detail = new QHBoxLayout();
   modifica = new QPushButton("Modifica");
   elimina = new QPushButton("Elimina");
   chiudi = new QPushButton("Chiudi");
 
-  pulsanti->addWidget(chiudi);
-  pulsanti->addWidget(elimina);
-  pulsanti->addWidget(modifica);
+  pulsanti_detail->addWidget(chiudi);
+  pulsanti_detail->addWidget(elimina);
+  pulsanti_detail->addWidget(modifica);
 
   detailLayout->addWidget(visitor->getWidget());
-  detailLayout->addLayout(pulsanti);
+  detailLayout->addLayout(pulsanti_detail);
   detailWidget->setLayout(detailLayout);
 
   connect(chiudi, &QPushButton::clicked, UIContext::getMainView(),
@@ -90,25 +81,24 @@ void DetailView::initDetailView(DetailViewVisitor *visitor) {
   connect(elimina, &QPushButton::clicked, this,
           [this]() { deleteRequest(elemento); });
 
-  connect(modifica, &QPushButton::clicked, this, [this]() { editRequest(); });
+  connect(modifica, &QPushButton::clicked, this,
+          [this]() { layoutContainer->setCurrentIndex(1); });
 }
 
 void DetailView::initEditView(EditViewVisitor *visitor) {
-  UIContext::clearLayout(currentLayout);
-  pulsanti = new QHBoxLayout();
+  pulsanti_edit = new QHBoxLayout();
   salva = new QPushButton("Salva");
-  chiudi = new QPushButton("Annulla");
-  pulsanti->addWidget(chiudi);
-  pulsanti->addWidget(salva);
+  annulla = new QPushButton("Annulla");
+  pulsanti_edit->addWidget(annulla);
+  pulsanti_edit->addWidget(salva);
 
+  assert(visitor->getWidget() != nullptr);
   editLayout->addWidget(visitor->getWidget());
-  editLayout->addLayout(pulsanti);
+  editLayout->addLayout(pulsanti_edit);
   editWidget->setLayout(editLayout);
 
-  connect(chiudi, &QPushButton::clicked, this, [this]() {
-    qDebug() << (detailView == nullptr);
-    initDetailView(detailView);
-  });
+  connect(annulla, &QPushButton::clicked, this,
+          [this]() { layoutContainer->setCurrentIndex(0); });
 
   // connect(salva, &QPushButton::clicked, this,
   //         [this]() { saveChanges(elemento); });

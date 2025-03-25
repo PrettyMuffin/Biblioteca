@@ -162,5 +162,135 @@
 		"tipo": "brano",
 		"titolo": "Brano bello",
 		"uscita": 0
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia2",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia10",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia9",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia8",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia7",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia6",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia6",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia5",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia4",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia3",
+		"uscita": 1900
 	}
 ]

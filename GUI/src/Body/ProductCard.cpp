@@ -10,12 +10,7 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
   layout = new QVBoxLayout(this);
   copertina = new QLabel("", this);
   titolo = new QLabel(elemento->getTitolo(), this);
-  QString autori_string = "";
-  for (int i = 0; i < elemento->getAutori().size() - 1; i++) {
-    autori_string += elemento->getAutori()[i] + ", ";
-  }
-  autori_string += elemento->getAutori().back();
-  autori = new QLabel(autori_string, this);
+  autori = new QLabel(elemento->getAutori().join(", "), this);
   layout->addWidget(titolo);
   layout->addWidget(autori);
   setLayout(layout);

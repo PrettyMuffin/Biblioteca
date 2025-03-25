@@ -30,14 +30,18 @@ private:
   EditViewVisitor *editView;
   ElementoBiblioteca *elemento;
 
-  QHBoxLayout *pulsanti;
+  QHBoxLayout *pulsanti_detail;
+  QHBoxLayout *pulsanti_edit;
   QPushButton *modifica;
   QPushButton *elimina;
   QPushButton *chiudi;
   QPushButton *salva;
+  QPushButton *annulla;
 
   void initDetailView(DetailViewVisitor *);
   void initEditView(EditViewVisitor *);
+
+  void deletePulsanti();
 
 public slots:
   void deleteRequest(ElementoBiblioteca *elemento);
