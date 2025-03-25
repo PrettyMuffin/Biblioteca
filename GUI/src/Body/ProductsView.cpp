@@ -1,6 +1,7 @@
 #include "../../header/Body/ProductsView.h"
 #include "../../../Logica/header/AppContext.h"
 #include "../../header/Body/ProductCard.h"
+#include "../../header/UIContext.h"
 
 #include "qlayoutitem.h"
 #include "qlogging.h"
@@ -33,7 +34,8 @@ ProductsView::ProductsView(QVector<ElementoBiblioteca *> elements,
 
 void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
   if (!layout->isEmpty())
-    clearLayout();
+    // clearLayout();
+    UIContext::clearLayout(layout);
   if (elements.isEmpty())
     return;
   int row = 0, col = 0;

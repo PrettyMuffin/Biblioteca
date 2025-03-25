@@ -1,166 +1,166 @@
 [
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia2",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "e",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "l Principito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "arg",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "El Principito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "faslkj",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "rincipito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "fasflaskfaslfj",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "incipito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "agassi"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "flaksfjl",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "ncipito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor3, autor4"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "faslfjsa",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "ito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor2",
-            "autor3"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "becwllo",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia Agassi",
-        "uscita": 1900
-    },
-    {
-        "album": "ballbreaker",
-        "autori": [
-            "AC/DC"
-        ],
-        "descrizione": "canzone bella",
-        "durata": 180,
-        "genere": "rock",
-        "tipo": "brano",
-        "titolo": "hard as a rock",
-        "uscita": 1970
-    },
-    {
-        "autori": [
-            "Di Caprio"
-        ],
-        "casa": "Warner bros",
-        "descrizione": "film non molto bello",
-        "genere": "drammatico",
-        "tipo": "film",
-        "titolo": "titanic",
-        "uscita": 1990,
-        "valutazione": 8
-    },
-    {
-        "autori": [
-            "asdfasfasdf"
-        ],
-        "descrizione": "afasdfasfasdfasdasdf",
-        "editore": "fasdfsadf",
-        "genere": "Biografico",
-        "isbn": "fasdfasdf",
-        "tipo": "libro",
-        "titolo": "afsdfasdfasdf",
-        "uscita": 0
-    },
-    {
-        "autori": [
-            "asfasfasfd",
-            " autor1"
-        ],
-        "casa": "asfasfasf",
-        "descrizione": "asfasfasdfasdffa",
-        "genere": "Horror",
-        "tipo": "film",
-        "titolo": "Film bello",
-        "uscita": 0,
-        "valutazione": 0
-    },
-    {
-        "album": "asfasfasdf",
-        "autori": [
-            "asfasfasf",
-            " autor5"
-        ],
-        "descrizione": "fasdfasfasf",
-        "durata": 248,
-        "genere": "Pop",
-        "tipo": "brano",
-        "titolo": "Brano bello",
-        "uscita": 0
-    }
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia2",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "e",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "l Principito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "arg",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "El Principito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "faslkj",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "rincipito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "fasflaskfaslfj",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "incipito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"agassi"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "flaksfjl",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Bio Agassi",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor3, autor4"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "faslfjsa",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "ito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor2",
+			"autor3"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "becwllo",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia Agassi",
+		"uscita": 1900
+	},
+	{
+		"album": "ballbreaker",
+		"autori": [
+			"AC/DC"
+		],
+		"descrizione": "canzone bella",
+		"durata": 180,
+		"genere": "rock",
+		"tipo": "brano",
+		"titolo": "hard as a rock",
+		"uscita": 1970
+	},
+	{
+		"autori": [
+			"Di Caprio"
+		],
+		"casa": "Warner bros",
+		"descrizione": "film non molto bello",
+		"genere": "drammatico",
+		"tipo": "film",
+		"titolo": "titanic",
+		"uscita": 1990,
+		"valutazione": 8
+	},
+	{
+		"autori": [
+			"asdfasfasdf"
+		],
+		"descrizione": "afasdfasfasdfasdasdf",
+		"editore": "fasdfsadf",
+		"genere": "Biografico",
+		"isbn": "fasdfasdf",
+		"tipo": "libro",
+		"titolo": "afsdfasdfasdf",
+		"uscita": 0
+	},
+	{
+		"autori": [
+			"asfasfasfd",
+			" autor1"
+		],
+		"casa": "asfasfasf",
+		"descrizione": "asfasfasdfasdffa",
+		"genere": "Horror",
+		"tipo": "film",
+		"titolo": "Film bello",
+		"uscita": 0,
+		"valutazione": 0
+	},
+	{
+		"album": "asfasfasdf",
+		"autori": [
+			"asfasfasf",
+			" autor5"
+		],
+		"descrizione": "fasdfasfasf",
+		"durata": 248,
+		"genere": "Pop",
+		"tipo": "brano",
+		"titolo": "Brano bello",
+		"uscita": 0
+	}
 ]

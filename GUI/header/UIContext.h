@@ -2,6 +2,7 @@
 #define GUI_CONTEXT_H
 
 #include "Body/MainView.h"
+#include "qlayout.h"
 
 class UIContext {
 private:
@@ -9,6 +10,7 @@ private:
 
 public:
   static void setMainView(MainView *window);
+  static void clearLayout(QLayout *layout);
   static MainView *getMainView();
 };
 
