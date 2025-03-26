@@ -1,11 +1,16 @@
 #include "../../header/Body/DetailView.h"
+#include "../../../Logica/header/AppContext.h"
+#include "../../header/Body/AddView.h"
 #include "../../header/Body/DetailViewVisitor.h"
 #include "../../header/Body/EditViewVisitor.h"
 #include "../../header/Body/MainView.h"
 #include "../../header/UIContext.h"
+
 #include "qabstractbutton.h"
 #include "qboxlayout.h"
+#include "qdialog.h"
 #include "qglobal.h"
+#include "qhashfunctions.h"
 #include "qlayoutitem.h"
 #include "qmessagebox.h"
 #include "qobject.h"
@@ -15,6 +20,7 @@
 
 #include <QHBoxLayout>
 #include <QPushButton>
+#include <initializer_list>
 
 DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
     : QWidget(parent), elemento(el) {
@@ -100,6 +106,20 @@ void DetailView::initEditView(EditViewVisitor *visitor) {
   connect(annulla, &QPushButton::clicked, this,
           [this]() { layoutContainer->setCurrentIndex(0); });
 
-  // connect(salva, &QPushButton::clicked, this,
-  //         [this]() { saveChanges(elemento); });
+  connect(salva, &QPushButton::clicked, this,
+          [this]() { saveChanges(elemento); });
+}
+
+void DetailView::saveChanges(ElementoBiblioteca *new_el) {
+  if (AppContext::getBiblioteca()->update(elemento, new_el)) {
+    sendFeedback("Elemento aggiornato con successo");
+    layoutContainer->setCurrentIndex(0);
+    return;
+  }
+}
+
+void DetailView::sendFeedback(QString feedback_str) {
+  feedback = new QMessageBox();
+  feedback->setText(feedback_str);
+  feedback->exec();
 }

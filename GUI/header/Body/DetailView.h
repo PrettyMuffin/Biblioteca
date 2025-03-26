@@ -5,7 +5,10 @@
 #include "DetailViewVisitor.h"
 #include "EditViewVisitor.h"
 #include "qboxlayout.h"
+#include "qcoreapplication.h"
+#include "qdialog.h"
 #include "qlabel.h"
+#include "qmessagebox.h"
 #include "qpixmap.h"
 #include "qpushbutton.h"
 #include "qstackedwidget.h"
@@ -38,10 +41,13 @@ private:
   QPushButton *salva;
   QPushButton *annulla;
 
+  QMessageBox *feedback;
+
   void initDetailView(DetailViewVisitor *);
   void initEditView(EditViewVisitor *);
-
   void deletePulsanti();
+  void saveChanges(ElementoBiblioteca *);
+  void sendFeedback(QString);
 
 public slots:
   void deleteRequest(ElementoBiblioteca *elemento);

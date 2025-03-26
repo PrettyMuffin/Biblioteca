@@ -381,7 +381,7 @@ void AddView::onAddBrano(const QString &titolo, const QString &genere,
   AppContext::getBiblioteca()->add(brano);
 }
 
-bool AddView::isValidInput(std::initializer_list<QString> input) {
+bool AddView::isValidInput(QList<QString> input) {
   QString error_string = "";
   bool isValid = true;
   for (auto cit = input.begin(); cit != input.end() && isValid; ++cit) {

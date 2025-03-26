@@ -2,6 +2,7 @@
 #define ADDVIEW_H
 
 #include "qhashfunctions.h"
+#include "qlist.h"
 #include "qpushbutton.h"
 #include "qtmetamacros.h"
 #include "qwidget.h"
@@ -21,10 +22,10 @@ private:
   void costruisciLibroPage(QWidget *libroPageWidget);
   void costruisciFilmPage(QWidget *filmPageWidget);
   void costruisciBranoPage(QWidget *branoPageWidget);
-  bool isValidInput(std::initializer_list<QString> input);
 
 public:
   AddView(QWidget * = nullptr);
+  static bool isValidInput(QList<QString>);
   ~AddView();
 
 protected:

@@ -3,15 +3,18 @@
 #include "Logica/header/Biblioteca.h"
 #include "Logica/header/JSONController.h"
 #include "qfiledialog.h"
+#include "qhashfunctions.h"
 #include <QApplication>
 
 int main(int argc, char *argv[]) {
   Biblioteca biblioteca = Biblioteca();
   AppContext::provide(&biblioteca);
   QApplication app(argc, argv);
-  JSONController::loadFromFile(
-      biblioteca,
-      QFileDialog::getOpenFileName(nullptr, "File Json", "", "*.json"));
+  QString path;
+  do {
+    path = QFileDialog::getOpenFileName(nullptr, "File Json", "", "*.json");
+  } while (path.isEmpty());
+  JSONController::loadFromFile(biblioteca, path);
   MainWindow mainWindow;
   mainWindow.show();
   return app.exec();

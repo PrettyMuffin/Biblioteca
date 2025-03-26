@@ -6,13 +6,15 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 #include "qlineedit.h"
+#include "qobjectdefs.h"
 #include "qspinbox.h"
 #include "qtextedit.h"
 #include "qwidget.h"
+#include <QPushButton>
 #include <QTextEdit>
 
 EditViewVisitor::EditViewVisitor() {}
-EditViewVisitor::~EditViewVisitor() {}
+EditViewVisitor::~EditViewVisitor() { delete widget; }
 
 QWidget *EditViewVisitor::getWidget() { return widget; }
 
@@ -204,6 +206,12 @@ void EditViewVisitor::visit(Film *film) {
   descrizione_layout->addWidget(descrizione);
   descrizione_layout->addWidget(descrizione_edit);
 
+  QHBoxLayout *pulsanti_layout = new QHBoxLayout();
+  QPushButton *salva = new QPushButton("Salva", widget);
+  QPushButton *annulla = new QPushButton("Annulla", widget);
+  pulsanti_layout->addWidget(annulla);
+  pulsanti_layout->addWidget(salva);
+
   layout->addWidget(info);
   layout->addWidget(pixmap);
   layout->addLayout(titolo_layout);
@@ -213,6 +221,7 @@ void EditViewVisitor::visit(Film *film) {
   layout->addLayout(uscita_layout);
   layout->addLayout(valutazione_layout);
   layout->addLayout(descrizione_layout);
+  layout->addLayout(pulsanti_layout);
 
   widget->setLayout(layout);
 }

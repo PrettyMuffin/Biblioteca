@@ -2,9 +2,12 @@
 #define EDITVIEWVISITOR_H
 
 #include "../../../Logica/header/ElementoBibliotecaVisitor.h"
+#include "qobject.h"
+#include "qtmetamacros.h"
 #include "qwidget.h"
 
-class EditViewVisitor : public ElementoBibliotecaVisitor {
+class EditViewVisitor : public QWidget, public ElementoBibliotecaVisitor {
+  Q_OBJECT
 private:
   QWidget *widget;
 
