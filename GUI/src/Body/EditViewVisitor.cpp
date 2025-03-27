@@ -1,4 +1,5 @@
 #include "../../header/Body/EditViewVisitor.h"
+#include "../../header/Body/AddView.h"
 
 #include "../../../Logica/header/Brano.h"
 #include "../../../Logica/header/Film.h"
@@ -6,6 +7,7 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 #include "qlineedit.h"
+#include "qobject.h"
 #include "qobjectdefs.h"
 #include "qspinbox.h"
 #include "qtextedit.h"
@@ -13,10 +15,20 @@
 #include <QPushButton>
 #include <QTextEdit>
 
-EditViewVisitor::EditViewVisitor() {}
+EditViewVisitor::EditViewVisitor() {
+  layout = new QVBoxLayout();
+  widget = new QWidget();
+  widget->setLayout(layout);
+  initPulsanti();
+
+  connect(_annulla, &QPushButton::clicked, this, &EditViewVisitor::annulla);
+}
 EditViewVisitor::~EditViewVisitor() { delete widget; }
 
-QWidget *EditViewVisitor::getWidget() { return widget; }
+QWidget *EditViewVisitor::getWidget() {
+  layout->addLayout(pulsanti_layout);
+  return widget;
+}
 
 void EditViewVisitor::visit(Libro *libro) {
   widget = new QWidget();
@@ -70,6 +82,23 @@ void EditViewVisitor::visit(Libro *libro) {
   descrizione_layout->addWidget(decrizione_label);
   descrizione_layout->addWidget(descrizione_edit);
 
+  connect(_salva, &QPushButton::clicked, this, [=]() {
+    QList<QString> input = {
+        titolo_edit->text(),
+        genere_edit->text(),
+        descrizione_edit->toPlainText(),
+        editore_edit->text(),
+        isbn_edit->text(),
+        autore_edit->text(),
+        uscita_edit->text(),
+    };
+    if (!AddView::isValidInput(input))
+      return;
+    Libro *nLibro = new Libro(input[0], input[1], input[2], input[3], input[4],
+                              input[5].split(","), input[6].toInt());
+    emit salva(nLibro);
+  });
+
   layout->addWidget(info);
   layout->addWidget(pixmap);
   layout->addLayout(titolo_layout);
@@ -79,6 +108,7 @@ void EditViewVisitor::visit(Libro *libro) {
   layout->addLayout(editore_layout);
   layout->addLayout(uscita_layout);
   layout->addLayout(descrizione_layout);
+  layout->addLayout(pulsanti_layout);
 
   widget->setLayout(layout);
 }
@@ -142,6 +172,26 @@ void EditViewVisitor::visit(Brano *brano) {
   descrizione_layout->addWidget(descrizione);
   descrizione_layout->addWidget(descrizione_edit);
 
+  connect(_salva, &QPushButton::clicked, this, [=]() {
+    QString durata =
+        QString::number(minuti_edit->value() * 60 + secondi_edit->value());
+    QList<QString> input = {
+        titolo_edit->text(),
+        genere_edit->text(),
+        descrizione_edit->toPlainText(),
+        album_edit->text(),
+        durata,
+        autore_edit->text(),
+        uscita_edit->text(),
+    };
+    if (!AddView::isValidInput(input))
+      return;
+    Brano *brano =
+        new Brano(input[0], input[1], input[2], input[3], input[4].toInt(),
+                  input[5].split(","), input[6].toInt());
+    emit salva(brano);
+  });
+
   layout->addWidget(info);
   layout->addWidget(pixmap);
   layout->addLayout(titolo_layout);
@@ -151,6 +201,7 @@ void EditViewVisitor::visit(Brano *brano) {
   layout->addLayout(genere_layout);
   layout->addLayout(uscita_layout);
   layout->addLayout(descrizione_layout);
+  layout->addLayout(pulsanti_layout);
 
   widget->setLayout(layout);
 }
@@ -180,12 +231,12 @@ void EditViewVisitor::visit(Film *film) {
 
   QHBoxLayout *valutazione_layout = new QHBoxLayout();
   QLabel *valutazione = new QLabel("Valutazione (0-10): ", widget);
-  QSpinBox *valutazione_spinbox = new QSpinBox(widget);
-  valutazione_spinbox->setMinimum(0);
-  valutazione_spinbox->setMaximum(10);
-  valutazione_spinbox->setValue(film->getValutazione());
+  QSpinBox *valutazione_edit = new QSpinBox(widget);
+  valutazione_edit->setMinimum(0);
+  valutazione_edit->setMaximum(10);
+  valutazione_edit->setValue(film->getValutazione());
   valutazione_layout->addWidget(valutazione);
-  valutazione_layout->addWidget(valutazione_spinbox);
+  valutazione_layout->addWidget(valutazione_edit);
 
   QHBoxLayout *casa_layout = new QHBoxLayout();
   QLabel *casa = new QLabel("Casa cinematografica: ", widget);
@@ -206,11 +257,24 @@ void EditViewVisitor::visit(Film *film) {
   descrizione_layout->addWidget(descrizione);
   descrizione_layout->addWidget(descrizione_edit);
 
-  QHBoxLayout *pulsanti_layout = new QHBoxLayout();
-  QPushButton *salva = new QPushButton("Salva", widget);
-  QPushButton *annulla = new QPushButton("Annulla", widget);
-  pulsanti_layout->addWidget(annulla);
-  pulsanti_layout->addWidget(salva);
+  connect(_salva, &QPushButton::clicked, this, [=]() {
+    QList<QString> input = {
+        titolo_edit->text(),
+        genere_edit->text(),
+        descrizione_edit->toPlainText(),
+        casa_edit->text(),
+        autore_edit->text(),
+        uscita_edit->text(),
+        valutazione_edit->text(),
+    };
+    if (!AddView::isValidInput(input))
+      return;
+
+    Film *film =
+        new Film(input[0], input[1], input[2], input[3], input[4].split(","),
+                 input[5].toInt(), input[6].toInt());
+    emit salva(film);
+  });
 
   layout->addWidget(info);
   layout->addWidget(pixmap);
@@ -224,4 +288,12 @@ void EditViewVisitor::visit(Film *film) {
   layout->addLayout(pulsanti_layout);
 
   widget->setLayout(layout);
+}
+
+void EditViewVisitor::initPulsanti() {
+  pulsanti_layout = new QHBoxLayout();
+  _salva = new QPushButton("Salva", widget);
+  _annulla = new QPushButton("Annulla", widget);
+  pulsanti_layout->addWidget(_annulla);
+  pulsanti_layout->addWidget(_salva);
 }

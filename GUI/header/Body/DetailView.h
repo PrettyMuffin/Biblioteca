@@ -46,10 +46,10 @@ private:
   void initDetailView(DetailViewVisitor *);
   void initEditView(EditViewVisitor *);
   void deletePulsanti();
-  void saveChanges(ElementoBiblioteca *);
   void sendFeedback(QString);
 
 public slots:
+  void saveChanges(ElementoBiblioteca *);
   void deleteRequest(ElementoBiblioteca *elemento);
   void editRequest();
 

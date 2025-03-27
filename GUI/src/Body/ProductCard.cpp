@@ -30,12 +30,7 @@ ProductCard::~ProductCard() { elemento->unregisterObserver(this); }
 void ProductCard::notify(ElementoBiblioteca &elemento) {
   copertina->setPixmap(QPixmap(""));
   titolo->setText(elemento.getTitolo());
-  QString autori_string = "";
-  for (int i = 0; i < elemento.getAutori().size() - 1; i++) {
-    autori_string += elemento.getAutori()[i] + ", ";
-  }
-  autori_string += elemento.getAutori().back();
-  autori = new QLabel(autori_string, this);
+  autori->setText(elemento.getAutori().join(","));
 }
 
 void ProductCard::mousePressEvent(QMouseEvent *event) {

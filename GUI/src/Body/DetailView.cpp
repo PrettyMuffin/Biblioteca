@@ -20,7 +20,6 @@
 
 #include <QHBoxLayout>
 #include <QPushButton>
-#include <initializer_list>
 
 DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
     : QWidget(parent), elemento(el) {
@@ -44,6 +43,10 @@ DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
   a->addWidget(layoutContainer);
   setLayout(a);
   layoutContainer->setCurrentIndex(0);
+
+  connect(editView, &EditViewVisitor::annulla, this,
+          [this]() { layoutContainer->setCurrentIndex(0); });
+  connect(editView, &EditViewVisitor::salva, this, &DetailView::saveChanges);
 }
 
 // faccio anche hidedetailview
@@ -92,22 +95,9 @@ void DetailView::initDetailView(DetailViewVisitor *visitor) {
 }
 
 void DetailView::initEditView(EditViewVisitor *visitor) {
-  pulsanti_edit = new QHBoxLayout();
-  salva = new QPushButton("Salva");
-  annulla = new QPushButton("Annulla");
-  pulsanti_edit->addWidget(annulla);
-  pulsanti_edit->addWidget(salva);
-
   assert(visitor->getWidget() != nullptr);
   editLayout->addWidget(visitor->getWidget());
-  editLayout->addLayout(pulsanti_edit);
   editWidget->setLayout(editLayout);
-
-  connect(annulla, &QPushButton::clicked, this,
-          [this]() { layoutContainer->setCurrentIndex(0); });
-
-  connect(salva, &QPushButton::clicked, this,
-          [this]() { saveChanges(elemento); });
 }
 
 void DetailView::saveChanges(ElementoBiblioteca *new_el) {
