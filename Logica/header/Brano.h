@@ -12,8 +12,7 @@ private:
   QString album;
   unsigned int durata; // secondi
 public:
-  class JSON_FIELDS {
-  public:
+  struct JSON_FIELDS {
     static QString Album;
     static QString Durata;
   };

@@ -18,12 +18,11 @@ private:
 
   QHBoxLayout *pulsanti_layout;
   QPushButton *_annulla;
-  QPushButton *_salva;
-
+  QPushButton *_modifica;
   void initPulsanti();
 
 signals:
-  void salva(
+  void modifica(
       ElementoBiblioteca *); // lista di stringhe con i parametri dell'elemento
   void annulla();
 

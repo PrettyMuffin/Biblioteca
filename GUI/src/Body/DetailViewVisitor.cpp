@@ -6,15 +6,31 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 
-DetailViewVisitor::DetailViewVisitor() {}
+DetailViewVisitor::DetailViewVisitor() {
+  widget = new QWidget();
+  layout = new QVBoxLayout(widget);
+  initPulsanti();
+
+  connect(_chiudi, &QPushButton::clicked, this, &DetailViewVisitor::chiudi);
+  connect(_elimina, &QPushButton::clicked, this, &DetailViewVisitor::elimina);
+  connect(_modifica, &QPushButton::clicked, this, &DetailViewVisitor::modifica);
+}
 
 DetailViewVisitor::~DetailViewVisitor() { delete widget; }
 
 QWidget *DetailViewVisitor::getWidget() const { return widget; }
 
+void DetailViewVisitor::initPulsanti() {
+  pulsanti_layout = new QHBoxLayout();
+  _chiudi = new QPushButton("Chiudi", widget);
+  _elimina = new QPushButton("Elimina", widget);
+  _modifica = new QPushButton("Modifica", widget);
+  pulsanti_layout->addWidget(_chiudi);
+  pulsanti_layout->addWidget(_elimina);
+  pulsanti_layout->addWidget(_modifica);
+}
+
 void DetailViewVisitor::visit(Libro *libro) {
-  widget = new QWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + libro->getTitolo(), widget);
@@ -38,13 +54,10 @@ void DetailViewVisitor::visit(Libro *libro) {
   layout->addWidget(editore);
   layout->addWidget(uscita);
   layout->addWidget(descrizione);
-
-  widget->setLayout(layout);
+  layout->addLayout(pulsanti_layout);
 }
 
 void DetailViewVisitor::visit(Brano *brano) {
-  widget = new QWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + brano->getTitolo(), widget);
@@ -68,13 +81,10 @@ void DetailViewVisitor::visit(Brano *brano) {
   layout->addWidget(genere);
   layout->addWidget(uscita);
   layout->addWidget(descrizione);
-
-  widget->setLayout(layout);
+  layout->addLayout(pulsanti_layout);
 }
 
 void DetailViewVisitor::visit(Film *film) {
-  widget = new QWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QLabel *titlolo = new QLabel("Titolo: " + film->getTitolo(), widget);
@@ -100,6 +110,5 @@ void DetailViewVisitor::visit(Film *film) {
   layout->addWidget(uscita);
   layout->addWidget(valutazione);
   layout->addWidget(descrizione);
-
-  widget->setLayout(layout);
+  layout->addLayout(pulsanti_layout);
 }

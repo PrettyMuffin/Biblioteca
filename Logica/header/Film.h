@@ -14,8 +14,7 @@ private:
   QString casa_cinematografica;
 
 public:
-  class JSON_FIELDS {
-  public:
+  struct JSON_FIELDS {
     static QString Valutazione;
     static QString Casa_Cinematografica;
   };

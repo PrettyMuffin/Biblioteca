@@ -4,7 +4,6 @@
 #include "../../header/UIContext.h"
 
 #include "qlayoutitem.h"
-#include "qlogging.h"
 #include "qobject.h"
 #include "qscrollarea.h"
 #include "qwidget.h"

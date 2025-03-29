@@ -43,14 +43,13 @@ private:
 
   QMessageBox *feedback;
 
-  void initDetailView(DetailViewVisitor *);
-  void initEditView(EditViewVisitor *);
-  void deletePulsanti();
   void sendFeedback(QString);
 
+  enum LayoutIndex { DETAIL_LAYOUT = 0, EDIT_LAYOUT = 1 };
+
 public slots:
-  void saveChanges(ElementoBiblioteca *);
-  void deleteRequest(ElementoBiblioteca *elemento);
+  void editElement(ElementoBiblioteca *);
+  void deleteElement(ElementoBiblioteca *elemento);
   void editRequest();
 
 public:

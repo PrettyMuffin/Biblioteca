@@ -29,7 +29,7 @@ bool Biblioteca::add(ElementoBiblioteca *nuovo_elemento) {
 }
 
 bool Biblioteca::remove(unsigned int index) {
-  if (index < 0 || index >= tutti_elementi.size())
+  if (index >= tutti_elementi.size())
     return false;
 
   delete tutti_elementi[index];
@@ -54,11 +54,8 @@ bool Biblioteca::remove(ElementoBiblioteca *elemento) {
 }
 
 bool Biblioteca::update(unsigned int index, ElementoBiblioteca *elemento) {
-  if (index < 0 || index >= tutti_elementi.size())
+  if (index >= tutti_elementi.size())
     return false;
-  // delete tutti_elementi[index];
-  // tutti_elementi[index] = elemento;
-  // return true;
   *tutti_elementi[index] = *elemento;
   return true;
 }
@@ -70,9 +67,6 @@ bool Biblioteca::update(ElementoBiblioteca *old, ElementoBiblioteca *newel) {
     return false;
   for (int i = 0; i < tutti_elementi.size(); ++i) {
     if (*tutti_elementi[i] == *old) {
-      // delete tutti_elementi[i];
-      // tutti_elementi[i] = newel;
-      // return true;
       *tutti_elementi[i] = *newel;
       return true;
     }

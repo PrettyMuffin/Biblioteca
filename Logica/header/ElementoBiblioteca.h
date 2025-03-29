@@ -23,8 +23,7 @@ private:
   QVector<ElementoBibliotecaObserver *> observers;
 
 public:
-  class JSON_FIELDS {
-  public:
+  struct JSON_FIELDS {
     static QString Titolo;
     static QString Genere;
     static QString Descrizione;

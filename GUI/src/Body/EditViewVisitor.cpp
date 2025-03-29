@@ -6,6 +6,7 @@
 #include "../../../Logica/header/Libro.h"
 #include "qboxlayout.h"
 #include "qlabel.h"
+#include "qlayoutitem.h"
 #include "qlineedit.h"
 #include "qobject.h"
 #include "qobjectdefs.h"
@@ -16,23 +17,25 @@
 #include <QTextEdit>
 
 EditViewVisitor::EditViewVisitor() {
-  layout = new QVBoxLayout();
   widget = new QWidget();
-  widget->setLayout(layout);
+  layout = new QVBoxLayout(widget);
   initPulsanti();
 
   connect(_annulla, &QPushButton::clicked, this, &EditViewVisitor::annulla);
 }
 EditViewVisitor::~EditViewVisitor() { delete widget; }
 
-QWidget *EditViewVisitor::getWidget() {
-  layout->addLayout(pulsanti_layout);
-  return widget;
+void EditViewVisitor::initPulsanti() {
+  pulsanti_layout = new QHBoxLayout();
+  _modifica = new QPushButton("Modifica", widget);
+  _annulla = new QPushButton("Annulla", widget);
+  pulsanti_layout->addWidget(_annulla);
+  pulsanti_layout->addWidget(_modifica);
 }
 
+QWidget *EditViewVisitor::getWidget() { return widget; }
+
 void EditViewVisitor::visit(Libro *libro) {
-  widget = new QWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
 
@@ -82,7 +85,7 @@ void EditViewVisitor::visit(Libro *libro) {
   descrizione_layout->addWidget(decrizione_label);
   descrizione_layout->addWidget(descrizione_edit);
 
-  connect(_salva, &QPushButton::clicked, this, [=]() {
+  connect(_modifica, &QPushButton::clicked, this, [=]() {
     QList<QString> input = {
         titolo_edit->text(),
         genere_edit->text(),
@@ -96,7 +99,7 @@ void EditViewVisitor::visit(Libro *libro) {
       return;
     Libro *nLibro = new Libro(input[0], input[1], input[2], input[3], input[4],
                               input[5].split(","), input[6].toInt());
-    emit salva(nLibro);
+    emit modifica(nLibro);
   });
 
   layout->addWidget(info);
@@ -109,13 +112,9 @@ void EditViewVisitor::visit(Libro *libro) {
   layout->addLayout(uscita_layout);
   layout->addLayout(descrizione_layout);
   layout->addLayout(pulsanti_layout);
-
-  widget->setLayout(layout);
 }
 
 void EditViewVisitor::visit(Brano *brano) {
-  widget = new QWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
 
@@ -172,7 +171,7 @@ void EditViewVisitor::visit(Brano *brano) {
   descrizione_layout->addWidget(descrizione);
   descrizione_layout->addWidget(descrizione_edit);
 
-  connect(_salva, &QPushButton::clicked, this, [=]() {
+  connect(_modifica, &QPushButton::clicked, this, [=]() {
     QString durata =
         QString::number(minuti_edit->value() * 60 + secondi_edit->value());
     QList<QString> input = {
@@ -189,7 +188,7 @@ void EditViewVisitor::visit(Brano *brano) {
     Brano *brano =
         new Brano(input[0], input[1], input[2], input[3], input[4].toInt(),
                   input[5].split(","), input[6].toInt());
-    emit salva(brano);
+    emit modifica(brano);
   });
 
   layout->addWidget(info);
@@ -202,13 +201,9 @@ void EditViewVisitor::visit(Brano *brano) {
   layout->addLayout(uscita_layout);
   layout->addLayout(descrizione_layout);
   layout->addLayout(pulsanti_layout);
-
-  widget->setLayout(layout);
 }
 
 void EditViewVisitor::visit(Film *film) {
-  widget = new QWidget();
-  QVBoxLayout *layout = new QVBoxLayout();
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QLabel *pixmap = new QLabel;
   QHBoxLayout *titolo_layout = new QHBoxLayout();
@@ -257,7 +252,7 @@ void EditViewVisitor::visit(Film *film) {
   descrizione_layout->addWidget(descrizione);
   descrizione_layout->addWidget(descrizione_edit);
 
-  connect(_salva, &QPushButton::clicked, this, [=]() {
+  connect(_modifica, &QPushButton::clicked, this, [=]() {
     QList<QString> input = {
         titolo_edit->text(),
         genere_edit->text(),
@@ -273,7 +268,7 @@ void EditViewVisitor::visit(Film *film) {
     Film *film =
         new Film(input[0], input[1], input[2], input[3], input[4].split(","),
                  input[5].toInt(), input[6].toInt());
-    emit salva(film);
+    emit modifica(film);
   });
 
   layout->addWidget(info);
@@ -286,14 +281,4 @@ void EditViewVisitor::visit(Film *film) {
   layout->addLayout(valutazione_layout);
   layout->addLayout(descrizione_layout);
   layout->addLayout(pulsanti_layout);
-
-  widget->setLayout(layout);
-}
-
-void EditViewVisitor::initPulsanti() {
-  pulsanti_layout = new QHBoxLayout();
-  _salva = new QPushButton("Salva", widget);
-  _annulla = new QPushButton("Annulla", widget);
-  pulsanti_layout->addWidget(_annulla);
-  pulsanti_layout->addWidget(_salva);
 }
