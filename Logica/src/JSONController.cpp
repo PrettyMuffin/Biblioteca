@@ -27,6 +27,7 @@ void JSONController::loadFromFile(Biblioteca &biblioteca,
   if (!jsonDoc.isArray()) {
     throw JSONError("Formato JSON non valido");
   }
+  biblioteca.clear();
   QJsonArray elementiBiblioteca = jsonDoc.array();
   for (auto elemento : elementiBiblioteca) {
     ElementoBiblioteca *nu_e;

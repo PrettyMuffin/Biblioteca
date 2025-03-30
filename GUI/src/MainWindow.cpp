@@ -1,4 +1,9 @@
 #include "../header/MainWindow.h"
+#include "../../Logica/header/AppContext.h"
+#include "../../Logica/header/JSONController.h"
+#include "qevent.h"
+#include "qmessagebox.h"
+#include "qnamespace.h"
 #include "qwidget.h"
 #include <QKeyEvent>
 
@@ -31,7 +36,15 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
-  if (event->key() == Qt::Key_Escape && body->currentIndex() == 1) {
-    body->setCurrentIndex(0);
+  if (event->key() == Qt::Key_Escape && body->currentIndex() == Page::ADD) {
+    body->setCurrentIndex(Page::MAIN);
+  }
+  if (event->keyCombination() == QKeyCombination(Qt::CTRL, Qt::Key_S)) {
+    JSONController::saveOnFile(*AppContext::getBiblioteca(),
+                               *AppContext::getFilePath());
+    QMessageBox *conferma = new QMessageBox(this);
+    conferma->setText("File salvato con successo");
+    conferma->setStandardButtons(QMessageBox::Ok);
+    conferma->exec();
   }
 }

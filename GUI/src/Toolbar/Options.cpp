@@ -3,10 +3,12 @@
 #include "../../../Logica/header/JSONController.h"
 #include "../../../Logica/header/JSONError.h"
 #include "../../header/MainWindow.h"
+#include "../../header/UIContext.h"
 #include "qboxlayout.h"
 #include "qfiledialog.h"
 #include "qicon.h"
 #include "qmessagebox.h"
+#include "qobject.h"
 #include "qpushbutton.h"
 
 Options::Options(QWidget *parent, MainWindow *mainWindow) : QWidget(parent) {
@@ -36,6 +38,8 @@ void Options::onSaveClicked() {
     return;
   }
   try {
+    if (!path.endsWith(".json"))
+      path += ".json";
     JSONController::saveOnFile(*AppContext::getBiblioteca(), path);
   } catch (JSONError e) {
     QMessageBox *errorBox = new QMessageBox(this);
@@ -46,6 +50,7 @@ void Options::onSaveClicked() {
 
 void Options::onImportClicked() {
   QString path = QFileDialog::getOpenFileName(this, "File Json", "", "*.json");
+  AppContext::provide(path);
   if (path.isEmpty()) {
     QMessageBox *errorBox = new QMessageBox(this);
     errorBox->setText("File non selezionato");
@@ -54,6 +59,7 @@ void Options::onImportClicked() {
   }
   try {
     JSONController::loadFromFile(*AppContext::getBiblioteca(), path);
+    emit(UIContext::getMainView()->updateViewRequested());
   } catch (JSONError e) {
     QMessageBox *errorBox = new QMessageBox(this);
     errorBox->setText(e.getMessage());
@@ -61,9 +67,4 @@ void Options::onImportClicked() {
   }
 }
 
-Options::~Options() {
-  delete add;
-  delete save;
-  delete import;
-  delete layout;
-}
+Options::~Options() {}

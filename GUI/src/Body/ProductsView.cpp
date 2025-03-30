@@ -33,7 +33,6 @@ ProductsView::ProductsView(QVector<ElementoBiblioteca *> elements,
 
 void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
   if (!layout->isEmpty())
-    // clearLayout();
     UIContext::clearLayout(layout);
   if (elements.isEmpty())
     return;

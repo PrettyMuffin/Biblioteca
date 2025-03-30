@@ -23,6 +23,7 @@ public:
   bool remove(ElementoBiblioteca *);
   bool update(unsigned int, ElementoBiblioteca *);
   bool update(ElementoBiblioteca *, ElementoBiblioteca *);
+  void clear();
   QVector<ElementoBiblioteca *> search(const QString &) const;
   QVector<ElementoBiblioteca *> getElements() const;
   QJsonArray toJson() const;

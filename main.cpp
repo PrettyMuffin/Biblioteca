@@ -14,6 +14,7 @@ int main(int argc, char *argv[]) {
   do {
     path = QFileDialog::getOpenFileName(nullptr, "File Json", "", "*.json");
   } while (path.isEmpty());
+  AppContext::provide(path);
   JSONController::loadFromFile(biblioteca, path);
   MainWindow mainWindow;
   mainWindow.show();

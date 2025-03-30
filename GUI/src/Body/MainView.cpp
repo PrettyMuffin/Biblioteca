@@ -25,6 +25,9 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
   connect(this, &MainView::showDetailView, this, &MainView::onShowDetailView);
   connect(this, &MainView::deleteProductRequested, contenuti,
           &ContentView::onDeleteProduct);
+  connect(this, &MainView::updateViewRequested, contenuti, [this]() {
+    contenuti->updateProducts(ContentView::QUERY, "");
+  }); // un cheat per ottenere tutti gli elementi della biblioteca
 }
 
 MainView::~MainView() {}

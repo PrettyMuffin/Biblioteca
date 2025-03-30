@@ -16,6 +16,7 @@ private:
   QStackedWidget *body;
   MainView *mainView;
   AddView *addView;
+  enum Page { MAIN, ADD };
 
 protected:
   void keyPressEvent(QKeyEvent *event) override;

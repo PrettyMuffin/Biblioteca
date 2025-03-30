@@ -115,3 +115,5 @@ QJsonArray Biblioteca::toJson() const {
   }
   return array;
 }
+
+void Biblioteca::clear() { tutti_elementi.clear(); }

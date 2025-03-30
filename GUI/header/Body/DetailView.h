@@ -27,25 +27,15 @@ private:
   QVBoxLayout *detailLayout;
   QVBoxLayout *editLayout;
 
-  QVBoxLayout *currentLayout;
-
   DetailViewVisitor *detailView;
   EditViewVisitor *editView;
   ElementoBiblioteca *elemento;
-
-  QHBoxLayout *pulsanti_detail;
-  QHBoxLayout *pulsanti_edit;
-  QPushButton *modifica;
-  QPushButton *elimina;
-  QPushButton *chiudi;
-  QPushButton *salva;
-  QPushButton *annulla;
 
   QMessageBox *feedback;
 
   void sendFeedback(QString);
 
-  enum LayoutIndex { DETAIL_LAYOUT = 0, EDIT_LAYOUT = 1 };
+  enum LayoutIndex { DETAIL_LAYOUT, EDIT_LAYOUT };
 
 public slots:
   void editElement(ElementoBiblioteca *);
