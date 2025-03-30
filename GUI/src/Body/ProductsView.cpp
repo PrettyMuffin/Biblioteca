@@ -6,6 +6,7 @@
 #include "qlayoutitem.h"
 #include "qobject.h"
 #include "qscrollarea.h"
+#include "qsizepolicy.h"
 #include "qwidget.h"
 #include <QMouseEvent>
 #include <cstdlib>
@@ -18,14 +19,16 @@ ProductsView::ProductsView(QVector<ElementoBiblioteca *> elements,
   QWidget *scrollContent = new QWidget(scrollArea);
 
   layout = new QGridLayout(scrollContent);
-  maxCols = 6;
+  maxCols = 5;
 
   setProducts(elements);
 
   scrollContent->setLayout(layout);
   scrollArea->setWidget(scrollContent);
   scrollArea->setWidgetResizable(true);
-  scrollArea->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+  scrollArea->setSizePolicy(QSizePolicy::MinimumExpanding,
+                            QSizePolicy::MinimumExpanding);
 
   mainLayout->addWidget(scrollArea);
   setLayout(mainLayout);
@@ -36,6 +39,7 @@ void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
     UIContext::clearLayout(layout);
   if (elements.isEmpty())
     return;
+
   int row = 0, col = 0;
   for (auto elemento : elements) {
     ProductCard *card = new ProductCard(elemento, this);

@@ -11,12 +11,9 @@ ElementoBiblioteca::ElementoBiblioteca(const QString &titolo,
                                        const int &uscita)
     : titolo(titolo), genere(genere), descrizione(desc), autori(autori),
       uscita(uscita) {
-  // QString author_string("");
-  // for (QString autore : autori) {
-  //   author_string += autore.toLower();
-  // }
-  // id = this->titolo.toLower() + author_string;
-  id = this->titolo.toLower();
+  id = QString(this->titolo)
+           .removeIf([](QChar c) { return c.isSpace(); })
+           .toLower();
 }
 
 QString ElementoBiblioteca::JSON_FIELDS::Titolo = "titolo";
@@ -25,6 +22,7 @@ QString ElementoBiblioteca::JSON_FIELDS::Descrizione = "descrizione";
 QString ElementoBiblioteca::JSON_FIELDS::Autori = "autori";
 QString ElementoBiblioteca::JSON_FIELDS::Uscita = "uscita";
 QString ElementoBiblioteca::JSON_FIELDS::Tipo = "tipo";
+QString ElementoBiblioteca::JSON_FIELDS::Immagine = "img";
 QString ElementoBiblioteca::ESCAPE_CHAR = "\\";
 
 QJsonObject ElementoBiblioteca::toJson() const {
@@ -38,6 +36,7 @@ QJsonObject ElementoBiblioteca::toJson() const {
     jsonAuthorArray.append(QJsonValue(autore));
   }
   el[JSON_FIELDS::Autori] = jsonAuthorArray;
+  el[JSON_FIELDS::Immagine] = immagine;
   return el;
 }
 
@@ -47,9 +46,9 @@ void ElementoBiblioteca::registerObserver(ElementoBibliotecaObserver *obs) {
 
 void ElementoBiblioteca::unregisterObserver(ElementoBibliotecaObserver *obs) {
   bool found = false;
-  for (int i = 0; i < observers.size() && !found; i++) {
-    if (observers[i] == obs) {
-      observers.erase(observers.begin() + i);
+  for (auto it = observers.begin(); it != observers.end() && !found; ++it) {
+    if (*it == obs) {
+      observers.erase(it);
       found = true;
     }
   }
@@ -70,14 +69,12 @@ void ElementoBiblioteca::fromJson(const QJsonObject &json) {
   genere = json[JSON_FIELDS::Genere].toString();
   descrizione = json[JSON_FIELDS::Descrizione].toString();
   uscita = json[JSON_FIELDS::Uscita].toInt();
+  immagine = json[JSON_FIELDS::Immagine].toString();
   QJsonArray jsonAuthorArray = json[JSON_FIELDS::Autori].toArray();
-  // QString author_string;
   for (auto autore : jsonAuthorArray) {
     autori.push_back(autore.toString());
-    // author_string += autore.toString();
   }
-  // id = this->titolo.toLower() + author_string;
-  id = this->titolo.toLower();
+  id = QString(titolo).removeIf([](QChar c) { return c.isSpace(); }).toLower();
 }
 
 QString ElementoBiblioteca::toString() const {
@@ -103,6 +100,7 @@ QString ElementoBiblioteca::getTitolo() const { return titolo; }
 QString ElementoBiblioteca::getGenere() const { return genere; }
 QString ElementoBiblioteca::getDescrizione() const { return descrizione; }
 const QVector<QString> ElementoBiblioteca::getAutori() const { return autori; }
+QString ElementoBiblioteca::getImmagine() const { return immagine; }
 
 int ElementoBiblioteca::getUscita() const { return uscita; }
 

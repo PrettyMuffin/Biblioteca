@@ -20,9 +20,8 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
   connect(this, &ProductCard::clicked, UIContext::getMainView(),
           &MainView::showDetailView);
 
-  setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-  setMinimumSize(QSize(50, 70));
-  setMaximumHeight(90);
+  setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+  setStyleSheet("background-color: orange;");
 }
 
 ProductCard::~ProductCard() { elemento->unregisterObserver(this); }

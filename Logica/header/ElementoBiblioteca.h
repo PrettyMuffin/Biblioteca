@@ -20,6 +20,7 @@ private:
   QString descrizione;
   QVector<QString> autori;
   int uscita; // anno pubblicazione
+  QString immagine;
   QVector<ElementoBibliotecaObserver *> observers;
 
 public:
@@ -30,6 +31,7 @@ public:
     static QString Autori;
     static QString Uscita;
     static QString Tipo;
+    static QString Immagine;
   };
   ElementoBiblioteca() = default;
   ElementoBiblioteca(const QString &, const QString &, const QString &,
@@ -50,6 +52,7 @@ public:
   QString getGenere() const;
   QString getDescrizione() const;
   int getUscita() const;
+  QString getImmagine() const;
   const QVector<QString> getAutori() const;
 
   virtual ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
