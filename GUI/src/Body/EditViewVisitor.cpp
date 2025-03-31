@@ -31,14 +31,15 @@ void EditViewVisitor::initPulsanti() {
   _annulla = new QPushButton("Annulla", widget);
   pulsanti_layout->addWidget(_annulla);
   pulsanti_layout->addWidget(_modifica);
+  _modifica->setStyleSheet("background-color: #516cbe;");
 }
 
 QWidget *EditViewVisitor::getWidget() { return widget; }
 
 void EditViewVisitor::visit(Libro *libro) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel;
-
+  QLabel *pixmap = new QLabel(widget);
+  pixmap->setPixmap(QPixmap(libro->getImmagine()));
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titlolo_label = new QLabel("Titolo: ", widget);
   QLineEdit *titolo_edit = new QLineEdit(libro->getTitolo(), widget);
@@ -116,8 +117,8 @@ void EditViewVisitor::visit(Libro *libro) {
 
 void EditViewVisitor::visit(Brano *brano) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel;
-
+  QLabel *pixmap = new QLabel(widget);
+  pixmap->setPixmap(QPixmap(brano->getImmagine()));
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titoloLabel = new QLabel("Titolo: ", widget);
   QLineEdit *titolo_edit = new QLineEdit(brano->getTitolo(), widget);
@@ -205,7 +206,8 @@ void EditViewVisitor::visit(Brano *brano) {
 
 void EditViewVisitor::visit(Film *film) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel;
+  QLabel *pixmap = new QLabel(widget);
+  pixmap->setPixmap(QPixmap(film->getImmagine()));
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titlolo = new QLabel("Titolo: ", widget);
   QLineEdit *titolo_edit = new QLineEdit(film->getTitolo(), widget);

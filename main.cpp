@@ -18,5 +18,6 @@ int main(int argc, char *argv[]) {
   JSONController::loadFromFile(biblioteca, path);
   MainWindow mainWindow;
   mainWindow.show();
+  app.setStyleSheet("* {background-color: #1e2122;}");
   return app.exec();
 }

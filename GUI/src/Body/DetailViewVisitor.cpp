@@ -32,7 +32,8 @@ void DetailViewVisitor::initPulsanti() {
 
 void DetailViewVisitor::visit(Libro *libro) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel;
+  QLabel *pixmap = new QLabel(widget);
+  pixmap->setPixmap(QPixmap(libro->getImmagine()));
   QLabel *titlolo = new QLabel("Titolo: " + libro->getTitolo(), widget);
   const QVector<QString> autori = libro->getAutori();
   QLabel *autore =
@@ -59,7 +60,8 @@ void DetailViewVisitor::visit(Libro *libro) {
 
 void DetailViewVisitor::visit(Brano *brano) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel;
+  QLabel *pixmap = new QLabel(widget);
+  pixmap->setPixmap(QPixmap(brano->getImmagine()));
   QLabel *titlolo = new QLabel("Titolo: " + brano->getTitolo(), widget);
   QLabel *autoreLabel =
       new QLabel("Autore/i: " + brano->getAutori().join(", "), widget);
@@ -86,7 +88,8 @@ void DetailViewVisitor::visit(Brano *brano) {
 
 void DetailViewVisitor::visit(Film *film) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel;
+  QLabel *pixmap = new QLabel(widget);
+  pixmap->setPixmap(QPixmap(film->getImmagine()));
   QLabel *titlolo = new QLabel("Titolo: " + film->getTitolo(), widget);
   QLabel *autoreLabel =
       new QLabel("Cast: " + film->getAutori().join(", "), widget);

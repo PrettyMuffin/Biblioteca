@@ -15,6 +15,8 @@ SearchBar::SearchBar(QWidget *parent) : QWidget(parent) {
   searchInput = new QLineEdit(this);
   searchButton = new QPushButton(this);
   searchButton->setIcon(QIcon(":/images/img/search.png"));
+  searchInput->setStyleSheet(
+      "background-color: #e3eafc; padding: .3em 0.1em; color: #1e2122");
 
   initInfoButton();
   layout->addWidget(searchInput);

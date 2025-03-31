@@ -50,6 +50,11 @@ DetailView::DetailView(ElementoBiblioteca *el, QWidget *parent)
   connect(editView, &EditViewVisitor::annulla, this,
           [this]() { layoutContainer->setCurrentIndex(DETAIL_LAYOUT); });
   connect(editView, &EditViewVisitor::modifica, this, &DetailView::editElement);
+  setStyleSheet("*{color: #1e2122;}"
+                "QWidget {"
+                "    background-color: #e3eafc;"
+                "    border-radius: 10px;"
+                "}");
 }
 
 // faccio anche hidedetailview
