@@ -5,8 +5,8 @@
 Film::Film(const QString &titolo, const QString &genere,
            const QString &descrizione, const QString &ca_cin,
            const QVector<QString> &autori, const unsigned short int &uscita,
-           const unsigned short int &valutazione)
-    : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita),
+           const unsigned short int &valutazione, const QString &immagine)
+    : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita, immagine),
       casa_cinematografica(ca_cin), valutazione(valutazione) {
   id += "film";
 }

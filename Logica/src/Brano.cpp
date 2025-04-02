@@ -5,9 +5,9 @@
 Brano::Brano(const QString &titolo, const QString &genere,
              const QString &descrizione, const QString &a,
              const unsigned int &d, const QVector<QString> &autori,
-             const unsigned short int &uscita)
-    : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita), album(a),
-      durata(d) {
+             const unsigned short int &uscita, const QString &immagine)
+    : ElementoBiblioteca(titolo, genere, descrizione, autori, uscita, immagine),
+      album(a), durata(d) {
   id += "brano";
 }
 

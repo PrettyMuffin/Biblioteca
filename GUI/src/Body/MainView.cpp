@@ -14,7 +14,6 @@ MainView::MainView(QWidget *parent) : QWidget(parent) {
 
   layout->addWidget(contenuti);
   setLayout(layout);
-  setStyleSheet("*{ background: #1e2122}");
 
   // così quando visualizzo il dettagli, il mainView si ridimensiona; senza
   // rimpicciolirsi per poi riaddattarsi

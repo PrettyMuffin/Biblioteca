@@ -35,7 +35,7 @@ public:
   };
   ElementoBiblioteca() = default;
   ElementoBiblioteca(const QString &, const QString &, const QString &,
-                     const QVector<QString> &, const int &);
+                     const QVector<QString> &, const int &, const QString &);
   virtual ElementoBiblioteca *clone() const = 0;
   virtual ~ElementoBiblioteca();
 

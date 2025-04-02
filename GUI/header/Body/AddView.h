@@ -18,6 +18,7 @@ private:
   QWidget *libroPage;
   QWidget *filmPage;
   QWidget *branoPage;
+  QString path;
 
   void costruisciLibroPage(QWidget *libroPageWidget);
   void costruisciFilmPage(QWidget *filmPageWidget);
@@ -33,30 +34,30 @@ signals:
   void addLibro(const QString &titolo, const QString &genere,
                 const QString &descrizione, const QString &editore,
                 const QString &isbn, const QString &autore,
-                const QString &annoPubblicazione);
+                const QString &annoPubblicazione, const QString &copertina);
   void addFilm(const QString &titolo, const QString &genere,
                const QString &descrizione, const QString &casa_cin,
                const QString &cast, const QString &annoPubblicazione,
-               const QString &valutazione);
+               const QString &valutazione, const QString &copertina);
   void addBrano(const QString &titolo, const QString &genere,
                 const QString &descrizione, const QString &album,
                 const QString &durata, const QString &autore,
-                const QString &annoPubblicazione);
+                const QString &annoPubblicazione, const QString &copertina);
   void CancelInsertion(int);
 
 public slots:
   void onAddLibro(const QString &titolo, const QString &genere,
                   const QString &descrizione, const QString &editore,
                   const QString &isbn, const QString &autore,
-                  const QString &annoPubblicazione);
+                  const QString &annoPubblicazione, const QString &copertina);
   void onAddFilm(const QString &titolo, const QString &genere,
                  const QString &descrizione, const QString &casa_cin,
                  const QString &cast, const QString &annoPubblicazione,
-                 const QString &valutazione);
+                 const QString &valutazione, const QString &copertina);
   void onAddBrano(const QString &titolo, const QString &genere,
                   const QString &descrizione, const QString &album,
                   const QString &durata, const QString &autore,
-                  const QString &annoPubblicazione);
+                  const QString &annoPubblicazione, const QString &copertina);
 };
 
 #endif

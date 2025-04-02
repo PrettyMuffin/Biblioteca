@@ -5,6 +5,7 @@
 #include "../../../Logica/header/Libro.h"
 #include "../../header/MainWindow.h"
 
+#include "QApplication"
 #include "qaction.h"
 #include "qboxlayout.h"
 #include "qcontainerfwd.h"
@@ -19,7 +20,10 @@
 #include "qobject.h"
 #include "qpushbutton.h"
 #include "qspinbox.h"
+#include "qtoolbutton.h"
 #include "qwidget.h"
+#include <QFileDialog>
+#include <QToolButton>
 #include <initializer_list>
 
 AddView::AddView(QWidget *parent) : QWidget(parent) {
@@ -27,6 +31,7 @@ AddView::AddView(QWidget *parent) : QWidget(parent) {
   libroPage = new QWidget(this);
   filmPage = new QWidget(this);
   branoPage = new QWidget(this);
+  path = ":/images/img/libro.png";
 
   costruisciLibroPage(libroPage);
   costruisciFilmPage(filmPage);
@@ -64,7 +69,11 @@ AddView::~AddView() {
 
 void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(libroPageWidget);
-  QLabel *immagine = new QLabel;
+  QToolButton *immagine = new QToolButton(libroPageWidget);
+  immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+                          ") 0 0 0 0 stretch stretch; }");
+
+  immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   QVBoxLayout *layoutInfo = new QVBoxLayout;
 
@@ -86,6 +95,10 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   genere_menu->addAction("Drammatico");
   genere_input->setMenu(genere_menu);
   genere_input->setText(genere_menu->actions()[0]->text());
+  connect(genere_menu, &QMenu::aboutToShow, this,
+          [genere_menu, genere_input]() {
+            genere_menu->setMinimumWidth(genere_input->width());
+          });
   // modifico input di bottone
   connect(genere_menu, &QMenu::triggered, this,
           [genere_input](QAction *action) {
@@ -141,7 +154,18 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
     emit addLibro(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), editore_input->text(),
                   isbn_input->text(), autore_input->text(),
-                  uscita_input->text());
+                  uscita_input->text(), path);
+  });
+  connect(immagine, &QToolButton::clicked, this, [=]() {
+    path = QFileDialog::getOpenFileName(this, "Seleziona immagine", "",
+                                        "Immagini (*.png *.jpg *.jpeg)");
+    if (path.isEmpty()) {
+      QMessageBox::critical(this, "Errore", "Nessun file selezionato",
+                            QMessageBox::Ok);
+      return;
+    }
+    immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
   });
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
@@ -150,7 +174,11 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
 
 void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(filmPageWidget);
-  QLabel *immagine = new QLabel;
+  QToolButton *immagine = new QToolButton(filmPageWidget);
+  immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+                          ") 0 0 0 0 stretch stretch; }");
+
+  immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   QVBoxLayout *layoutInfo = new QVBoxLayout;
 
@@ -172,6 +200,10 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   genere_menu->addAction("Drammatico");
   genere_input->setMenu(genere_menu);
   genere_input->setText(genere_menu->actions()[0]->text());
+  connect(genere_menu, &QMenu::aboutToShow, this,
+          [genere_menu, genere_input]() {
+            genere_menu->setMinimumWidth(genere_input->width());
+          });
   // modifico input di bottone
   connect(genere_menu, &QMenu::triggered, this,
           [genere_input](QAction *action) {
@@ -227,9 +259,20 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
     emit addFilm(titolo_input->text(), genere_input->text(),
                  descrizione_input->text(), casa_cinematografica_input->text(),
                  autore_input->text(), uscita_input->text(),
-                 valutazione_input->text());
+                 valutazione_input->text(), path);
   });
 
+  connect(immagine, &QToolButton::clicked, this, [=]() {
+    path = QFileDialog::getOpenFileName(this, "Seleziona immagine", "",
+                                        "Immagini (*.png *.jpg *.jpeg)");
+    if (path.isEmpty()) {
+      QMessageBox::critical(this, "Errore", "Nessun file selezionato",
+                            QMessageBox::Ok);
+      return;
+    }
+    immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
+  });
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
   filmPageWidget->setLayout(layout);
@@ -238,7 +281,11 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
 void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 
   QHBoxLayout *layout = new QHBoxLayout(branoPageWidget);
-  QLabel *immagine = new QLabel();
+  QToolButton *immagine = new QToolButton(branoPageWidget);
+  immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+                          ") 0 0 0 0 stretch stretch; }");
+
+  immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
   QVBoxLayout *layoutInfo = new QVBoxLayout;
 
@@ -263,6 +310,10 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   genere_menu->addAction("Colonne Sonore");
   genere_input->setMenu(genere_menu);
   genere_input->setText(genere_menu->actions()[0]->text());
+  connect(genere_menu, &QMenu::aboutToShow, this,
+          [genere_menu, genere_input]() {
+            genere_menu->setMinimumWidth(genere_input->width());
+          });
   // modifico input di bottone
   connect(genere_menu, &QMenu::triggered, this,
           [genere_input](QAction *action) {
@@ -328,7 +379,20 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
                                              secondi_input->text().toInt());
     emit addBrano(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), album_input->text(),
-                  durata_secondi, autore_input->text(), uscita_input->text());
+                  durata_secondi, autore_input->text(), uscita_input->text(),
+                  path);
+  });
+
+  connect(immagine, &QToolButton::clicked, this, [=]() {
+    path = QFileDialog::getOpenFileName(this, "Seleziona immagine", "",
+                                        "Immagini (*.png *.jpg *.jpeg)");
+    if (path.isEmpty()) {
+      QMessageBox::critical(this, "Errore", "Nessun file selezionato",
+                            QMessageBox::Ok);
+      return;
+    }
+    immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
   });
 
   layout->addWidget(immagine);
@@ -339,21 +403,22 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 void AddView::onAddLibro(const QString &titolo, const QString &genere,
                          const QString &descrizione, const QString &editore,
                          const QString &isbn, const QString &autore,
-                         const QString &annoPubblicazione) {
+                         const QString &annoPubblicazione,
+                         const QString &copertina) {
   if (!isValidInput({titolo, genere, descrizione, editore, isbn, autore,
                      annoPubblicazione}))
     return;
 
-  Libro *libro =
-      new Libro(titolo, genere, descrizione, editore, isbn,
-                autore.split(",").toVector(), annoPubblicazione.toInt());
+  Libro *libro = new Libro(titolo, genere, descrizione, editore, isbn,
+                           autore.split(",").toVector(),
+                           annoPubblicazione.toInt(), copertina);
   AppContext::getBiblioteca()->add(libro);
 }
 
 void AddView::onAddFilm(const QString &titolo, const QString &genere,
                         const QString &descrizione, const QString &casa_cin,
                         const QString &cast, const QString &annoPubblicazione,
-                        const QString &valutazione) {
+                        const QString &valutazione, const QString &copertina) {
   qDebug() << "controllo film";
   if (!isValidInput({titolo, genere, descrizione, casa_cin, cast,
                      annoPubblicazione, valutazione}))
@@ -361,7 +426,7 @@ void AddView::onAddFilm(const QString &titolo, const QString &genere,
   qDebug() << "film in aggiunta";
   Film *film = new Film(titolo, genere, descrizione, casa_cin,
                         cast.split(",").toVector(), annoPubblicazione.toInt(),
-                        valutazione.toInt());
+                        valutazione.toInt(), copertina);
   AppContext::getBiblioteca()->add(film);
   qDebug() << "film aggiunto";
 }
@@ -369,14 +434,15 @@ void AddView::onAddFilm(const QString &titolo, const QString &genere,
 void AddView::onAddBrano(const QString &titolo, const QString &genere,
                          const QString &descrizione, const QString &album,
                          const QString &durata, const QString &autore,
-                         const QString &annoPubblicazione) {
+                         const QString &annoPubblicazione,
+                         const QString &copertina) {
   if (!isValidInput({titolo, genere, descrizione, album, durata, autore,
                      annoPubblicazione}))
     return;
 
-  Brano *brano =
-      new Brano(titolo, genere, descrizione, album, durata.toInt(),
-                autore.split(",").toVector(), annoPubblicazione.toInt());
+  Brano *brano = new Brano(titolo, genere, descrizione, album, durata.toInt(),
+                           autore.split(",").toVector(),
+                           annoPubblicazione.toInt(), copertina);
 
   AppContext::getBiblioteca()->add(brano);
 }

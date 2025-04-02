@@ -5,14 +5,21 @@
 #include "../../../Logica/header/Film.h"
 #include "../../../Logica/header/Libro.h"
 #include "qboxlayout.h"
+#include "qcoreapplication.h"
+#include "qicon.h"
 #include "qlabel.h"
 #include "qlayoutitem.h"
 #include "qlineedit.h"
+#include "qmessagebox.h"
+#include "qnamespace.h"
 #include "qobject.h"
 #include "qobjectdefs.h"
+#include "qpixmap.h"
+#include "qpushbutton.h"
 #include "qspinbox.h"
 #include "qtextedit.h"
 #include "qwidget.h"
+#include <QFileDialog>
 #include <QPushButton>
 #include <QTextEdit>
 
@@ -31,15 +38,19 @@ void EditViewVisitor::initPulsanti() {
   _annulla = new QPushButton("Annulla", widget);
   pulsanti_layout->addWidget(_annulla);
   pulsanti_layout->addWidget(_modifica);
-  _modifica->setStyleSheet("background-color: #516cbe;");
 }
 
 QWidget *EditViewVisitor::getWidget() { return widget; }
 
 void EditViewVisitor::visit(Libro *libro) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel(widget);
-  pixmap->setPixmap(QPixmap(libro->getImmagine()));
+  QPushButton *pixmap = new QPushButton(widget);
+  pixmap->setIcon(QPixmap(libro->getImmagine()));
+  pixmap->setIconSize(QSize(180, 280));
+  pixmap->setFlat(true);
+  pixmap->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+  QString newPath = libro->getImmagine();
+
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titlolo_label = new QLabel("Titolo: ", widget);
   QLineEdit *titolo_edit = new QLineEdit(libro->getTitolo(), widget);
@@ -99,12 +110,24 @@ void EditViewVisitor::visit(Libro *libro) {
     if (!AddView::isValidInput(input))
       return;
     Libro *nLibro = new Libro(input[0], input[1], input[2], input[3], input[4],
-                              input[5].split(","), input[6].toInt());
+                              input[5].split(","), input[6].toInt(), newPath);
     emit modifica(nLibro);
+  });
+
+  connect(pixmap, &QPushButton::clicked, this, [=, &newPath]() {
+    QString path = QFileDialog::getOpenFileName(
+        this, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)");
+    if (path.isEmpty()) {
+      QMessageBox::critical(this, "Error", "Nessuna Immagine selezionata");
+      return;
+    }
+    newPath = path;
+    pixmap->setIcon(QPixmap(newPath));
   });
 
   layout->addWidget(info);
   layout->addWidget(pixmap);
+  layout->setAlignment(pixmap, Qt::AlignHCenter);
   layout->addLayout(titolo_layout);
   layout->addLayout(autore_layout);
   layout->addLayout(genere_layout);
@@ -117,8 +140,13 @@ void EditViewVisitor::visit(Libro *libro) {
 
 void EditViewVisitor::visit(Brano *brano) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel(widget);
-  pixmap->setPixmap(QPixmap(brano->getImmagine()));
+  QPushButton *pixmap = new QPushButton(widget);
+  pixmap->setIcon(QPixmap(brano->getImmagine()));
+  pixmap->setIconSize(QSize(180, 280));
+  pixmap->setFlat(true);
+  pixmap->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+  QString newPath = brano->getImmagine();
+
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titoloLabel = new QLabel("Titolo: ", widget);
   QLineEdit *titolo_edit = new QLineEdit(brano->getTitolo(), widget);
@@ -188,12 +216,24 @@ void EditViewVisitor::visit(Brano *brano) {
       return;
     Brano *brano =
         new Brano(input[0], input[1], input[2], input[3], input[4].toInt(),
-                  input[5].split(","), input[6].toInt());
+                  input[5].split(","), input[6].toInt(), newPath);
     emit modifica(brano);
+  });
+
+  connect(pixmap, &QPushButton::clicked, this, [=, &newPath]() {
+    QString path = QFileDialog::getOpenFileName(
+        this, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)");
+    if (path.isEmpty()) {
+      QMessageBox::critical(this, "Error", "Nessuna Immagine selezionata");
+      return;
+    }
+    newPath = path;
+    pixmap->setIcon(QPixmap(newPath));
   });
 
   layout->addWidget(info);
   layout->addWidget(pixmap);
+  layout->setAlignment(pixmap, Qt::AlignHCenter);
   layout->addLayout(titolo_layout);
   layout->addLayout(durata_layout);
   layout->addLayout(autore_layout);
@@ -206,8 +246,13 @@ void EditViewVisitor::visit(Brano *brano) {
 
 void EditViewVisitor::visit(Film *film) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
-  QLabel *pixmap = new QLabel(widget);
-  pixmap->setPixmap(QPixmap(film->getImmagine()));
+  QPushButton *pixmap = new QPushButton(widget);
+  pixmap->setIcon(QPixmap(film->getImmagine()));
+  pixmap->setIconSize(QSize(180, 280));
+  pixmap->setFlat(true);
+  pixmap->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
+  QString newPath = film->getImmagine();
+
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titlolo = new QLabel("Titolo: ", widget);
   QLineEdit *titolo_edit = new QLineEdit(film->getTitolo(), widget);
@@ -269,12 +314,24 @@ void EditViewVisitor::visit(Film *film) {
 
     Film *film =
         new Film(input[0], input[1], input[2], input[3], input[4].split(","),
-                 input[5].toInt(), input[6].toInt());
+                 input[5].toInt(), input[6].toInt(), newPath);
     emit modifica(film);
+  });
+
+  connect(pixmap, &QPushButton::clicked, this, [=, &newPath]() {
+    QString path = QFileDialog::getOpenFileName(
+        this, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)");
+    if (path.isEmpty()) {
+      QMessageBox::critical(this, "Error", "Nessuna Immagine selezionata");
+      return;
+    }
+    newPath = path;
+    pixmap->setIcon(QPixmap(newPath));
   });
 
   layout->addWidget(info);
   layout->addWidget(pixmap);
+  layout->setAlignment(pixmap, Qt::AlignHCenter);
   layout->addLayout(titolo_layout);
   layout->addLayout(genere_layout);
   layout->addLayout(autore_layout);

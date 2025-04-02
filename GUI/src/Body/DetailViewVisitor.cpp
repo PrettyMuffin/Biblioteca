@@ -5,6 +5,7 @@
 
 #include "qboxlayout.h"
 #include "qlabel.h"
+#include "qtextedit.h"
 
 DetailViewVisitor::DetailViewVisitor() {
   widget = new QWidget();
@@ -24,6 +25,7 @@ void DetailViewVisitor::initPulsanti() {
   pulsanti_layout = new QHBoxLayout();
   _chiudi = new QPushButton("Chiudi", widget);
   _elimina = new QPushButton("Elimina", widget);
+  _elimina->setStyleSheet("background: #c70000");
   _modifica = new QPushButton("Modifica", widget);
   pulsanti_layout->addWidget(_chiudi);
   pulsanti_layout->addWidget(_elimina);
@@ -43,8 +45,9 @@ void DetailViewVisitor::visit(Libro *libro) {
   QLabel *editore = new QLabel("Editore: " + libro->getEditore(), widget);
   QLabel *uscita = new QLabel(
       "Anno di uscita: " + QString::number(libro->getUscita()), widget);
-  QLabel *descrizione =
-      new QLabel("Descrizione: " + libro->getDescrizione(), widget);
+  QTextEdit *descrizione =
+      new QTextEdit("Descrizione: " + libro->getDescrizione(), widget);
+  descrizione->setReadOnly(true);
 
   layout->addWidget(info);
   layout->addWidget(pixmap);

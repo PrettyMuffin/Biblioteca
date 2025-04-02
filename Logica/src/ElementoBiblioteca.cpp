@@ -1,19 +1,19 @@
 #include "../header/ElementoBiblioteca.h"
 #include "qcoreapplication.h"
+#include "qglobal.h"
 #include "qjsonobject.h"
 #include "qjsonvalue.h"
 #include <QJsonArray>
 
-ElementoBiblioteca::ElementoBiblioteca(const QString &titolo,
-                                       const QString &genere,
-                                       const QString &desc,
-                                       const QVector<QString> &autori,
-                                       const int &uscita)
+ElementoBiblioteca::ElementoBiblioteca(
+    const QString &titolo, const QString &genere, const QString &desc,
+    const QVector<QString> &autori, const int &uscita, const QString &immagine)
     : titolo(titolo), genere(genere), descrizione(desc), autori(autori),
-      uscita(uscita) {
+      uscita(uscita), immagine(immagine) {
   id = QString(this->titolo)
            .removeIf([](QChar c) { return c.isSpace(); })
-           .toLower();
+           .toLower() +
+       QString(autori.join("")).removeIf([](QChar c) { return c.isSpace(); });
 }
 
 QString ElementoBiblioteca::JSON_FIELDS::Titolo = "titolo";

@@ -18,7 +18,8 @@ public:
   };
   Libro() = default;
   Libro(const QString &, const QString &, const QString &, const QString &,
-        const QString &, const QVector<QString> &, const unsigned short int &);
+        const QString &, const QVector<QString> &, const unsigned short int &,
+        const QString &);
   Libro *clone() const override;
   QString getId() const override;
   QJsonObject toJson() const override;

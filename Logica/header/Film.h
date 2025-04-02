@@ -21,7 +21,7 @@ public:
   Film() = default;
   Film(const QString &, const QString &, const QString &, const QString &,
        const QVector<QString> &, const unsigned short int &,
-       const unsigned short int &);
+       const unsigned short int &, const QString &);
   Film *clone() const override;
   void accept(ElementoBibliotecaVisitor *) override;
   QJsonObject toJson() const override;
