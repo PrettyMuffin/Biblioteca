@@ -9,6 +9,7 @@
 #include "qaction.h"
 #include "qboxlayout.h"
 #include "qcontainerfwd.h"
+#include "qdatetime.h"
 #include "qdebug.h"
 #include "qevent.h"
 #include "qfont.h"
@@ -31,7 +32,6 @@ AddView::AddView(QWidget *parent) : QWidget(parent) {
   libroPage = new QWidget(this);
   filmPage = new QWidget(this);
   branoPage = new QWidget(this);
-  path = ":/images/img/libro.png";
 
   costruisciLibroPage(libroPage);
   costruisciFilmPage(filmPage);
@@ -70,6 +70,7 @@ AddView::~AddView() {
 void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(libroPageWidget);
   QToolButton *immagine = new QToolButton(libroPageWidget);
+  path = ":/images/img/libro.png";
   immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
@@ -129,6 +130,8 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
 
   QLabel *uscita_label = new QLabel("Uscita (anno): ");
   QSpinBox *uscita_input = new QSpinBox;
+  uscita_input->setMinimum(0);
+  uscita_input->setMaximum(QDateTime::currentDateTime().date().year());
   layoutInfo->addWidget(uscita_label);
   layoutInfo->addWidget(uscita_input);
 
@@ -148,8 +151,17 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   bottoni_layout->addWidget(annulla_button);
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
-  connect(annulla_button, &QPushButton::clicked, this,
-          [this]() { emit CancelInsertion(0); });
+  connect(annulla_button, &QPushButton::clicked, this, [=]() {
+    titolo_input->clear();
+    genere_input->setText(genere_menu->defaultAction()->text());
+    autore_input->clear();
+    editore_input->clear();
+    uscita_input->clear();
+    isbn_input->clear();
+    descrizione_input->clear();
+    path.clear();
+    emit CancelInsertion(0);
+  });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     emit addLibro(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), editore_input->text(),
@@ -157,13 +169,14 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
                   uscita_input->text(), path);
   });
   connect(immagine, &QToolButton::clicked, this, [=]() {
-    path = QFileDialog::getOpenFileName(this, "Seleziona immagine", "",
-                                        "Immagini (*.png *.jpg *.jpeg)");
-    if (path.isEmpty()) {
+    QString newPath = QFileDialog::getOpenFileName(
+        this, "Seleziona immagine", "", "Immagini (*.png *.jpg *.jpeg)");
+    if (newPath.isEmpty()) {
       QMessageBox::critical(this, "Errore", "Nessun file selezionato",
                             QMessageBox::Ok);
       return;
     }
+    path = newPath;
     immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
@@ -175,6 +188,7 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
 void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(filmPageWidget);
   QToolButton *immagine = new QToolButton(filmPageWidget);
+  path = ":/images/img/film.png";
   immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
@@ -263,13 +277,14 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   });
 
   connect(immagine, &QToolButton::clicked, this, [=]() {
-    path = QFileDialog::getOpenFileName(this, "Seleziona immagine", "",
-                                        "Immagini (*.png *.jpg *.jpeg)");
-    if (path.isEmpty()) {
+    QString newPath = QFileDialog::getOpenFileName(
+        this, "Seleziona immagine", "", "Immagini (*.png *.jpg *.jpeg)");
+    if (newPath.isEmpty()) {
       QMessageBox::critical(this, "Errore", "Nessun file selezionato",
                             QMessageBox::Ok);
       return;
     }
+    path = newPath;
     immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
@@ -282,6 +297,7 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 
   QHBoxLayout *layout = new QHBoxLayout(branoPageWidget);
   QToolButton *immagine = new QToolButton(branoPageWidget);
+  path = ":/images/img/brano.png";
   immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
@@ -384,13 +400,14 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   });
 
   connect(immagine, &QToolButton::clicked, this, [=]() {
-    path = QFileDialog::getOpenFileName(this, "Seleziona immagine", "",
-                                        "Immagini (*.png *.jpg *.jpeg)");
-    if (path.isEmpty()) {
+    QString newPath = QFileDialog::getOpenFileName(
+        this, "Seleziona immagine", "", "Immagini (*.png *.jpg *.jpeg)");
+    if (newPath.isEmpty()) {
       QMessageBox::critical(this, "Errore", "Nessun file selezionato",
                             QMessageBox::Ok);
       return;
     }
+    path = newPath;
     immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });

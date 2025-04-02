@@ -1,6 +1,5 @@
 #include "../header/ElementoBiblioteca.h"
 #include "qcoreapplication.h"
-#include "qglobal.h"
 #include "qjsonobject.h"
 #include "qjsonvalue.h"
 #include <QJsonArray>

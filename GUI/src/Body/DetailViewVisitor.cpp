@@ -47,8 +47,7 @@ void DetailViewVisitor::visit(Libro *libro) {
   QLabel *editore = new QLabel("Editore: " + libro->getEditore(), widget);
   QLabel *uscita = new QLabel(
       "Anno di uscita: " + QString::number(libro->getUscita()), widget);
-  QTextEdit *descrizione =
-      new QTextEdit("Descrizione: " + libro->getDescrizione(), widget);
+  QTextEdit *descrizione = new QTextEdit(libro->getDescrizione(), widget);
   descrizione->setReadOnly(true);
 
   layout->addWidget(info);
@@ -78,8 +77,8 @@ void DetailViewVisitor::visit(Brano *brano) {
       new QLabel("Durata: " + QString::number(brano->getDurata()), widget);
   QLabel *uscita = new QLabel(
       "Anno di uscita: " + QString::number(brano->getUscita()), widget);
-  QLabel *descrizione =
-      new QLabel("Descrizione: " + brano->getDescrizione(), widget);
+  QTextEdit *descrizione = new QTextEdit(brano->getDescrizione(), widget);
+  descrizione->setReadOnly(true);
 
   layout->addWidget(info);
   layout->addWidget(pixmap);
@@ -110,8 +109,8 @@ void DetailViewVisitor::visit(Film *film) {
       "Casa cinematografica: " + film->getCasaCinematografica(), widget);
   QLabel *uscita = new QLabel(
       "Anno di uscita: " + QString::number(film->getUscita()), widget);
-  QLabel *descrizione =
-      new QLabel("Descrizione: " + film->getDescrizione(), widget);
+  QTextEdit *descrizione = new QTextEdit(film->getDescrizione(), widget);
+  descrizione->setReadOnly(true);
 
   layout->addWidget(info);
   layout->addWidget(pixmap);

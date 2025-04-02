@@ -6,5 +6,7 @@
         <file>img/search.png</file>
         <file>img/info.png</file>
         <file>img/libro.png</file>
+        <file>img/brano.png</file>
+        <file>img/film.png</file>
     </qresource>
 </RCC>
