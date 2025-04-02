@@ -49,7 +49,7 @@ void EditViewVisitor::visit(Libro *libro) {
   pixmap->setIconSize(QSize(180, 280));
   pixmap->setFlat(true);
   pixmap->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-  QString newPath = libro->getImmagine();
+  newPath = libro->getImmagine();
 
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titlolo_label = new QLabel("Titolo: ", widget);
@@ -114,7 +114,7 @@ void EditViewVisitor::visit(Libro *libro) {
     emit modifica(nLibro);
   });
 
-  connect(pixmap, &QPushButton::clicked, this, [=, &newPath]() {
+  connect(pixmap, &QPushButton::clicked, this, [=]() {
     QString path = QFileDialog::getOpenFileName(
         this, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)");
     if (path.isEmpty()) {
@@ -145,7 +145,7 @@ void EditViewVisitor::visit(Brano *brano) {
   pixmap->setIconSize(QSize(180, 280));
   pixmap->setFlat(true);
   pixmap->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-  QString newPath = brano->getImmagine();
+  newPath = brano->getImmagine();
 
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titoloLabel = new QLabel("Titolo: ", widget);
@@ -220,7 +220,7 @@ void EditViewVisitor::visit(Brano *brano) {
     emit modifica(brano);
   });
 
-  connect(pixmap, &QPushButton::clicked, this, [=, &newPath]() {
+  connect(pixmap, &QPushButton::clicked, this, [=]() {
     QString path = QFileDialog::getOpenFileName(
         this, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)");
     if (path.isEmpty()) {
@@ -251,7 +251,7 @@ void EditViewVisitor::visit(Film *film) {
   pixmap->setIconSize(QSize(180, 280));
   pixmap->setFlat(true);
   pixmap->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Expanding);
-  QString newPath = film->getImmagine();
+  newPath = film->getImmagine();
 
   QHBoxLayout *titolo_layout = new QHBoxLayout();
   QLabel *titlolo = new QLabel("Titolo: ", widget);
@@ -318,7 +318,7 @@ void EditViewVisitor::visit(Film *film) {
     emit modifica(film);
   });
 
-  connect(pixmap, &QPushButton::clicked, this, [=, &newPath]() {
+  connect(pixmap, &QPushButton::clicked, this, [=]() {
     QString path = QFileDialog::getOpenFileName(
         this, "Open Image", "", "Image Files (*.png *.jpg *.jpeg)");
     if (path.isEmpty()) {

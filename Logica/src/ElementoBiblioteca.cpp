@@ -113,6 +113,7 @@ ElementoBiblioteca::operator=(const ElementoBiblioteca &other) {
     uscita = other.uscita;
     autori = other.autori;
     id = other.id;
+    immagine = other.immagine;
     for (auto observer : observers) {
       observer->notify(*this);
     }

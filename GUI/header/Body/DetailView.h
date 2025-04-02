@@ -10,10 +10,12 @@
 #include "qlabel.h"
 #include "qmessagebox.h"
 #include "qpixmap.h"
+#include "qpropertyanimation.h"
 #include "qpushbutton.h"
 #include "qstackedwidget.h"
 #include "qtmetamacros.h"
 #include "qwidget.h"
+#include <QGraphicsOpacityEffect>
 #include <QStackedLayout>
 #include <QWidget>
 
@@ -26,6 +28,7 @@ private:
   QWidget *editWidget;
   QVBoxLayout *detailLayout;
   QVBoxLayout *editLayout;
+  enum LayoutIndex { DETAIL_LAYOUT, EDIT_LAYOUT };
 
   DetailViewVisitor *detailView;
   EditViewVisitor *editView;
@@ -35,8 +38,6 @@ private:
 
   void sendFeedback(QString);
 
-  enum LayoutIndex { DETAIL_LAYOUT, EDIT_LAYOUT };
-
 public slots:
   void editElement(ElementoBiblioteca *);
   void deleteElement(ElementoBiblioteca *elemento);
@@ -45,6 +46,8 @@ public slots:
 public:
   DetailView(ElementoBiblioteca *elemento = nullptr, QWidget *parent = nullptr);
   ~DetailView();
+  // void showWithAnimation(); // Mostra con animazione
+  // void hideWithAnimation(); // Nascondi con animazione
 };
 
 #endif

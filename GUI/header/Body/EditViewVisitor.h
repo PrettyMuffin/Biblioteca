@@ -4,6 +4,8 @@
 #include "../../../Logica/header/ElementoBiblioteca.h"
 #include "../../../Logica/header/ElementoBibliotecaVisitor.h"
 #include "qboxlayout.h"
+#include "qcoreapplication.h"
+#include "qhashfunctions.h"
 #include "qlist.h"
 #include "qobject.h"
 #include "qpushbutton.h"
@@ -13,10 +15,10 @@
 class EditViewVisitor : public QWidget, public ElementoBibliotecaVisitor {
   Q_OBJECT
 private:
+  QString newPath;
   QWidget *widget;
-  QVBoxLayout *layout;
-
   QHBoxLayout *pulsanti_layout;
+  QVBoxLayout *layout;
   QPushButton *_annulla;
   QPushButton *_modifica;
   void initPulsanti();

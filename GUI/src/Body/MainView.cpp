@@ -1,5 +1,6 @@
 #include "../../header/Body/MainView.h"
 #include "../../header/UIContext.h"
+#include "qapplication.h"
 #include "qobject.h"
 #include <ctime>
 

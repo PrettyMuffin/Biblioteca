@@ -12,7 +12,6 @@ class DetailViewVisitor : public QWidget, public ElementoBibliotecaVisitor {
 private:
   QWidget *widget;
   QVBoxLayout *layout;
-
   QHBoxLayout *pulsanti_layout;
   QPushButton *_chiudi;
   QPushButton *_elimina;
