@@ -4,6 +4,7 @@
 #include "../../../Logica/header/Film.h"
 #include "../../../Logica/header/Libro.h"
 #include "../../header/MainWindow.h"
+#include "../../header/UIContext.h"
 
 #include "QApplication"
 #include "qaction.h"
@@ -13,6 +14,7 @@
 #include "qdebug.h"
 #include "qevent.h"
 #include "qfont.h"
+#include "qglobal.h"
 #include "qhashfunctions.h"
 #include "qlabel.h"
 #include "qlogging.h"
@@ -494,6 +496,18 @@ void AddView::onAddBrano(const QString &titolo, const QString &genere,
                            annoPubblicazione.toInt(), copertina);
 
   AppContext::getBiblioteca()->add(brano);
+}
+
+void AddView::onMainViewClear(QList<QWidget *> widgets) {
+  for (auto widget : widgets) {
+    if (auto spinBox = qobject_cast<QSpinBox *>(widget)) {
+      spinBox->clear();
+    } else if (auto lineEdit = qobject_cast<QLineEdit *>(widget)) {
+      lineEdit->clear();
+    } else if (auto comboBox = qobject_cast<QTextEdit *>(widget)) {
+      comboBox->clear();
+    }
+  }
 }
 
 bool AddView::isValidInput(QList<QString> input) {

@@ -6,6 +6,7 @@
 #include "../../../Logica/header/Libro.h"
 #include "qboxlayout.h"
 #include "qcoreapplication.h"
+#include "qdatetime.h"
 #include "qicon.h"
 #include "qlabel.h"
 #include "qlayoutitem.h"
@@ -87,7 +88,7 @@ void EditViewVisitor::visit(Libro *libro) {
   QSpinBox *uscita_edit = new QSpinBox(widget);
   uscita_edit->setValue(libro->getUscita());
   uscita_edit->setMinimum(0);
-  uscita_edit->setMaximum(2023);
+  uscita_edit->setMaximum(QDate::currentDate().year());
   uscita_layout->addWidget(uscita);
   uscita_layout->addWidget(uscita_edit);
 
@@ -177,8 +178,12 @@ void EditViewVisitor::visit(Brano *brano) {
   QLabel *minutiLabel = new QLabel("Minuti: ", widget);
   QSpinBox *minuti_edit = new QSpinBox();
   minuti_edit->setValue(brano->getDurata() / 60);
+  minuti_edit->setMinimum(0);
+  minuti_edit->setMaximum(59);
   QLabel *secondiLabel = new QLabel("Secondi: ", widget);
   QSpinBox *secondi_edit = new QSpinBox();
+  secondi_edit->setMinimum(0);
+  secondi_edit->setMaximum(59);
   secondi_edit->setValue(brano->getDurata() % 60);
   minuti_layout->addWidget(minutiLabel);
   minuti_layout->addWidget(minuti_edit);
@@ -190,6 +195,8 @@ void EditViewVisitor::visit(Brano *brano) {
   QHBoxLayout *uscita_layout = new QHBoxLayout();
   QLabel *uscita = new QLabel("Anno di uscita: ", widget);
   QSpinBox *uscita_edit = new QSpinBox();
+  uscita_edit->setMinimum(0);
+  uscita_edit->setMaximum(QDate::currentDate().year());
   uscita_edit->setValue(brano->getUscita());
   uscita_layout->addWidget(uscita);
   uscita_layout->addWidget(uscita_edit);
@@ -288,8 +295,10 @@ void EditViewVisitor::visit(Film *film) {
 
   QHBoxLayout *uscita_layout = new QHBoxLayout();
   QLabel *uscita = new QLabel("Anno di uscita: ", widget);
-  QLineEdit *uscita_edit =
-      new QLineEdit(QString::number(film->getUscita()), widget);
+  QSpinBox *uscita_edit = new QSpinBox(widget);
+  uscita_edit->setValue(film->getUscita());
+  uscita_edit->setMinimum(0);
+  uscita_edit->setMaximum(QDate::currentDate().year());
   uscita_layout->addWidget(uscita);
   uscita_layout->addWidget(uscita_edit);
 

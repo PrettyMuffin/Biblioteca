@@ -156,7 +156,7 @@
 		"casa": "asfasfasf",
 		"descrizione": "asfasfasdfasdffa",
 		"genere": "Horror",
-		"img": ":/images/img/libro.png",
+		"img": ":/images/img/film.png",
 		"tipo": "film",
 		"titolo": "Film bello",
 		"uscita": 0,
@@ -171,7 +171,7 @@
 		"descrizione": "fasdfasfasf",
 		"durata": 248,
 		"genere": "Pop",
-		"img": ":/images/img/libro.png",
+		"img": ":/images/img/brano.png",
 		"tipo": "brano",
 		"titolo": "Brano bello",
 		"uscita": 0

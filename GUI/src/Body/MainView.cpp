@@ -1,7 +1,12 @@
 #include "../../header/Body/MainView.h"
 #include "../../header/UIContext.h"
 #include "qapplication.h"
+#include "qframe.h"
+#include "qinputdevice.h"
+#include "qlineedit.h"
 #include "qobject.h"
+#include "qtextedit.h"
+#include "qwidget.h"
 #include <ctime>
 
 MainView::MainView(QWidget *parent) : QWidget(parent) {

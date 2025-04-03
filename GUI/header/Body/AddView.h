@@ -28,6 +28,9 @@ private:
   void costruisciFilmPage(QWidget *filmPageWidget);
   void costruisciBranoPage(QWidget *branoPageWidget);
 
+private slots:
+  void onMainViewClear(QList<QWidget *>);
+
 public:
   AddView(QWidget * = nullptr);
   static bool isValidInput(QList<QString>);

@@ -37,6 +37,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Escape && body->currentIndex() == Page::ADD) {
+    emit(mainView->clear());
     body->setCurrentIndex(Page::MAIN);
   }
   if (event->keyCombination() == QKeyCombination(Qt::CTRL, Qt::Key_S)) {
