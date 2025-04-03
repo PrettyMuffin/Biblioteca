@@ -18,6 +18,10 @@ private:
   QWidget *libroPage;
   QWidget *filmPage;
   QWidget *branoPage;
+
+  const QString DEFAULT_LIBRO_PATH;
+  const QString DEFAULT_FILM_PATH;
+  const QString DEFAULT_BRANO_PATH;
   QString path;
 
   void costruisciLibroPage(QWidget *libroPageWidget);

@@ -12,6 +12,7 @@ ProductCard::ProductCard(ElementoBiblioteca *elemento, QWidget *parent)
     : QWidget(parent), elemento(elemento) {
   layout = new QVBoxLayout(this);
   copertina = new QLabel(this);
+  copertina->setStyleSheet("border-radius: 10px;");
   QWidget *info = new QWidget(this);
   QVBoxLayout *layoutinfo = new QVBoxLayout(info);
   titolo = new QLabel(elemento->getTitolo(), this);

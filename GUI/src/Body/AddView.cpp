@@ -27,7 +27,10 @@
 #include <QToolButton>
 #include <initializer_list>
 
-AddView::AddView(QWidget *parent) : QWidget(parent) {
+AddView::AddView(QWidget *parent)
+    : QWidget(parent), DEFAULT_LIBRO_PATH(":/images/img/libro.png"),
+      DEFAULT_FILM_PATH(":/images/img/film.png"),
+      DEFAULT_BRANO_PATH(":/images/img/brano.png") {
   layout = new QTabWidget(this);
   libroPage = new QWidget(this);
   filmPage = new QWidget(this);
@@ -70,7 +73,7 @@ AddView::~AddView() {
 void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(libroPageWidget);
   QToolButton *immagine = new QToolButton(libroPageWidget);
-  path = ":/images/img/libro.png";
+  path = DEFAULT_LIBRO_PATH;
   immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
@@ -153,13 +156,13 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   layoutInfo->addLayout(bottoni_layout);
   connect(annulla_button, &QPushButton::clicked, this, [=]() {
     titolo_input->clear();
-    genere_input->setText(genere_menu->defaultAction()->text());
+    genere_input->setText(genere_menu->actions()[0]->text());
     autore_input->clear();
     editore_input->clear();
     uscita_input->clear();
     isbn_input->clear();
     descrizione_input->clear();
-    path.clear();
+    path = DEFAULT_LIBRO_PATH;
     emit CancelInsertion(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
@@ -248,11 +251,15 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
 
   QLabel *uscita_label = new QLabel("Uscita (anno): ");
   QSpinBox *uscita_input = new QSpinBox;
+  uscita_input->setMinimum(0);
+  uscita_input->setMaximum(QDateTime::currentDateTime().date().year());
   layoutInfo->addWidget(uscita_label);
   layoutInfo->addWidget(uscita_input);
 
   QLabel *valutazione_label = new QLabel("Valutazione: ");
   QSpinBox *valutazione_input = new QSpinBox;
+  valutazione_input->setMinimum(0);
+  valutazione_input->setMaximum(10);
   layoutInfo->addWidget(valutazione_label);
   layoutInfo->addWidget(valutazione_input);
 
@@ -267,8 +274,17 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   bottoni_layout->addWidget(annulla_button);
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
-  connect(annulla_button, &QPushButton::clicked, this,
-          [this]() { emit CancelInsertion(0); });
+  connect(annulla_button, &QPushButton::clicked, this, [=]() {
+    titolo_input->clear();
+    genere_input->setText(genere_menu->actions()[0]->text());
+    autore_input->clear();
+    valutazione_input->clear();
+    uscita_input->clear();
+    casa_cinematografica_input->clear();
+    descrizione_input->clear();
+    path = DEFAULT_FILM_PATH;
+    emit CancelInsertion(0);
+  });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     emit addFilm(titolo_input->text(), genere_input->text(),
                  descrizione_input->text(), casa_cinematografica_input->text(),
@@ -362,8 +378,12 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   QHBoxLayout *durata_layout = new QHBoxLayout;
   QLabel *minuti_label = new QLabel("Minuti: ");
   QSpinBox *minuti_input = new QSpinBox;
+  minuti_input->setMinimum(0);
+  minuti_input->setMaximum(59);
   QLabel *secondi_label = new QLabel("Secondi: ");
   QSpinBox *secondi_input = new QSpinBox;
+  secondi_input->setMinimum(0);
+  secondi_input->setMaximum(59);
   durata_layout->addWidget(minuti_label);
   durata_layout->addWidget(minuti_input);
   durata_layout->addWidget(secondi_label);
@@ -373,6 +393,7 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 
   QLabel *uscita_label = new QLabel("Uscita (anno): ");
   QSpinBox *uscita_input = new QSpinBox;
+  uscita_input->setMaximum(QDateTime::currentDateTime().date().year());
   layoutInfo->addWidget(uscita_label);
   layoutInfo->addWidget(uscita_input);
 
@@ -388,8 +409,19 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
 
-  connect(annulla_button, &QPushButton::clicked, this,
-          [this]() { emit CancelInsertion(0); });
+  connect(annulla_button, &QPushButton::clicked, this, [=]() {
+    titolo_input->clear();
+    genere_input->setText(genere_menu->actions()[0]->text());
+    autore_input->clear();
+    minuti_input->clear();
+    secondi_input->clear();
+    uscita_input->clear();
+    album_input->clear();
+    descrizione_input->clear();
+    path = DEFAULT_BRANO_PATH;
+
+    emit CancelInsertion(0);
+  });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     QString durata_secondi = QString::number(minuti_input->text().toInt() * 60 +
                                              secondi_input->text().toInt());

@@ -1,290 +1,290 @@
 [
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia2",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "e",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "l Principito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            " autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "arg",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "El Principito",
-        "uscita": 99
-    },
-    {
-        "autori": [
-            "autor1",
-            " autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "faslkj",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "rincipito",
-        "uscita": 99
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "fasflaskfaslfj",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "incipito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "agassi"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "flaksfjl",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Bio Marco",
-        "uscita": 99
-    },
-    {
-        "autori": [
-            "autor3, autor4"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "faslfjsa",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "ito",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor2",
-            "autor3"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "becwllo",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia Agassi",
-        "uscita": 1900
-    },
-    {
-        "album": "ballbreaker",
-        "autori": [
-            "AC/DC"
-        ],
-        "descrizione": "canzone bella",
-        "durata": 180,
-        "genere": "rock",
-        "img": "/mnt/Storage/Marco/Documenti/Uni/Secondo Anno/PAO/Biblioteca/img/libro.png",
-        "tipo": "brano",
-        "titolo": "hard as a rock",
-        "uscita": 99
-    },
-    {
-        "autori": [
-            "Di Caprio"
-        ],
-        "casa": "Warner bros",
-        "descrizione": "film non molto bello",
-        "genere": "drammatico",
-        "img": "/mnt/Storage/Marco/Documenti/Uni/Secondo Anno/PAO/Biblioteca/img/libro.png",
-        "tipo": "film",
-        "titolo": "titanic",
-        "uscita": 1990,
-        "valutazione": 8
-    },
-    {
-        "autori": [
-            "asdfasfasdf"
-        ],
-        "descrizione": "afasdfasfasdfasdasdf",
-        "editore": "fasdfsadf",
-        "genere": "Biografico",
-        "img": ":/images/img/libro.png",
-        "isbn": "fasdfasdf",
-        "tipo": "libro",
-        "titolo": "afsdfasdfasdf",
-        "uscita": 0
-    },
-    {
-        "autori": [
-            "asfasfasfd",
-            " autor1"
-        ],
-        "casa": "asfasfasf",
-        "descrizione": "asfasfasdfasdffa",
-        "genere": "Horror",
-        "img": ":/images/img/libro.png",
-        "tipo": "film",
-        "titolo": "Film bello",
-        "uscita": 0,
-        "valutazione": 0
-    },
-    {
-        "album": "asfasfasdf",
-        "autori": [
-            "asfasfasf",
-            " autor5"
-        ],
-        "descrizione": "fasdfasfasf",
-        "durata": 248,
-        "genere": "Pop",
-        "img": ":/images/img/libro.png",
-        "tipo": "brano",
-        "titolo": "Brano bello",
-        "uscita": 0
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia10",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia9",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia8",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia7",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia6",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia5",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "autor1",
-            "autor2"
-        ],
-        "descrizione": "un libro molto bello",
-        "editore": "editore",
-        "genere": "Biografia",
-        "img": ":/images/img/libro.png",
-        "isbn": "33838",
-        "tipo": "libro",
-        "titolo": "Biografia3",
-        "uscita": 1900
-    },
-    {
-        "autori": [
-            "fasfasf"
-        ],
-        "descrizione": "afsdfasfsadf",
-        "editore": "asfasfasf",
-        "genere": "Biografico",
-        "img": ":/images/img/libro.png",
-        "isbn": "fasfasf",
-        "tipo": "libro",
-        "titolo": "fasfasf",
-        "uscita": 0
-    }
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia2",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "e",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "l Principito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			" autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "arg",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "El Principito",
+		"uscita": 99
+	},
+	{
+		"autori": [
+			"autor1",
+			" autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "faslkj",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "rincipito",
+		"uscita": 99
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "fasflaskfaslfj",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "incipito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"agassi"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "flaksfjl",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Bio Marco",
+		"uscita": 99
+	},
+	{
+		"autori": [
+			"autor3, autor4"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "faslfjsa",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "ito",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor2",
+			"autor3"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "becwllo",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia Agassi",
+		"uscita": 1900
+	},
+	{
+		"album": "ballbreaker",
+		"autori": [
+			"AC/DC"
+		],
+		"descrizione": "canzone bella",
+		"durata": 180,
+		"genere": "rock",
+		"img": ":/images/img/brano.png",
+		"tipo": "brano",
+		"titolo": "hard as a rock",
+		"uscita": 99
+	},
+	{
+		"autori": [
+			"Di Caprio"
+		],
+		"casa": "Warner bros",
+		"descrizione": "film non molto bello",
+		"genere": "drammatico",
+		"img": ":/images/img/film.png",
+		"tipo": "film",
+		"titolo": "titanic",
+		"uscita": 1990,
+		"valutazione": 8
+	},
+	{
+		"autori": [
+			"asdfasfasdf"
+		],
+		"descrizione": "afasdfasfasdfasdasdf",
+		"editore": "fasdfsadf",
+		"genere": "Biografico",
+		"img": ":/images/img/libro.png",
+		"isbn": "fasdfasdf",
+		"tipo": "libro",
+		"titolo": "afsdfasdfasdf",
+		"uscita": 0
+	},
+	{
+		"autori": [
+			"asfasfasfd",
+			" autor1"
+		],
+		"casa": "asfasfasf",
+		"descrizione": "asfasfasdfasdffa",
+		"genere": "Horror",
+		"img": ":/images/img/libro.png",
+		"tipo": "film",
+		"titolo": "Film bello",
+		"uscita": 0,
+		"valutazione": 0
+	},
+	{
+		"album": "asfasfasdf",
+		"autori": [
+			"asfasfasf",
+			" autor5"
+		],
+		"descrizione": "fasdfasfasf",
+		"durata": 248,
+		"genere": "Pop",
+		"img": ":/images/img/libro.png",
+		"tipo": "brano",
+		"titolo": "Brano bello",
+		"uscita": 0
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia10",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia9",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia8",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia7",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia6",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia5",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"autor1",
+			"autor2"
+		],
+		"descrizione": "un libro molto bello",
+		"editore": "editore",
+		"genere": "Biografia",
+		"img": ":/images/img/libro.png",
+		"isbn": "33838",
+		"tipo": "libro",
+		"titolo": "Biografia3",
+		"uscita": 1900
+	},
+	{
+		"autori": [
+			"fasfasf"
+		],
+		"descrizione": "afsdfasfsadf",
+		"editore": "asfasfasf",
+		"genere": "Biografico",
+		"img": ":/images/img/libro.png",
+		"isbn": "fasfasf",
+		"tipo": "libro",
+		"titolo": "fasfasf",
+		"uscita": 0
+	}
 ]
