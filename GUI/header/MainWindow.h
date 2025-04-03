@@ -5,6 +5,7 @@
 #include "Body/MainView.h"
 #include "Toolbar/ToolBar.h"
 #include "qboxlayout.h"
+#include "qtmetamacros.h"
 #include <QStackedWidget>
 #include <QWidget>
 
@@ -27,6 +28,9 @@ public:
 
 public slots:
   void changePage(int);
+
+signals:
+  void clear();
 };
 
 #endif

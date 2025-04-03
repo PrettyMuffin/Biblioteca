@@ -2,8 +2,10 @@
 #include "../../Logica/header/AppContext.h"
 #include "../../Logica/header/JSONController.h"
 #include "qevent.h"
+#include "qlogging.h"
 #include "qmessagebox.h"
 #include "qnamespace.h"
+#include "qtmetamacros.h"
 #include "qwidget.h"
 #include <QKeyEvent>
 
@@ -37,7 +39,9 @@ MainWindow::~MainWindow() {
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Escape && body->currentIndex() == Page::ADD) {
-    emit(mainView->clear());
+    qDebug() << "Emesso clear";
+    emit clear();
+    qDebug() << "Cambio schermata";
     body->setCurrentIndex(Page::MAIN);
   }
   if (event->keyCombination() == QKeyCombination(Qt::CTRL, Qt::Key_S)) {

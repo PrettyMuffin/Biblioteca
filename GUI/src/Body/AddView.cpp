@@ -22,6 +22,7 @@
 #include "qmessagebox.h"
 #include "qobject.h"
 #include "qpushbutton.h"
+#include "qsharedpointer.h"
 #include "qspinbox.h"
 #include "qtoolbutton.h"
 #include "qwidget.h"
@@ -185,6 +186,18 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
     immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
+
+  MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
+  qDebug() << (mwparent == nullptr);
+  if (mwparent)
+    connect(mwparent, &MainWindow::clear, this, [=]() {
+      qDebug() << "Iniziato Clear";
+      onMainViewClear({titolo_input, autore_input, editore_input, isbn_input,
+                       uscita_input, descrizione_input});
+      genere_input->setText(genere_menu->actions()[0]->text());
+      path = DEFAULT_BRANO_PATH;
+    });
+
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
   libroPageWidget->setLayout(layout);
@@ -306,6 +319,17 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
     immagine->setStyleSheet("QToolButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
+
+  MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
+  if (mwparent)
+    connect(mwparent, &MainWindow::clear, this, [=]() {
+      onMainViewClear({titolo_input, autore_input, valutazione_input,
+                       casa_cinematografica_input, uscita_input,
+                       descrizione_input});
+      genere_input->setText(genere_menu->actions()[0]->text());
+      path = DEFAULT_FILM_PATH;
+    });
+
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
   filmPageWidget->setLayout(layout);
@@ -446,6 +470,15 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
                             ") 0 0 0 0 stretch stretch; }");
   });
 
+  MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
+  if (mwparent)
+    connect(mwparent, &MainWindow::clear, this, [=]() {
+      onMainViewClear({titolo_input, autore_input, minuti_input, secondi_input,
+                       uscita_input, album_input, descrizione_input});
+      genere_input->setText(genere_menu->actions()[0]->text());
+      path = DEFAULT_BRANO_PATH;
+    });
+
   layout->addWidget(immagine);
   layout->addLayout(layoutInfo);
   branoPageWidget->setLayout(layout);
@@ -499,6 +532,7 @@ void AddView::onAddBrano(const QString &titolo, const QString &genere,
 }
 
 void AddView::onMainViewClear(QList<QWidget *> widgets) {
+  qDebug() << "Clear in svolgimento";
   for (auto widget : widgets) {
     if (auto spinBox = qobject_cast<QSpinBox *>(widget)) {
       spinBox->clear();
