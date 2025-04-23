@@ -32,7 +32,6 @@ signals:
   void deleteProductRequested(ElementoBiblioteca *);
   void searchRequested(ContentView::FilterType, const QString &);
   void updateViewRequested();
-  void clear();
 
 public:
   MainView(QWidget * = nullptr);

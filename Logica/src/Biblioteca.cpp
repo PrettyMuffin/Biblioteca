@@ -102,7 +102,6 @@ QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
     if (regex.match(elementi->toString()).hasMatch())
       result.push_back(elementi);
   }
-  qDebug() << regex_str;
   return result;
 }
 

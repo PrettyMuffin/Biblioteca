@@ -1,9 +1,13 @@
 #include "../header/MainWindow.h"
 #include "../../Logica/header/AppContext.h"
 #include "../../Logica/header/JSONController.h"
+#include "../header/UIContext.h"
 #include "qevent.h"
+#include "qfiledialog.h"
+#include "qlogging.h"
 #include "qmessagebox.h"
 #include "qnamespace.h"
+#include "qtmetamacros.h"
 #include "qwidget.h"
 #include <QKeyEvent>
 
@@ -37,7 +41,7 @@ MainWindow::~MainWindow() {
 
 void MainWindow::keyPressEvent(QKeyEvent *event) {
   if (event->key() == Qt::Key_Escape && body->currentIndex() == Page::ADD) {
-    emit(mainView->clear());
+    emit clear();
     body->setCurrentIndex(Page::MAIN);
   }
   if (event->keyCombination() == QKeyCombination(Qt::CTRL, Qt::Key_S)) {
@@ -47,5 +51,16 @@ void MainWindow::keyPressEvent(QKeyEvent *event) {
     conferma->setText("File salvato con successo");
     conferma->setStandardButtons(QMessageBox::Ok);
     conferma->exec();
+  }
+  if (event->keyCombination() == QKeyCombination(Qt::CTRL, Qt::Key_O)) {
+    AppContext::provide(
+        QFileDialog::getOpenFileName(this, "File Json", "", "*.json"));
+    JSONController::loadFromFile(*AppContext::getBiblioteca(),
+                                 *AppContext::getFilePath());
+    QMessageBox *conferma = new QMessageBox(this);
+    conferma->setText("File caricato con successo");
+    conferma->setStandardButtons(QMessageBox::Ok);
+    conferma->exec();
+    emit(UIContext::getMainView()->updateViewRequested());
   }
 }
