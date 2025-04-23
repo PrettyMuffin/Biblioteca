@@ -3,6 +3,7 @@
 #include "../../header/Body/ProductCard.h"
 #include "../../header/UIContext.h"
 
+#include "qglobal.h"
 #include "qlayoutitem.h"
 #include "qobject.h"
 #include "qscrollarea.h"
@@ -44,6 +45,7 @@ void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
   for (auto elemento : elements) {
     ProductCard *card = new ProductCard(elemento, this);
     layout->addWidget(card, row, col);
+    qDebug() << elemento->toString();
 
     // int maxCols = frameSize().width() / card->minimumSize().width();
     col++;

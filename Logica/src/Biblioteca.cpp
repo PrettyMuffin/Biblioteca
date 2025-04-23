@@ -1,6 +1,7 @@
 #include "../header/Biblioteca.h"
 #include "qcontainerfwd.h"
 #include "qcoreapplication.h"
+#include "qglobal.h"
 #include "qjsonvalue.h"
 #include <QJsonArray>
 #include <QJsonObject>
@@ -88,7 +89,7 @@ QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
   for (int i = 0; i < queryList.size(); i++) {
     if (queryList[i].contains(":")) {
       QStringList subqueryList = queryList[i].split((":"));
-      regex_str += "^(?=.*" + subqueryList[0] + ":";
+      regex_str += "(?=.*" + subqueryList[0] + ":";
       regex_str += "[^\\\\]*" + subqueryList[1] + "[^\\\\]*(\\\\|$))";
     } else
       regex_str += "(?=.*" + queryList[i].trimmed() + ")";
@@ -101,6 +102,7 @@ QVector<ElementoBiblioteca *> Biblioteca::search(const QString &query) const {
     if (regex.match(elementi->toString()).hasMatch())
       result.push_back(elementi);
   }
+  qDebug() << regex_str;
   return result;
 }
 
