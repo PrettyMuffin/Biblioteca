@@ -7,6 +7,7 @@
 #include <vector>
 
 class Libro : public ElementoBiblioteca {
+
 private:
   QString editore;
   QString ISBN;
@@ -20,6 +21,7 @@ public:
   Libro(const QString &, const QString &, const QString &, const QString &,
         const QString &, const QVector<QString> &, const unsigned short int &,
         const QString &);
+  Libro(const Libro &other);
   Libro *clone() const override;
   QString getId() const override;
   QJsonObject toJson() const override;
@@ -30,7 +32,7 @@ public:
   QString getEditore() const;
   QString getISBN() const;
 
-  virtual Libro &operator=(const Libro &other);
+  Libro &operator=(const Libro &other);
 };
 
 #endif

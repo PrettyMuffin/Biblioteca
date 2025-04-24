@@ -188,7 +188,6 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   });
 
   MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
-  qDebug() << (mwparent == nullptr);
   if (mwparent)
     connect(mwparent, &MainWindow::clear, this, [=]() {
       onMainViewClear({titolo_input, autore_input, editore_input, isbn_input,

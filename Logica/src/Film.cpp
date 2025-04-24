@@ -11,6 +11,13 @@ Film::Film(const QString &titolo, const QString &genere,
   id += "film";
 }
 
+Film::Film(const Film &other)
+    : ElementoBiblioteca(other),
+      casa_cinematografica(other.casa_cinematografica),
+      valutazione(other.valutazione) {
+  id += "film";
+}
+
 QString Film::JSON_FIELDS::Valutazione = "valutazione";
 QString Film::JSON_FIELDS::Casa_Cinematografica = "casa";
 

@@ -37,6 +37,7 @@ public:
   ElementoBiblioteca(const QString &, const QString &, const QString &,
                      const QVector<QString> &, const int &, const QString &);
   virtual ElementoBiblioteca *clone() const = 0;
+  ElementoBiblioteca(const ElementoBiblioteca &) = default;
   virtual ~ElementoBiblioteca();
 
   virtual QJsonObject toJson() const;
@@ -55,7 +56,7 @@ public:
   QString getImmagine() const;
   const QVector<QString> getAutori() const;
 
-  virtual ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
+  ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
 };
 
 bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs);

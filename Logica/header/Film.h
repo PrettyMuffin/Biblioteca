@@ -10,8 +10,8 @@
 
 class Film : public ElementoBiblioteca {
 private:
-  unsigned short int valutazione;
   QString casa_cinematografica;
+  unsigned short int valutazione;
 
 public:
   struct JSON_FIELDS {
@@ -19,6 +19,7 @@ public:
     static QString Casa_Cinematografica;
   };
   Film() = default;
+  Film(const Film &);
   Film(const QString &, const QString &, const QString &, const QString &,
        const QVector<QString> &, const unsigned short int &,
        const unsigned short int &, const QString &);

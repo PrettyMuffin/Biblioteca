@@ -11,6 +11,11 @@ Brano::Brano(const QString &titolo, const QString &genere,
   id += "brano";
 }
 
+Brano::Brano(const Brano &other)
+    : ElementoBiblioteca(other), album(other.album), durata(other.durata) {
+  id += "brano";
+}
+
 QString Brano::JSON_FIELDS::Album = "album";
 QString Brano::JSON_FIELDS::Durata = "durata";
 

@@ -8,6 +8,7 @@
 #include <vector>
 
 class Brano : public ElementoBiblioteca {
+
 private:
   QString album;
   unsigned int durata; // secondi
@@ -17,6 +18,7 @@ public:
     static QString Durata;
   };
   Brano() = default;
+  Brano(const Brano &);
   Brano(const QString &, const QString &, const QString &, const QString &,
         const unsigned int &, const QVector<QString> &,
         const unsigned short int &, const QString &);

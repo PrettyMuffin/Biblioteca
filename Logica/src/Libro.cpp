@@ -10,6 +10,10 @@ Libro::Libro(const QString &titolo, const QString &genere,
       editore(e), ISBN(isbn) {
   id += "libro";
 }
+Libro::Libro(const Libro &other)
+    : ElementoBiblioteca(other), editore(other.editore), ISBN(other.ISBN) {
+  id += "libro";
+}
 
 QString Libro::JSON_FIELDS::Editore = "editore";
 QString Libro::JSON_FIELDS::ISBN = "isbn";
@@ -51,8 +55,10 @@ QString Libro::getEditore() const { return editore; }
 QString Libro::getISBN() const { return ISBN; }
 
 Libro &Libro::operator=(const Libro &other) {
-  ElementoBiblioteca::operator=(other);
-  editore = other.editore;
-  ISBN = other.ISBN;
+  if (this != &other) {
+    ElementoBiblioteca::operator=(other);
+    editore = other.editore;
+    ISBN = other.ISBN;
+  }
   return *this;
 }
