@@ -34,6 +34,7 @@ public:
   unsigned short int getValutazione() const;
 
   Film &operator=(const Film &other);
+  Film &operator=(const ElementoBiblioteca &other) override;
 };
 
 #endif

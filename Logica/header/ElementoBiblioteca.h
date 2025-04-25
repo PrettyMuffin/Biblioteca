@@ -56,7 +56,7 @@ public:
   QString getImmagine() const;
   const QVector<QString> getAutori() const;
 
-  ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
+  virtual ElementoBiblioteca &operator=(const ElementoBiblioteca &other);
 };
 
 bool operator==(const ElementoBiblioteca &lhs, const ElementoBiblioteca &rhs);

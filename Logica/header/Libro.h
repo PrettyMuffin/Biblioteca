@@ -33,6 +33,7 @@ public:
   QString getISBN() const;
 
   Libro &operator=(const Libro &other);
+  Libro &operator=(const ElementoBiblioteca &other) override;
 };
 
 #endif

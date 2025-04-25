@@ -1,6 +1,7 @@
 #include "../header/Libro.h"
 #include "qcoreapplication.h"
 #include "qjsonobject.h"
+#include <typeinfo>
 
 Libro::Libro(const QString &titolo, const QString &genere,
              const QString &descrizione, const QString &e, const QString &isbn,
@@ -61,4 +62,11 @@ Libro &Libro::operator=(const Libro &other) {
     ISBN = other.ISBN;
   }
   return *this;
+}
+
+Libro &Libro::operator=(const ElementoBiblioteca &other) {
+  if (const Libro *libro = dynamic_cast<const Libro *>(&other)) {
+    return *this = *libro;
+  }
+  throw std::bad_cast();
 }

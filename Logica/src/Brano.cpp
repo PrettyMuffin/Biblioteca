@@ -1,6 +1,7 @@
 #include "../header/Brano.h"
 #include "qcoreapplication.h"
 #include "qjsonobject.h"
+#include <typeinfo>
 
 Brano::Brano(const QString &titolo, const QString &genere,
              const QString &descrizione, const QString &a,
@@ -52,8 +53,16 @@ QString Brano::getAlbum() const { return album; }
 unsigned int Brano::getDurata() const { return durata; }
 
 Brano &Brano::operator=(const Brano &other) {
-  ElementoBiblioteca::operator=(other);
-  album = other.album;
-  durata = other.durata;
+  if (this != &other) {
+    ElementoBiblioteca::operator=(other);
+    album = other.album;
+    durata = other.durata;
+  }
   return *this;
+}
+
+Brano &Brano::operator=(const ElementoBiblioteca &other) {
+  if (const Brano *brano = dynamic_cast<const Brano *>(&other))
+    return *this = *brano;
+  throw std::bad_cast();
 }

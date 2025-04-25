@@ -1,6 +1,7 @@
 #include "../header/Film.h"
 #include "qcoreapplication.h"
 #include "qjsonobject.h"
+#include <typeinfo>
 
 Film::Film(const QString &titolo, const QString &genere,
            const QString &descrizione, const QString &ca_cin,
@@ -62,8 +63,16 @@ QString Film::getCasaCinematografica() const { return casa_cinematografica; }
 unsigned short int Film::getValutazione() const { return valutazione; }
 
 Film &Film::operator=(const Film &other) {
-  ElementoBiblioteca::operator=(other);
-  casa_cinematografica = other.casa_cinematografica;
-  valutazione = other.valutazione;
+  if (this != &other) {
+    ElementoBiblioteca::operator=(other);
+    casa_cinematografica = other.casa_cinematografica;
+    valutazione = other.valutazione;
+  }
   return *this;
+}
+
+Film &Film::operator=(const ElementoBiblioteca &other) {
+  if (const Film *film = dynamic_cast<const Film *>(&other))
+    return *this = *film;
+  throw std::bad_cast();
 }

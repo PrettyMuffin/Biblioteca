@@ -33,6 +33,7 @@ public:
   unsigned int getDurata() const;
 
   Brano &operator=(const Brano &other);
+  Brano &operator=(const ElementoBiblioteca &other) override;
 };
 
 #endif
