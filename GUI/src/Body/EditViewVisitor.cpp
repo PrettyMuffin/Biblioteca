@@ -23,6 +23,7 @@
 #include <QFileDialog>
 #include <QPushButton>
 #include <QTextEdit>
+#include <qmenu.h>
 
 EditViewVisitor::EditViewVisitor() {
   widget = new QWidget();
@@ -67,8 +68,24 @@ void EditViewVisitor::visit(Libro *libro) {
 
   QHBoxLayout *genere_layout = new QHBoxLayout();
   QLabel *genere_label = new QLabel("Genere: ", widget);
-  QLineEdit *genere_edit = new QLineEdit(libro->getGenere(), widget);
+  QPushButton *genere_edit = new QPushButton(libro->getGenere(), widget);
   genere_layout->addWidget(genere_label);
+  QMenu *genere_menu = new QMenu();
+  genere_menu->addAction("Biografico");
+  genere_menu->addAction("Azione");
+  genere_menu->addAction("Horror");
+  genere_menu->addAction("Umoristico");
+  genere_menu->addAction("Giallo");
+  genere_menu->addAction("Storico");
+  genere_menu->addAction("Drammatico");
+  genere_edit->setMenu(genere_menu);
+  connect(genere_menu, &QMenu::aboutToShow, this, [genere_menu, genere_edit]() {
+    genere_menu->setMinimumWidth(genere_edit->width());
+  });
+  // modifico input di bottone
+  connect(genere_menu, &QMenu::triggered, this, [genere_edit](QAction *action) {
+    genere_edit->setText(action->text());
+  });
   genere_layout->addWidget(genere_edit);
 
   QHBoxLayout *isbn_layout = new QHBoxLayout();
@@ -168,7 +185,26 @@ void EditViewVisitor::visit(Brano *brano) {
 
   QHBoxLayout *genere_layout = new QHBoxLayout();
   QLabel *genereLabel = new QLabel("Genere: ", widget);
-  QLineEdit *genere_edit = new QLineEdit(brano->getGenere(), widget);
+  QPushButton *genere_edit = new QPushButton(brano->getGenere(), widget);
+  QMenu *genere_menu = new QMenu();
+  genere_menu->addAction("Pop");
+  genere_menu->addAction("Rock");
+  genere_menu->addAction("Metal");
+  genere_menu->addAction("R&B");
+  genere_menu->addAction("Rap");
+  genere_menu->addAction("Dance");
+  genere_menu->addAction("Blues");
+  genere_menu->addAction("Classica");
+  genere_menu->addAction("Jazz");
+  genere_menu->addAction("Colonne Sonore");
+  genere_edit->setMenu(genere_menu);
+  connect(genere_menu, &QMenu::aboutToShow, this, [genere_menu, genere_edit]() {
+    genere_menu->setMinimumWidth(genere_edit->width());
+  });
+  // modifico input di bottone
+  connect(genere_menu, &QMenu::triggered, this, [genere_edit](QAction *action) {
+    genere_edit->setText(action->text());
+  });
   genere_layout->addWidget(genereLabel);
   genere_layout->addWidget(genere_edit);
 
@@ -274,7 +310,23 @@ void EditViewVisitor::visit(Film *film) {
 
   QHBoxLayout *genere_layout = new QHBoxLayout();
   QLabel *genereLabel = new QLabel("Genere: ", widget);
-  QLineEdit *genere_edit = new QLineEdit(film->getGenere(), widget);
+  QPushButton *genere_edit = new QPushButton(film->getGenere(), widget);
+  QMenu *genere_menu = new QMenu();
+  genere_menu->addAction("Biografico");
+  genere_menu->addAction("Azione");
+  genere_menu->addAction("Horror");
+  genere_menu->addAction("Commedia");
+  genere_menu->addAction("Crime");
+  genere_menu->addAction("Fiction");
+  genere_menu->addAction("Drammatico");
+  genere_edit->setMenu(genere_menu);
+  connect(genere_menu, &QMenu::aboutToShow, this, [genere_menu, genere_edit]() {
+    genere_menu->setMinimumWidth(genere_edit->width());
+  });
+  // modifico input di bottone
+  connect(genere_menu, &QMenu::triggered, this, [genere_edit](QAction *action) {
+    genere_edit->setText(action->text());
+  });
   genere_layout->addWidget(genereLabel);
   genere_layout->addWidget(genere_edit);
 
