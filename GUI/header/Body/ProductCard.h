@@ -10,6 +10,10 @@ class ProductCard : public QWidget, public ElementoBibliotecaObserver {
   Q_OBJECT
   friend bool operator==(const ProductCard &lhs, const ProductCard &rhs);
 
+protected:
+  void enterEvent(QEnterEvent *event) override;
+  void leaveEvent(QEvent *event) override;
+
 private:
   QVBoxLayout *layout;
   QLabel *copertina;

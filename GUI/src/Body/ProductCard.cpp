@@ -2,6 +2,7 @@
 #include "../../header/Body/MainView.h"
 #include "../../header/UIContext.h"
 #include "qboxlayout.h"
+#include "qevent.h"
 #include "qlabel.h"
 #include "qnamespace.h"
 #include "qpixmap.h"
@@ -52,4 +53,14 @@ void ProductCard::mousePressEvent(QMouseEvent *event) {
 
 bool operator==(const ProductCard &lhs, const ProductCard &rhs) {
   return lhs.elemento == rhs.elemento;
+}
+
+void ProductCard::enterEvent(QEnterEvent *event) {
+  QWidget::enterEvent(event);
+  setCursor(Qt::PointingHandCursor);
+}
+
+void ProductCard::leaveEvent(QEvent *event) {
+  QWidget::leaveEvent(event);
+  setCursor(Qt::ArrowCursor);
 }
