@@ -73,6 +73,7 @@ void EditViewVisitor::visit(Libro *libro) {
   QMenu *genere_menu = new QMenu();
   genere_menu->addAction("Biografico");
   genere_menu->addAction("Azione");
+  genere_menu->addAction("Fantascienza");
   genere_menu->addAction("Horror");
   genere_menu->addAction("Umoristico");
   genere_menu->addAction("Giallo");
