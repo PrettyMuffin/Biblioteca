@@ -248,19 +248,14 @@ void EditViewVisitor::visit(Brano *brano) {
     QString durata =
         QString::number(minuti_edit->value() * 60 + secondi_edit->value());
     QList<QString> input = {
-        titolo_edit->text(),
-        genere_edit->text(),
-        descrizione_edit->toPlainText(),
-        album_edit->text(),
-        durata,
-        autore_edit->text(),
-        uscita_edit->text(),
+        titolo_edit->text(), genere_edit->text(), album_edit->text(), durata,
+        autore_edit->text(), uscita_edit->text(),
     };
     if (!AddView::isValidInput(input))
       return;
-    Brano *brano =
-        new Brano(input[0], input[1], input[2], input[3], input[4].toInt(),
-                  input[5].split(","), input[6].toInt(), newPath);
+    Brano *brano = new Brano(
+        input[0], input[1], descrizione_edit->toPlainText(), input[2],
+        input[3].toInt(), input[4].split(","), input[5].toInt(), newPath);
     emit modifica(brano);
   });
 

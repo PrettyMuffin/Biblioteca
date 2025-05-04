@@ -22,7 +22,9 @@ private:
   const QString DEFAULT_LIBRO_PATH;
   const QString DEFAULT_FILM_PATH;
   const QString DEFAULT_BRANO_PATH;
-  QString path;
+  QString libro_path;
+  QString brano_path;
+  QString film_path;
 
   void costruisciLibroPage(QWidget *libroPageWidget);
   void costruisciFilmPage(QWidget *filmPageWidget);

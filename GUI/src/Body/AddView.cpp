@@ -73,8 +73,8 @@ AddView::~AddView() {
 void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(libroPageWidget);
   QPushButton *immagine = new QPushButton(libroPageWidget);
-  path = DEFAULT_LIBRO_PATH;
-  immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+  libro_path = DEFAULT_LIBRO_PATH;
+  immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                           ") 0 0 0 0 stretch stretch; }");
 
   immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -159,8 +159,8 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
     clear({titolo_input, autore_input, editore_input, isbn_input, uscita_input,
            descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    path = DEFAULT_LIBRO_PATH;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    libro_path = DEFAULT_LIBRO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                             ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0);
   });
@@ -168,12 +168,12 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
     emit addLibro(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), editore_input->text(),
                   isbn_input->text(), autore_input->text(),
-                  uscita_input->text(), path);
+                  uscita_input->text(), libro_path);
     clear({titolo_input, autore_input, editore_input, isbn_input, uscita_input,
            descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    path = DEFAULT_LIBRO_PATH;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    libro_path = DEFAULT_LIBRO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                             ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
@@ -186,8 +186,8 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
                             QMessageBox::Ok);
       return;
     }
-    path = newPath;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    libro_path = newPath;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                             ") 0 0 0 0 stretch stretch; }");
   });
 
@@ -197,8 +197,8 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
       clear({titolo_input, autore_input, editore_input, isbn_input,
              uscita_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
-      path = DEFAULT_BRANO_PATH;
-      immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+      libro_path = DEFAULT_LIBRO_PATH;
+      immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                               ") 0 0 0 0 stretch stretch; }");
     });
 
@@ -210,8 +210,8 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
 void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(filmPageWidget);
   QPushButton *immagine = new QPushButton(filmPageWidget);
-  path = ":/images/img/film.png";
-  immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+  film_path = DEFAULT_FILM_PATH;
+  immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                           ") 0 0 0 0 stretch stretch; }");
 
   immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -297,8 +297,8 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
     clear({titolo_input, autore_input, valutazione_input,
            casa_cinematografica_input, uscita_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    path = DEFAULT_FILM_PATH;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    film_path = DEFAULT_FILM_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                             ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0);
   });
@@ -306,12 +306,12 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
     emit addFilm(titolo_input->text(), genere_input->text(),
                  descrizione_input->text(), casa_cinematografica_input->text(),
                  autore_input->text(), uscita_input->text(),
-                 valutazione_input->text(), path);
+                 valutazione_input->text(), film_path);
     clear({titolo_input, autore_input, valutazione_input,
            casa_cinematografica_input, uscita_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    path = DEFAULT_FILM_PATH;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    film_path = DEFAULT_FILM_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                             ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
@@ -325,8 +325,8 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
                             QMessageBox::Ok);
       return;
     }
-    path = newPath;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    film_path = newPath;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                             ") 0 0 0 0 stretch stretch; }");
   });
 
@@ -336,8 +336,8 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
       clear({titolo_input, autore_input, valutazione_input,
              casa_cinematografica_input, uscita_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
-      path = DEFAULT_FILM_PATH;
-      immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+      film_path = DEFAULT_FILM_PATH;
+      immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                               ") 0 0 0 0 stretch stretch; }");
     });
 
@@ -350,8 +350,8 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 
   QHBoxLayout *layout = new QHBoxLayout(branoPageWidget);
   QPushButton *immagine = new QPushButton(branoPageWidget);
-  path = ":/images/img/brano.png";
-  immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+  brano_path = DEFAULT_BRANO_PATH;
+  immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                           ") 0 0 0 0 stretch stretch; }");
 
   immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -450,8 +450,8 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
     clear({titolo_input, autore_input, minuti_input, secondi_input,
            uscita_input, album_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    path = DEFAULT_BRANO_PATH;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    brano_path = DEFAULT_BRANO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                             ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0);
   });
@@ -461,12 +461,12 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
     emit addBrano(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), album_input->text(),
                   durata_secondi, autore_input->text(), uscita_input->text(),
-                  path);
+                  brano_path);
     clear({titolo_input, autore_input, minuti_input, secondi_input,
            uscita_input, album_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    path = DEFAULT_BRANO_PATH;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    brano_path = DEFAULT_BRANO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                             ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
@@ -480,8 +480,8 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
                             QMessageBox::Ok);
       return;
     }
-    path = newPath;
-    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+    brano_path = newPath;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                             ") 0 0 0 0 stretch stretch; }");
   });
 
@@ -491,8 +491,8 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
       clear({titolo_input, autore_input, minuti_input, secondi_input,
              uscita_input, album_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
-      path = DEFAULT_BRANO_PATH;
-      immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+      brano_path = DEFAULT_BRANO_PATH;
+      immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                               ") 0 0 0 0 stretch stretch; }");
     });
 

@@ -6,6 +6,7 @@
 #include "qboxlayout.h"
 #include "qlabel.h"
 #include "qnamespace.h"
+#include "qobject.h"
 #include "qtextedit.h"
 
 DetailViewVisitor::DetailViewVisitor() {
@@ -74,7 +75,9 @@ void DetailViewVisitor::visit(Brano *brano) {
   QLabel *album = new QLabel("Album: " + brano->getAlbum(), widget);
   QLabel *genere = new QLabel("Genere: " + brano->getGenere(), widget);
   QLabel *durata =
-      new QLabel("Durata: " + QString::number(brano->getDurata()), widget);
+      new QLabel("Durata: " + QString::number(brano->getDurata() / 60) + ":" +
+                     QString::number(brano->getDurata() % 60),
+                 widget);
   QLabel *uscita = new QLabel(
       "Anno di uscita: " + QString::number(brano->getUscita()), widget);
   QTextEdit *descrizione = new QTextEdit(brano->getDescrizione(), widget);
