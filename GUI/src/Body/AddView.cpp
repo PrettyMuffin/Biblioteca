@@ -156,14 +156,12 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
   connect(annulla_button, &QPushButton::clicked, this, [=]() {
-    titolo_input->clear();
+    clear({titolo_input, autore_input, editore_input, isbn_input, uscita_input,
+           descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    autore_input->clear();
-    editore_input->clear();
-    uscita_input->clear();
-    isbn_input->clear();
-    descrizione_input->clear();
     path = DEFAULT_LIBRO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
@@ -171,6 +169,12 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
                   descrizione_input->text(), editore_input->text(),
                   isbn_input->text(), autore_input->text(),
                   uscita_input->text(), path);
+    clear({titolo_input, autore_input, editore_input, isbn_input, uscita_input,
+           descrizione_input});
+    genere_input->setText(genere_menu->actions()[0]->text());
+    path = DEFAULT_LIBRO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
   });
@@ -190,10 +194,12 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
   if (mwparent)
     connect(mwparent, &MainWindow::clear, this, [=]() {
-      onMainViewClear({titolo_input, autore_input, editore_input, isbn_input,
-                       uscita_input, descrizione_input});
+      clear({titolo_input, autore_input, editore_input, isbn_input,
+             uscita_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
       path = DEFAULT_BRANO_PATH;
+      immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                              ") 0 0 0 0 stretch stretch; }");
     });
 
   layout->addWidget(immagine);
@@ -288,14 +294,12 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   bottoni_layout->addWidget(conferma_button);
   layoutInfo->addLayout(bottoni_layout);
   connect(annulla_button, &QPushButton::clicked, this, [=]() {
-    titolo_input->clear();
+    clear({titolo_input, autore_input, valutazione_input,
+           casa_cinematografica_input, uscita_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    autore_input->clear();
-    valutazione_input->clear();
-    uscita_input->clear();
-    casa_cinematografica_input->clear();
-    descrizione_input->clear();
     path = DEFAULT_FILM_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
@@ -303,6 +307,12 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
                  descrizione_input->text(), casa_cinematografica_input->text(),
                  autore_input->text(), uscita_input->text(),
                  valutazione_input->text(), path);
+    clear({titolo_input, autore_input, valutazione_input,
+           casa_cinematografica_input, uscita_input, descrizione_input});
+    genere_input->setText(genere_menu->actions()[0]->text());
+    path = DEFAULT_FILM_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
   });
@@ -323,11 +333,12 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
   if (mwparent)
     connect(mwparent, &MainWindow::clear, this, [=]() {
-      onMainViewClear({titolo_input, autore_input, valutazione_input,
-                       casa_cinematografica_input, uscita_input,
-                       descrizione_input});
+      clear({titolo_input, autore_input, valutazione_input,
+             casa_cinematografica_input, uscita_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
       path = DEFAULT_FILM_PATH;
+      immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                              ") 0 0 0 0 stretch stretch; }");
     });
 
   layout->addWidget(immagine);
@@ -436,16 +447,12 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   layoutInfo->addLayout(bottoni_layout);
 
   connect(annulla_button, &QPushButton::clicked, this, [=]() {
-    titolo_input->clear();
+    clear({titolo_input, autore_input, minuti_input, secondi_input,
+           uscita_input, album_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    autore_input->clear();
-    minuti_input->clear();
-    secondi_input->clear();
-    uscita_input->clear();
-    album_input->clear();
-    descrizione_input->clear();
     path = DEFAULT_BRANO_PATH;
-
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
@@ -455,6 +462,12 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
                   descrizione_input->text(), album_input->text(),
                   durata_secondi, autore_input->text(), uscita_input->text(),
                   path);
+    clear({titolo_input, autore_input, minuti_input, secondi_input,
+           uscita_input, album_input, descrizione_input});
+    genere_input->setText(genere_menu->actions()[0]->text());
+    path = DEFAULT_BRANO_PATH;
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                            ") 0 0 0 0 stretch stretch; }");
     emit CancelInsertion(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
   });
@@ -475,10 +488,12 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
   MainWindow *mwparent = qobject_cast<MainWindow *>(parent());
   if (mwparent)
     connect(mwparent, &MainWindow::clear, this, [=]() {
-      onMainViewClear({titolo_input, autore_input, minuti_input, secondi_input,
-                       uscita_input, album_input, descrizione_input});
+      clear({titolo_input, autore_input, minuti_input, secondi_input,
+             uscita_input, album_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
       path = DEFAULT_BRANO_PATH;
+      immagine->setStyleSheet("QPushButton { border-image: url(" + path +
+                              ") 0 0 0 0 stretch stretch; }");
     });
 
   layout->addWidget(immagine);
@@ -530,7 +545,7 @@ void AddView::onAddBrano(const QString &titolo, const QString &genere,
   AppContext::getBiblioteca()->add(brano);
 }
 
-void AddView::onMainViewClear(QList<QWidget *> widgets) {
+void AddView::clear(QList<QWidget *> widgets) {
   for (auto widget : widgets) {
     if (auto spinBox = qobject_cast<QSpinBox *>(widget)) {
       spinBox->clear();

@@ -1,2 +1,41 @@
 [
+    {
+        "autori": [
+            "Jules Verne"
+        ],
+        "descrizione": "Un racconto di fantascienza del diciannovesimo secolo su un sottomarino elettrico, il suo eccentrico capitano e il mondo sottomarino, che anticipò molte delle conquiste scientifiche del ventesimo secolo.",
+        "editore": "Mondadoti",
+        "genere": "Fantascienza",
+        "img": "/home/marco/Scaricati/ventimilaleghesottoimari.jpg",
+        "isbn": "9780679203735",
+        "tipo": "libro",
+        "titolo": "Ventimila Leghe Sotto I Mari",
+        "uscita": 1869
+    },
+    {
+        "autori": [
+            "Bram Stoker"
+        ],
+        "descrizione": "\"Dracula\" (1897) di Bram Stoker è il romanzo gotico che ha definito il mito del vampiro moderno. Attraverso lettere e diari, racconta la lotta contro il Conte Dracula, un aristocratico soprannaturale assetato di sangue, mescolando horror, romanticismo oscuro e paure vittoriane. Un capolavoro senza tempo.\n\n",
+        "editore": "Mondadori",
+        "genere": "Horror",
+        "img": "/home/marco/Scaricati/dracula.jpg",
+        "isbn": "9780194789431",
+        "tipo": "libro",
+        "titolo": "Dracula",
+        "uscita": 1897
+    },
+    {
+        "autori": [
+            "Agatha Christie"
+        ],
+        "descrizione": "Uno dei gialli più celebri di sempre, con Hercule Poirot alle prese con un omicidio su un treno bloccato dalla neve. La struttura ingegnosa e il finale sorprendente ne fanno un must del genere poliziesco.",
+        "editore": "Mondadori",
+        "genere": "Giallo",
+        "img": "/home/marco/Scaricati/aoe.jpg",
+        "isbn": "9781405032735",
+        "tipo": "libro",
+        "titolo": "Assassinio sull'Orient Express",
+        "uscita": 1934
+    }
 ]

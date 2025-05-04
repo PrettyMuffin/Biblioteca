@@ -29,7 +29,7 @@ private:
   void costruisciBranoPage(QWidget *branoPageWidget);
 
 private slots:
-  void onMainViewClear(QList<QWidget *>);
+  void clear(QList<QWidget *>);
 
 public:
   AddView(QWidget * = nullptr);
