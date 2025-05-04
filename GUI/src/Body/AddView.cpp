@@ -24,11 +24,8 @@
 #include "qpushbutton.h"
 #include "qsharedpointer.h"
 #include "qspinbox.h"
-#include "qtoolbutton.h"
 #include "qwidget.h"
 #include <QFileDialog>
-#include <QToolButton>
-#include <initializer_list>
 
 AddView::AddView(QWidget *parent)
     : QWidget(parent), DEFAULT_LIBRO_PATH(":/images/img/libro.png"),
@@ -75,9 +72,9 @@ AddView::~AddView() {
 
 void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(libroPageWidget);
-  QToolButton *immagine = new QToolButton(libroPageWidget);
+  QPushButton *immagine = new QPushButton(libroPageWidget);
   path = DEFAULT_LIBRO_PATH;
-  immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+  immagine->setStyleSheet("QPushButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
   immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -174,8 +171,10 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
                   descrizione_input->text(), editore_input->text(),
                   isbn_input->text(), autore_input->text(),
                   uscita_input->text(), path);
+    emit CancelInsertion(0); // serve solo per far tornare alla main view
+    emit(UIContext::getMainView()->updateViewRequested());
   });
-  connect(immagine, &QToolButton::clicked, this, [=]() {
+  connect(immagine, &QPushButton::clicked, this, [=]() {
     QString newPath = QFileDialog::getOpenFileName(
         this, "Seleziona immagine", "", "Immagini (*.png *.jpg *.jpeg)");
     if (newPath.isEmpty()) {
@@ -184,7 +183,7 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
       return;
     }
     path = newPath;
-    immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
 
@@ -204,9 +203,9 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
 
 void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(filmPageWidget);
-  QToolButton *immagine = new QToolButton(filmPageWidget);
+  QPushButton *immagine = new QPushButton(filmPageWidget);
   path = ":/images/img/film.png";
-  immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+  immagine->setStyleSheet("QPushButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
   immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -304,9 +303,11 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
                  descrizione_input->text(), casa_cinematografica_input->text(),
                  autore_input->text(), uscita_input->text(),
                  valutazione_input->text(), path);
+    emit CancelInsertion(0); // serve solo per far tornare alla main view
+    emit(UIContext::getMainView()->updateViewRequested());
   });
 
-  connect(immagine, &QToolButton::clicked, this, [=]() {
+  connect(immagine, &QPushButton::clicked, this, [=]() {
     QString newPath = QFileDialog::getOpenFileName(
         this, "Seleziona immagine", "", "Immagini (*.png *.jpg *.jpeg)");
     if (newPath.isEmpty()) {
@@ -315,7 +316,7 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
       return;
     }
     path = newPath;
-    immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
 
@@ -337,9 +338,9 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
 void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 
   QHBoxLayout *layout = new QHBoxLayout(branoPageWidget);
-  QToolButton *immagine = new QToolButton(branoPageWidget);
+  QPushButton *immagine = new QPushButton(branoPageWidget);
   path = ":/images/img/brano.png";
-  immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+  immagine->setStyleSheet("QPushButton { border-image: url(" + path +
                           ") 0 0 0 0 stretch stretch; }");
 
   immagine->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -454,9 +455,11 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
                   descrizione_input->text(), album_input->text(),
                   durata_secondi, autore_input->text(), uscita_input->text(),
                   path);
+    emit CancelInsertion(0); // serve solo per far tornare alla main view
+    emit(UIContext::getMainView()->updateViewRequested());
   });
 
-  connect(immagine, &QToolButton::clicked, this, [=]() {
+  connect(immagine, &QPushButton::clicked, this, [=]() {
     QString newPath = QFileDialog::getOpenFileName(
         this, "Seleziona immagine", "", "Immagini (*.png *.jpg *.jpeg)");
     if (newPath.isEmpty()) {
@@ -465,7 +468,7 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
       return;
     }
     path = newPath;
-    immagine->setStyleSheet("QToolButton { border-image: url(" + path +
+    immagine->setStyleSheet("QPushButton { border-image: url(" + path +
                             ") 0 0 0 0 stretch stretch; }");
   });
 
