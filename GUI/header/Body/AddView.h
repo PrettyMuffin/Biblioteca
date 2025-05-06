@@ -38,7 +38,6 @@ public:
   static bool isValidInput(QList<QString>);
   ~AddView();
 
-protected:
 signals:
   void addLibro(const QString &titolo, const QString &genere,
                 const QString &descrizione, const QString &editore,
@@ -52,7 +51,7 @@ signals:
                 const QString &descrizione, const QString &album,
                 const QString &durata, const QString &autore,
                 const QString &annoPubblicazione, const QString &copertina);
-  void CancelInsertion(int);
+  void exit(int);
 
 public slots:
   void onAddLibro(const QString &titolo, const QString &genere,

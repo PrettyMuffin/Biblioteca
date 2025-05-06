@@ -14,16 +14,14 @@
 #include "qdebug.h"
 #include "qevent.h"
 #include "qfont.h"
-#include "qglobal.h"
 #include "qhashfunctions.h"
 #include "qlabel.h"
-#include "qlogging.h"
 #include "qmenu.h"
 #include "qmessagebox.h"
 #include "qobject.h"
 #include "qpushbutton.h"
-#include "qsharedpointer.h"
 #include "qspinbox.h"
+#include "qtmetamacros.h"
 #include "qwidget.h"
 #include <QFileDialog>
 
@@ -48,8 +46,7 @@ AddView::AddView(QWidget *parent)
 
   MainWindow *mainWindow = qobject_cast<MainWindow *>(parent);
   if (mainWindow) {
-    connect(this, &AddView::CancelInsertion, mainWindow,
-            &MainWindow::changePage);
+    connect(this, &AddView::exit, mainWindow, &MainWindow::changePage);
   }
 
   layout->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -159,12 +156,15 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
     clear({titolo_input, autore_input, editore_input, isbn_input, uscita_input,
            descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    libro_path = DEFAULT_LIBRO_PATH;
     immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                             ") 0 0 0 0 stretch stretch; }");
-    emit CancelInsertion(0);
+    emit exit(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
+    if (!isValidInput({titolo_input->text(), genere_input->text(),
+                       editore_input->text(), isbn_input->text(),
+                       autore_input->text(), uscita_input->text()}))
+      return;
     emit addLibro(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), editore_input->text(),
                   isbn_input->text(), autore_input->text(),
@@ -172,10 +172,13 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
     clear({titolo_input, autore_input, editore_input, isbn_input, uscita_input,
            descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    libro_path = DEFAULT_LIBRO_PATH;
     immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                             ") 0 0 0 0 stretch stretch; }");
-    emit CancelInsertion(0); // serve solo per far tornare alla main view
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setText("Libro aggiunto con successo!");
+    msgBox->setStandardButtons(QMessageBox::Ok);
+    msgBox->exec();
+    emit exit(0);
     emit(UIContext::getMainView()->updateViewRequested());
   });
   connect(immagine, &QPushButton::clicked, this, [=]() {
@@ -197,7 +200,6 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
       clear({titolo_input, autore_input, editore_input, isbn_input,
              uscita_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
-      libro_path = DEFAULT_LIBRO_PATH;
       immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                               ") 0 0 0 0 stretch stretch; }");
     });
@@ -297,12 +299,15 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
     clear({titolo_input, autore_input, valutazione_input,
            casa_cinematografica_input, uscita_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    film_path = DEFAULT_FILM_PATH;
     immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                             ") 0 0 0 0 stretch stretch; }");
-    emit CancelInsertion(0);
+    emit exit(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
+    if (!isValidInput({titolo_input->text(), genere_input->text(),
+                       casa_cinematografica_input->text(), autore_input->text(),
+                       uscita_input->text(), valutazione_input->text()}))
+      return;
     emit addFilm(titolo_input->text(), genere_input->text(),
                  descrizione_input->text(), casa_cinematografica_input->text(),
                  autore_input->text(), uscita_input->text(),
@@ -310,10 +315,13 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
     clear({titolo_input, autore_input, valutazione_input,
            casa_cinematografica_input, uscita_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    film_path = DEFAULT_FILM_PATH;
     immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                             ") 0 0 0 0 stretch stretch; }");
-    emit CancelInsertion(0); // serve solo per far tornare alla main view
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setText("Film aggiunto con successo!");
+    msgBox->setStandardButtons(QMessageBox::Ok);
+    msgBox->exec();
+    emit exit(0);
     emit(UIContext::getMainView()->updateViewRequested());
   });
 
@@ -336,7 +344,6 @@ void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
       clear({titolo_input, autore_input, valutazione_input,
              casa_cinematografica_input, uscita_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
-      film_path = DEFAULT_FILM_PATH;
       immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                               ") 0 0 0 0 stretch stretch; }");
     });
@@ -450,14 +457,17 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
     clear({titolo_input, autore_input, minuti_input, secondi_input,
            uscita_input, album_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    brano_path = DEFAULT_BRANO_PATH;
     immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                             ") 0 0 0 0 stretch stretch; }");
-    emit CancelInsertion(0);
+    emit exit(0);
   });
   connect(conferma_button, &QPushButton::clicked, this, [=]() {
     QString durata_secondi = QString::number(minuti_input->text().toInt() * 60 +
                                              secondi_input->text().toInt());
+    if (!isValidInput({titolo_input->text(), genere_input->text(),
+                       album_input->text(), durata_secondi,
+                       autore_input->text(), uscita_input->text()}))
+      return;
     emit addBrano(titolo_input->text(), genere_input->text(),
                   descrizione_input->text(), album_input->text(),
                   durata_secondi, autore_input->text(), uscita_input->text(),
@@ -465,10 +475,13 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
     clear({titolo_input, autore_input, minuti_input, secondi_input,
            uscita_input, album_input, descrizione_input});
     genere_input->setText(genere_menu->actions()[0]->text());
-    brano_path = DEFAULT_BRANO_PATH;
     immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                             ") 0 0 0 0 stretch stretch; }");
-    emit CancelInsertion(0); // serve solo per far tornare alla main view
+    QMessageBox *msgBox = new QMessageBox(this);
+    msgBox->setText("Brano aggiunto con successo!");
+    msgBox->setStandardButtons(QMessageBox::Ok);
+    msgBox->exec();
+    emit exit(0); // serve solo per far tornare alla main view
     emit(UIContext::getMainView()->updateViewRequested());
   });
 
@@ -491,7 +504,6 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
       clear({titolo_input, autore_input, minuti_input, secondi_input,
              uscita_input, album_input, descrizione_input});
       genere_input->setText(genere_menu->actions()[0]->text());
-      brano_path = DEFAULT_BRANO_PATH;
       immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                               ") 0 0 0 0 stretch stretch; }");
     });
@@ -506,8 +518,11 @@ void AddView::onAddLibro(const QString &titolo, const QString &genere,
                          const QString &isbn, const QString &autore,
                          const QString &annoPubblicazione,
                          const QString &copertina) {
-  if (!isValidInput({titolo, genere, descrizione, editore, isbn, autore,
-                     annoPubblicazione}))
+  if (!isValidInput(
+          {titolo, genere, editore, isbn, autore,
+           annoPubblicazione})) // lascio il controllo in quanto è un metodo
+                                // pubblico, dunque l'utilizzatore della classe
+                                // può inserire dati non validi
     return;
 
   Libro *libro = new Libro(titolo, genere, descrizione, editore, isbn,
@@ -520,8 +535,10 @@ void AddView::onAddFilm(const QString &titolo, const QString &genere,
                         const QString &descrizione, const QString &casa_cin,
                         const QString &cast, const QString &annoPubblicazione,
                         const QString &valutazione, const QString &copertina) {
-  if (!isValidInput({titolo, genere, descrizione, casa_cin, cast,
-                     annoPubblicazione, valutazione}))
+  if (!isValidInput({titolo, genere, casa_cin, cast, annoPubblicazione,
+                     valutazione})) // lascio il controllo in quanto è un metodo
+                                    // pubblico, dunque l'utilizzatore della
+                                    // classe può inserire dati non validi
     return;
   Film *film = new Film(titolo, genere, descrizione, casa_cin,
                         cast.split(",").toVector(), annoPubblicazione.toInt(),
@@ -534,8 +551,11 @@ void AddView::onAddBrano(const QString &titolo, const QString &genere,
                          const QString &durata, const QString &autore,
                          const QString &annoPubblicazione,
                          const QString &copertina) {
-  if (!isValidInput({titolo, genere, descrizione, album, durata, autore,
-                     annoPubblicazione}))
+  if (!isValidInput(
+          {titolo, genere, album, durata, autore,
+           annoPubblicazione})) // lascio il controllo in quanto è un metodo
+                                // pubblico, dunque l'utilizzatore della
+                                // classe può inserire dati non validi
     return;
 
   Brano *brano = new Brano(titolo, genere, descrizione, album, durata.toInt(),
@@ -555,6 +575,9 @@ void AddView::clear(QList<QWidget *> widgets) {
       comboBox->clear();
     }
   }
+  libro_path = DEFAULT_LIBRO_PATH;
+  film_path = DEFAULT_FILM_PATH;
+  brano_path = DEFAULT_BRANO_PATH;
 }
 
 bool AddView::isValidInput(QList<QString> input) {
@@ -565,8 +588,8 @@ bool AddView::isValidInput(QList<QString> input) {
     if (str.isEmpty()) {
       error_string = "Campi vuoti";
       isValid = false;
-    } else if (str.contains("\\") || str.contains(":")) {
-      error_string = "Carattere non valido, l'input non può contenere \\ o :";
+    } else if (str.contains("\\\\") || str.contains(":")) {
+      error_string = "Carattere non valido, l'input non può contenere \\\\ o :";
       isValid = false;
     }
   }

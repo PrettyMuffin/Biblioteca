@@ -120,5 +120,46 @@
         "tipo": "brano",
         "titolo": "Whole Lotta Rosie",
         "uscita": 1977
+    },
+    {
+        "album": "Led Zeppelin III",
+        "autori": [
+            "Led Zeppelin"
+        ],
+        "descrizione": "Una delle canzoni più famose dei Led Zeppelin",
+        "durata": 146,
+        "genere": "Rock",
+        "img": ":/images/img/brano.png",
+        "tipo": "brano",
+        "titolo": "Immigrant Song",
+        "uscita": 1970
+    },
+    {
+        "album": "The Eminem Show",
+        "autori": [
+            "Eminem"
+        ],
+        "descrizione": "Una delle canzoni più celebri di uno degli album più celebri e venduti di Eminem",
+        "durata": 290,
+        "genere": "Rap",
+        "img": ":/images/img/brano.png",
+        "tipo": "brano",
+        "titolo": "Without Me ",
+        "uscita": 2002
+    },
+    {
+        "album": "The Heist",
+        "autori": [
+            "Macklemore",
+            " Ryan Lewis",
+            " Wanz"
+        ],
+        "descrizione": "\"Thrift Shop\" dei Macklemore & Ryan Lewis è una canzone ironica e orecchiabile che celebra lo shopping nei negozi dell'usato, criticando il consumismo eccessivo. Con un ritmo contagioso e testi divertenti, elogia l'acquisto di abiti vintage a prezzi stracciati. Il brano è diventato un inno anticonformista e un successo virale.",
+        "durata": 235,
+        "genere": "Pop",
+        "img": ":/images/img/brano.png",
+        "tipo": "brano",
+        "titolo": "Thrift Shop",
+        "uscita": 2012
     }
 ]
