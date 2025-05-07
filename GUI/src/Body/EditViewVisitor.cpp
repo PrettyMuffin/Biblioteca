@@ -118,18 +118,14 @@ void EditViewVisitor::visit(Libro *libro) {
 
   connect(_modifica, &QPushButton::clicked, this, [=]() {
     QList<QString> input = {
-        titolo_edit->text(),
-        genere_edit->text(),
-        descrizione_edit->toPlainText(),
-        editore_edit->text(),
-        isbn_edit->text(),
-        autore_edit->text(),
-        uscita_edit->text(),
+        titolo_edit->text(), genere_edit->text(), editore_edit->text(),
+        isbn_edit->text(),   autore_edit->text(), uscita_edit->text(),
     };
     if (!AddView::isValidInput(input))
       return;
-    Libro *nLibro = new Libro(input[0], input[1], input[2], input[3], input[4],
-                              input[5].split(","), input[6].toInt(), newPath);
+    Libro *nLibro =
+        new Libro(input[0], input[1], descrizione_edit->toPlainText(), input[2],
+                  input[3], input[4].split(","), input[5].toInt(), newPath);
     emit modifica(nLibro);
   });
 
@@ -358,20 +354,15 @@ void EditViewVisitor::visit(Film *film) {
 
   connect(_modifica, &QPushButton::clicked, this, [=]() {
     QList<QString> input = {
-        titolo_edit->text(),
-        genere_edit->text(),
-        descrizione_edit->toPlainText(),
-        casa_edit->text(),
-        autore_edit->text(),
-        uscita_edit->text(),
-        valutazione_edit->text(),
+        titolo_edit->text(), genere_edit->text(), casa_edit->text(),
+        autore_edit->text(), uscita_edit->text(), valutazione_edit->text(),
     };
     if (!AddView::isValidInput(input))
       return;
 
-    Film *film =
-        new Film(input[0], input[1], input[2], input[3], input[4].split(","),
-                 input[5].toInt(), input[6].toInt(), newPath);
+    Film *film = new Film(input[0], input[1], descrizione_edit->toPlainText(),
+                          input[2], input[3].split(","), input[4].toInt(),
+                          input[5].toInt(), newPath);
     emit modifica(film);
   });
 
