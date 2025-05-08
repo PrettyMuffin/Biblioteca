@@ -42,81 +42,81 @@
         "autori": [
             "Lev Tolstoj"
         ],
-        "descrizione": "Romanzo intenso che esplora temi come l’amore, il tradimento e la società russa dell’Ottocento. La tragica storia di Anna, divisa tra passione e convenzioni sociali, è un capolavoro di profondità psicologica e dramma umano.\n\n",
+        "descrizione": "Romanzo intenso che esplora temi come l’amore, il tradimento e la società russa dell’Ottocento. La tragica storia di Anna, divisa tra passione e convenzioni sociali, è un capolavoro di profondità psicologica e dramma umano. ",
         "editore": "Zanichelli",
         "genere": "Drammatico",
-        "img": ":/images/img/libro.png",
+        "img": "/home/marco/Scaricati/annakarenina.jpeg",
         "isbn": "9780075536321",
         "tipo": "libro",
         "titolo": "Anna Karenina",
-        "uscita": 2013
+        "uscita": 99
     },
     {
         "autori": [
             "Ridley Scott",
-            "   Russel Crowe",
-            "   Joaquin Phoenix"
+            "    Russel Crowe",
+            "    Joaquin Phoenix"
         ],
         "casa": "Universal Pictures",
         "descrizione": "Il gladiatore (2000), diretto da Ridley Scott, è un epico film storico che segue le vicende del generale romano Massimo Decimo Meridio, ridotto in schiavitù, che cerca vendetta contro l'imperatore Commodo attraverso i combattimenti nell'arena. Con un cast stellare guidato da Russell Crowe, il film unisce azione, dramma e maestose ricostruzioni dell'antica Roma. Vincitore di 5 Oscar, tra cui Miglior Film.",
         "genere": "Azione",
-        "img": ":/images/img/film.png",
+        "img": "/home/marco/Scaricati/gladiator.jpg",
         "tipo": "film",
         "titolo": "Il Gladiatore",
-        "uscita": 2000,
+        "uscita": 99,
         "valutazione": 0
     },
     {
         "autori": [
             "Leonardo DICaprio",
-            " Cillian Murphy"
+            "  Cillian Murphy"
         ],
         "casa": "Warner Bros. Pictures",
         "descrizione": "Inception, diretto da Christopher Nolan, è un thriller fantascientifico in cui Leonardo DiCaprio interpreta Dom Cobb, un ladro specializzato nell’estrarre segreti dai sogni altrui. Quando gli viene affidato il compito opposto – impiantare un’idea nella mente di un target – la missione si trasforma in un viaggio psicologico tra realtà e sogno, con un finale ambiguo che ha diviso il pubblico. Vincitore di 4 Oscar, il film è celebre per la sua complessità narrativa e gli effetti visivi innovativi",
         "genere": "Azione",
-        "img": ":/images/img/film.png",
+        "img": "/home/marco/Scaricati/inception.jpg",
         "tipo": "film",
         "titolo": "Inception",
-        "uscita": 2010,
+        "uscita": 99,
         "valutazione": 9
     },
     {
         "autori": [
             "Bradley Cooper",
-            " Zach Galifianakis"
+            "  Zach Galifianakis"
         ],
         "casa": "Warner Bros. Pictures",
-        "descrizione": "Una notte da leoni (2009) è una commedia esilarante che segue un gruppo di amici che si svegliano a Las Vegas senza alcun ricordo della notte precedente. Mentre cercano di ricostruire gli eventi bizzarri e imbarazzanti che hanno vissuto, scoprono che uno di loro è scomparso e la situazione diventa sempre più assurda. Il film è noto per il suo mix di umorismo irriverente e situazioni folli.\n\n\n\n\n",
+        "descrizione": "Una notte da leoni (2009) è una commedia esilarante che segue un gruppo di amici che si svegliano a Las Vegas senza alcun ricordo della notte precedente. Mentre cercano di ricostruire gli eventi bizzarri e imbarazzanti che hanno vissuto, scoprono che uno di loro è scomparso e la situazione diventa sempre più assurda. Il film è noto per il suo mix di umorismo irriverente e situazioni folli. ",
         "genere": "Commedia",
-        "img": ":/images/img/film.png",
+        "img": "/home/marco/Scaricati/undl.jpg",
         "tipo": "film",
         "titolo": "Una Notte Da Leoni",
-        "uscita": 2009,
+        "uscita": 99,
         "valutazione": 9
     },
     {
         "autori": [
             "Christopher Nolan",
-            " Matthew McConaughey"
+            "  Matthew McConaughey"
         ],
         "casa": "Legendary Pictures",
-        "descrizione": "Interstellar (2014) è un epico film di fantascienza diretto da Christopher Nolan, che segue un gruppo di astronauti in una missione per salvare l'umanità, ormai minacciata dalla distruzione della Terra. Tra viaggi spaziali, buchi neri e dimensioni parallele, il film esplora temi di amore, sacrificio e la sopravvivenza della specie. Un'avventura visivamente straordinaria che mescola scienza e emozione in un viaggio senza tempo.\n\n\n\n\n",
+        "descrizione": "Interstellar (2014) è un epico film di fantascienza diretto da Christopher Nolan, che segue un gruppo di astronauti in una missione per salvare l'umanità, ormai minacciata dalla distruzione della Terra. Tra viaggi spaziali, buchi neri e dimensioni parallele, il film esplora temi di amore, sacrificio e la sopravvivenza della specie. Un'avventura visivamente straordinaria che mescola scienza e emozione in un viaggio senza tempo. ",
         "genere": "Fiction",
-        "img": ":/images/img/film.png",
+        "img": "/home/marco/Scaricati/interstellar.jpg",
         "tipo": "film",
         "titolo": "Interstellar",
-        "uscita": 2014,
+        "uscita": 99,
         "valutazione": 9
     },
     {
         "album": "Let There Be Rock",
         "autori": [
-            "AC-DC"
+            "AC/DC"
         ],
         "descrizione": "Una delle canzoni più famose della celebre band di hard rock: AC/DC",
         "durata": 333,
         "genere": "Rock",
-        "img": ":/images/img/brano.png",
+        "img": "/home/marco/Scaricati/acdc.jpg",
         "tipo": "brano",
         "titolo": "Whole Lotta Rosie",
         "uscita": 1977
@@ -129,7 +129,7 @@
         "descrizione": "Una delle canzoni più famose dei Led Zeppelin",
         "durata": 146,
         "genere": "Rock",
-        "img": ":/images/img/brano.png",
+        "img": "/home/marco/Scaricati/ledzep.jpg",
         "tipo": "brano",
         "titolo": "Immigrant Song",
         "uscita": 1970
@@ -142,7 +142,7 @@
         "descrizione": "Una delle canzoni più celebri di uno degli album più celebri e venduti di Eminem",
         "durata": 290,
         "genere": "Rap",
-        "img": ":/images/img/brano.png",
+        "img": "/home/marco/Scaricati/em.jpg",
         "tipo": "brano",
         "titolo": "Without Me ",
         "uscita": 2002
@@ -151,13 +151,13 @@
         "album": "The Heist",
         "autori": [
             "Macklemore",
-            " Ryan Lewis",
-            " Wanz"
+            "  Ryan Lewis",
+            "  Wanz"
         ],
         "descrizione": "\"Thrift Shop\" dei Macklemore & Ryan Lewis è una canzone ironica e orecchiabile che celebra lo shopping nei negozi dell'usato, criticando il consumismo eccessivo. Con un ritmo contagioso e testi divertenti, elogia l'acquisto di abiti vintage a prezzi stracciati. Il brano è diventato un inno anticonformista e un successo virale.",
         "durata": 235,
         "genere": "Pop",
-        "img": ":/images/img/brano.png",
+        "img": "/home/marco/Scaricati/tftshop.jpeg",
         "tipo": "brano",
         "titolo": "Thrift Shop",
         "uscita": 2012

@@ -536,7 +536,7 @@ void AddView::onAddFilm(const QString &titolo, const QString &genere,
                         const QString &cast, const QString &annoPubblicazione,
                         const QString &valutazione, const QString &copertina) {
   if (!isValidInput({titolo, genere, casa_cin, cast, annoPubblicazione,
-                     valutazione})) // lascio il controllo in quanto è un metodo
+                     valutazione})) // lascio il controllo in
                                     // pubblico, dunque l'utilizzatore della
                                     // classe può inserire dati non validi
     return;
