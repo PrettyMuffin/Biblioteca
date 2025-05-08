@@ -8,5 +8,18 @@
         <file>img/libro.png</file>
         <file>img/brano.png</file>
         <file>img/film.png</file>
+
+        <file>img/acdc.jpg</file>
+        <file>img/annakarenina.jpeg</file>
+        <file>img/aoe.jpg</file>
+        <file>img/dracula.jpg</file>
+        <file>img/em.jpg</file>
+        <file>img/gladiator.jpg</file>
+        <file>img/inception.jpg</file>
+        <file>img/interstellar.jpg</file>
+        <file>img/ledzep.jpg</file>
+        <file>img/tftshop.jpeg</file>
+        <file>img/undl.jpg</file>
+        <file>img/ventimilaleghesottoimari.jpg</file>
     </qresource>
 </RCC>
