@@ -1,6 +1,7 @@
 #include "../../header/Body/ProductsView.h"
 #include "../../../Logica/header/AppContext.h"
 #include "../../header/Body/ProductCard.h"
+#include "../../header/CursorEventFilter.h"
 #include "../../header/UIContext.h"
 
 #include "qglobal.h"
@@ -42,8 +43,10 @@ void ProductsView::setProducts(QVector<ElementoBiblioteca *> elements) {
     return;
 
   int row = 0, col = 0;
+  CursorEventFilter *hover = new CursorEventFilter(this);
   for (auto elemento : elements) {
     ProductCard *card = new ProductCard(elemento, this);
+    card->installEventFilter(hover);
     layout->addWidget(card, row, col);
 
     // int maxCols = frameSize().width() / card->minimumSize().width();

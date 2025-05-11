@@ -3,6 +3,7 @@
 #include "../../../Logica/header/Brano.h"
 #include "../../../Logica/header/Film.h"
 #include "../../../Logica/header/Libro.h"
+#include "../../header/CursorEventFilter.h"
 #include "../../header/MainWindow.h"
 #include "../../header/UIContext.h"
 
@@ -24,6 +25,7 @@
 #include "qtmetamacros.h"
 #include "qwidget.h"
 #include <QFileDialog>
+#include <cinttypes>
 
 AddView::AddView(QWidget *parent)
     : QWidget(parent), DEFAULT_LIBRO_PATH(":/images/img/libro.png"),
@@ -70,6 +72,8 @@ AddView::~AddView() {
 void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(libroPageWidget);
   QPushButton *immagine = new QPushButton(libroPageWidget);
+  CursorEventFilter *hover = new CursorEventFilter(this);
+  immagine->installEventFilter(hover);
   libro_path = DEFAULT_LIBRO_PATH;
   immagine->setStyleSheet("QPushButton { border-image: url(" + libro_path +
                           ") 0 0 0 0 stretch stretch; }");
@@ -212,6 +216,8 @@ void AddView::costruisciLibroPage(QWidget *libroPageWidget) {
 void AddView::costruisciFilmPage(QWidget *filmPageWidget) {
   QHBoxLayout *layout = new QHBoxLayout(filmPageWidget);
   QPushButton *immagine = new QPushButton(filmPageWidget);
+  CursorEventFilter *hover = new CursorEventFilter(this);
+  immagine->installEventFilter(hover);
   film_path = DEFAULT_FILM_PATH;
   immagine->setStyleSheet("QPushButton { border-image: url(" + film_path +
                           ") 0 0 0 0 stretch stretch; }");
@@ -357,6 +363,8 @@ void AddView::costruisciBranoPage(QWidget *branoPageWidget) {
 
   QHBoxLayout *layout = new QHBoxLayout(branoPageWidget);
   QPushButton *immagine = new QPushButton(branoPageWidget);
+  CursorEventFilter *hover = new CursorEventFilter(this);
+  immagine->installEventFilter(hover);
   brano_path = DEFAULT_BRANO_PATH;
   immagine->setStyleSheet("QPushButton { border-image: url(" + brano_path +
                           ") 0 0 0 0 stretch stretch; }");

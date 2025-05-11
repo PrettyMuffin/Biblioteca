@@ -1,5 +1,6 @@
 #include "../../header/Body/EditViewVisitor.h"
 #include "../../header/Body/AddView.h"
+#include "../../header/CursorEventFilter.h"
 
 #include "../../../Logica/header/Brano.h"
 #include "../../../Logica/header/Film.h"
@@ -47,6 +48,8 @@ QWidget *EditViewVisitor::getWidget() { return widget; }
 void EditViewVisitor::visit(Libro *libro) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QPushButton *pixmap = new QPushButton(widget);
+  CursorEventFilter *hover = new CursorEventFilter(this);
+  pixmap->installEventFilter(hover);
   pixmap->setIcon(QPixmap(libro->getImmagine()));
   pixmap->setIconSize(QSize(180, 280));
   pixmap->setFlat(true);
@@ -156,6 +159,8 @@ void EditViewVisitor::visit(Libro *libro) {
 void EditViewVisitor::visit(Brano *brano) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QPushButton *pixmap = new QPushButton(widget);
+  CursorEventFilter *hover = new CursorEventFilter(this);
+  pixmap->installEventFilter(hover);
   pixmap->setIcon(QPixmap(brano->getImmagine()));
   pixmap->setIconSize(QSize(180, 280));
   pixmap->setFlat(true);
@@ -282,6 +287,8 @@ void EditViewVisitor::visit(Brano *brano) {
 void EditViewVisitor::visit(Film *film) {
   QLabel *info = new QLabel("Info sull'elemento", widget);
   QPushButton *pixmap = new QPushButton(widget);
+  CursorEventFilter *hover = new CursorEventFilter(this);
+  pixmap->installEventFilter(hover);
   pixmap->setIcon(QPixmap(film->getImmagine()));
   pixmap->setIconSize(QSize(180, 280));
   pixmap->setFlat(true);
